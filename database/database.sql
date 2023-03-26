@@ -19,7 +19,6 @@ create table Ticket(
    client varchar(20) not null,
    agent varchar(20) not null,
    status varchar(10) not null,
-   message text not null,
    department varchar(20),
    foreign key (client) references User(username),
    foreign key (agent) references User(username),
@@ -49,4 +48,12 @@ create table Change(
    action text,
    foreign key (ticketId) references Ticket(id),
    foreign key (agent) references User(id)
+);
+
+create table Message(
+   id integer primary key,
+   ticketId integer not null,
+   isFromClient boolean not null,
+   message text not null,
+   foreign key (ticketId) references Ticket(id),
 );
