@@ -12,12 +12,20 @@
       $this->ticketId = $ticketId;
       $this->isFromClient = $isFromClient;
       $this->message = $message;
+    }
+
+    static public createAndAdd(PDO $db, int $ticketId, bool $isFromClient, string $message){
+      $this->ticketId = $ticketId;
+      $this->isFromClient = $isFromClient;
+      $this->message = $message;
 
       $stmt = $db->prepare('
         INSERT INTO Message
         VALUES (?, ?, ?, ?)
       ');
-      $stmt->execute(array($this->id, $this->ticketId, $this->isFromClient, $this->message));
+      $stmt->execute(array($this->ticketId, $this->isFromClient, $this->message));
+
+      return new Message($this->ticketId, $this->isFromClient, $this->message);
     }
 
     static function getAllMessagesFromTicket(PDO $db, string $tag) : array {

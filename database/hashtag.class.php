@@ -4,7 +4,7 @@
   class Hashtag{
     public string $tag;
 
-    public function __construct(PDO $db, string $tag){
+    static public function createAndAdd(PDO $db, string $tag){
       $this->tag = tag;
 
       $stmt = $db->prepare('
@@ -12,6 +12,12 @@
         VALUES (?)
       ');
       $stmt->execute(array($this->tag));
+
+      return new Hashtag($this->tag);
+    }
+
+    public function __construct(string $tag){
+      $this->tag = tag;
     }
 
     static function getAllTicketsWithTag(PDO $db, string $tag) : array {
@@ -31,7 +37,6 @@
           $ticket['client'],
           $ticket['agent'],
           $ticket['status'],
-          $ticket['message'],
           $ticket['department']
         );
       }
