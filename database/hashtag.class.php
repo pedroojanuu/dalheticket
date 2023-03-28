@@ -5,7 +5,7 @@
     public string $tag;
 
     public function __construct(PDO $db, string $tag){
-      $this->tag = tag;
+      $this->tag = $tag;
 
       $stmt = $db->prepare('
         INSERT INTO Hashtag
@@ -26,12 +26,11 @@
       $tickets = array();
 
       while($ticket = $stmt->fetch()){
-        tickets[] = new Ticket(
+        $tickets[] = new Ticket(
           $ticket['id'],
           $ticket['client'],
           $ticket['agent'],
           $ticket['status'],
-          $ticket['message'],
           $ticket['department']
         );
       }
@@ -39,7 +38,7 @@
       return $tickets;
     }
 
-    static fucntion getAllHashtags(PDO $db) : array {
+    static function getAllHashtags(PDO $db) : array {
       $stmt = $db->prepare('
         SELECT tag
         FROM Hashtag
@@ -49,31 +48,8 @@
       $hashtags = array();
 
       while($hashtag = $stmt->fetch()){
-        hashtags[] = new Hashtag(
-          $hashtag['tag']
-        );
+        $hashtags[] = new Hashtag($db, $hashtag['tag']);
       }
-
-      return $hashtags;
-    }
-
-    static function getAllHashtagsInTicket(PDO $db, int $ticketId) : array {
-      $stmt = $db->prepare('
-        SELECT h.tag
-        FROM Hashtag h JOIN TicketHashtag th
-        ON h.tag = th.tag
-        WHERE th.ticketId = ?
-      ');
-      $stmt->execute(array($ticketId));
-
-      $hashtags = array();
-
-      while($hashtag = $stmt->fetch()){
-        hashtags[] = new Hashtag(
-          $hashtag['tag']
-        );
-      }
-
       return $hashtags;
     }
 

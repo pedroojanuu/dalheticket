@@ -7,7 +7,7 @@
     public bool $isFromClient;
     public string $message;
 
-    public function __construct(int $id, int $ticketId, bool $isFromClient, string $message){
+    public function __construct(PDO $db, int $id, int $ticketId, bool $isFromClient, string $message){
       $this->id = $id;
       $this->ticketId = $ticketId;
       $this->isFromClient = $isFromClient;
@@ -33,6 +33,7 @@
     
         while($message = $stmt->fetch()){
             $messages[] = new Message(
+            $db,
             $message['id'],
             $message['ticketId'],
             $message['isFromClient'],

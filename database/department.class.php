@@ -5,7 +5,7 @@
     public string $name;
 
     public function __construct(string $name){
-      $this->name = name;
+      $this->name = $name;
     }
 
     static function getAllTicketsInDepartment(PDO $db, string $name) : array {
@@ -20,12 +20,11 @@
       $tickets = array();
 
       while($ticket = $stmt->fetch()){
-        tickets[] = new Ticket(
+        $tickets[] = new Ticket(
           $ticket['id'],
           $ticket['client'],
           $ticket['agent'],
           $ticket['status'],
-          $ticket['message'],
           $ticket['department']
         );
       }
