@@ -55,5 +55,5 @@ create table Message(
    ticketId integer not null,
    isFromClient boolean not null,
    message text not null,
-   foreign key (ticketId) references Ticket(id),
+   foreign key (ticketId) references Ticket(id)
 );
