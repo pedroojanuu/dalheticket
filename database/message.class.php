@@ -7,17 +7,21 @@
     public bool $isFromClient;
     public string $message;
 
-    public function __construct(PDO $db, int $id, int $ticketId, bool $isFromClient, string $message){
+    public function __construct(int $id, int $ticketId, bool $isFromClient, string $message){
       $this->id = $id;
       $this->ticketId = $ticketId;
       $this->isFromClient = $isFromClient;
       $this->message = $message;
+    }
 
+    static public function createAndAdd(PDO $db, int $id, int $ticketId, bool $isFromClient, string $message){
       $stmt = $db->prepare('
         INSERT INTO Message
         VALUES (?, ?, ?, ?)
       ');
-      $stmt->execute(array($this->id, $this->ticketId, $this->isFromClient, $this->message));
+      $stmt->execute(array($id, $ticketId, $isFromClient, $message));
+
+      return new Message($id, $ticketId, $isFromClient, $message);
     }
 
     static function getAllMessagesFromTicket(PDO $db, string $tag) : array {
@@ -33,7 +37,6 @@
     
         while($message = $stmt->fetch()){
             $messages[] = new Message(
-            $db,
             $message['id'],
             $message['ticketId'],
             $message['isFromClient'],

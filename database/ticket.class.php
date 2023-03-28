@@ -75,7 +75,7 @@
             $hashtags = array();
 
             while($hashtag = $stmt->fetch()){
-                $hashtags[] = new Hashtag($db, $hashtag['tag']);
+                $hashtags[] = new Hashtag($hashtag['tag']);
             }
             return $hashtags;
         }
