@@ -17,7 +17,7 @@ create table User(
 create table Ticket(
    id integer primary key,
    client varchar(20) not null,
-   agent varchar(20) not null,
+   agent varchar(20),
    status varchar(10) not null,
    department varchar(20),
    foreign key (client) references User(username),

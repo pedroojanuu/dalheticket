@@ -8,10 +8,10 @@
     public string $message;
 
     public function __construct(int $id, int $ticketId, bool $isFromClient, string $message){
-      $this->id = id;
-      $this->ticketId = ticketId;
-      $this->isFromClient = isFromClient;
-      $this->message = message;
+      $this->id = $id;
+      $this->ticketId = $ticketId;
+      $this->isFromClient = $isFromClient;
+      $this->message = $message;
     }
 
     static function getAllMessagesFromTicket(PDO $db, string $tag) : array {
@@ -26,7 +26,7 @@
         $messages = array();
     
         while($message = $stmt->fetch()){
-            messages[] = new Message(
+            $messages[] = new Message(
             $message['id'],
             $message['ticketId'],
             $message['isFromClient'],
