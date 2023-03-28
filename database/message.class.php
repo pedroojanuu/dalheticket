@@ -12,6 +12,12 @@
       $this->ticketId = $ticketId;
       $this->isFromClient = $isFromClient;
       $this->message = $message;
+
+      $stmt = $db->prepare('
+        INSERT INTO Message
+        VALUES (?, ?, ?, ?)
+      ');
+      $stmt->execute(array($this->id, $this->ticketId, $this->isFromClient, $this->message));
     }
 
     static function getAllMessagesFromTicket(PDO $db, string $tag) : array {

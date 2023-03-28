@@ -4,8 +4,14 @@
   class Hashtag{
     public string $tag;
 
-    public function __construct(string $tag){
+    public function __construct(PDO $db, string $tag){
       $this->tag = tag;
+
+      $stmt = $db->prepare('
+        INSERT INTO Hashtag
+        VALUES (?)
+      ');
+      $stmt->execute(array($this->tag));
     }
 
     static function getAllTicketsWithTag(PDO $db, string $tag) : array {
@@ -69,6 +75,14 @@
       }
 
       return $hashtags;
+    }
+
+    function delete(PDO $db) {
+      $stmt = $db->prepare('
+        DELETE FROM Hashtag
+        WHERE tag = ?
+      ');
+      $stmt->execute(array($this->tag));
     }
 
   }
