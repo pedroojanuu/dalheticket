@@ -4,6 +4,7 @@ drop table if exists Hashtag;
 drop table if exists TicketHashtag;
 drop table if exists Department;
 drop table if exists Change;
+drop table if exists Message;
 
 create table User(
    name varchar(60) not null,
