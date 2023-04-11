@@ -2,10 +2,10 @@
 declare(strict_types = 1);
 
 class Change{
-    int $id;
-    int $ticketId;
-    string $agent;
-    string $action;
+    public int $id;
+    public int $ticketId;
+    public string $agent;
+    public string $action;
 
     public function __construct(int $id, int $ticketId, string $agent, string $action){
         $this->id = $id;

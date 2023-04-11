@@ -22,8 +22,7 @@ class User{
             'INSERT INTO User
              VALUES (?,?,?,?,?,?)'
              );
-        $stmt->execute(array($name,$username,$email,$password,$type,$department))
+        $stmt->execute(array($name,$username,$email,$password,$type,$department));
     }
 }
-
 ?>
