@@ -87,5 +87,20 @@ class User{
 
       return $stmt->fetchAll()[0]['type'];
     }
+
+    static public function getUserByUsername(PDO $db, string $username) : User {
+      $stmt = $db->prepare('SELECT * from User where username = ?');
+      $stmt->execute(array($username));
+
+      $user = $stmt->fetchAll()[0];
+
+      return new User(
+        $user['name'],
+        $user['username'],
+        $user['email'],
+        $user['type'],
+        $user['department'],
+      );
+    }
 }
 ?>
