@@ -1,9 +1,13 @@
 <?php 
   declare(strict_types = 1); 
-  $name = 'Dá-lhe Ticket'; 
+  $name = 'Dá-lhe Ticket';
+
+  require_once(__DIR__ . '/../utils/session.php');
+  $session = new Session();
 ?>
 
-<?php function drawHeader() { ?>
+<?php function drawHeader() {
+  global $session; ?>
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -17,7 +21,13 @@
     </header>
 
     <main>
-<?php } ?>
+<?php
+  if ($session->isLoggedIn()) {
+    drawLogoutForm($session);
+  } else {
+    drawLoginForm($session);
+  }
+} ?>
 
 <?php function drawFooter() { ?>
     </main>

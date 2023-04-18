@@ -18,7 +18,7 @@
       return new Hashtag($tag);
     }
 
-    static function getAllTicketsWithTag(PDO $db, string $tag) : array {
+    static public function getAllTicketsWithTag(PDO $db, string $tag) : array {
       $stmt = $db->prepare('
         SELECT t.id, t.client, t.agent, t.status, t.message, t.department
         FROM Ticket t JOIN TicketHashtag th JOIN Hashtag h
@@ -32,6 +32,7 @@
       while($ticket = $stmt->fetch()){
         $tickets[] = new Ticket(
           $ticket['id'],
+          $ticket['title'],
           $ticket['client'],
           $ticket['agent'],
           $ticket['status'],
@@ -42,7 +43,7 @@
       return $tickets;
     }
 
-    static function getAllHashtags(PDO $db) : array {
+    static public function getAllHashtags(PDO $db) : array {
       $stmt = $db->prepare('
         SELECT tag
         FROM Hashtag
@@ -57,7 +58,7 @@
       return $hashtags;
     }
 
-    function delete(PDO $db) {
+    public function delete(PDO $db) {
       $stmt = $db->prepare('
         DELETE FROM Hashtag
         WHERE tag = ?

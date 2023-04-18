@@ -12,10 +12,11 @@
     $db = getDatabaseConnection();
 
     $client = $session->getName();
+    $title = $_POST['title'];
     $department = $_POST['department'];
     $message = $_POST['message'];
 
-    $ticket = Ticket::createAndAdd($db, $client, $department);
+    $ticket = Ticket::createAndAdd($db, $title, $client, $department);
     Message::createAndAdd($db, $ticket->id, true, $message);
 
     header('Location: ../index.php');

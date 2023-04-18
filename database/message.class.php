@@ -27,7 +27,7 @@
       return new Message($id, $ticketId, $isFromClient, $message);
     }
 
-    static function getAllMessagesFromTicket(PDO $db, string $tag) : array {
+    static public function getAllMessagesFromTicket(PDO $db, string $tag) : array {
         $stmt = $db->prepare('
             SELECT m.id, m.ticketId, m.isFromClient, m.message
             FROM Message m JOIN Ticket t

@@ -2,24 +2,17 @@
     // Include the header
     require_once(__DIR__ . '/templates/common.tpl.php');
 
-    require_once(__DIR__ . '/utils/session.php');
-    $session = new Session();
-
-
+    drawHeader();
 ?>
-
-<?php drawHeader(); ?>
-
-<h1>Hello World</h1>
 
 <?php 
     if($session->isLoggedIn()) {
-        drawLogoutForm($session);
         ?>
-        <a href="pages/submit_ticket.php">Submit a ticket</a>
-        <?php
-    } else {
-        drawLoginForm($session);
+        <div class="options">
+            <a href="pages/submit_ticket.php">Submit a ticket</a>
+            <a href="pages/my_tickets.php">List my tickets</a>
+        </div>
+    <?php
     }
       drawFooter();
 ?>

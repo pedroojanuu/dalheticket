@@ -3,20 +3,33 @@
 
     require_once(__DIR__ . '/../database/ticket.class.php');
     require_once(__DIR__ . '/../database/hashtag.class.php');
-    require_once(__DIR__ . '/../utils/message.php');
+    //require_once(__DIR__ . '/../utils/message.php');
 ?>
 
-<?php function drawTicket(Ticket $ticket, PDO $db) { ?>
-    <h2>Ticket #<?= $ticket->id ?></h2>
-    <h3>Client: <?= $ticket->client ?></h3>
+<?php function drawTicketList(array $tickets) : void {
+    if (sizeof($tickets) == 0) {
+        print "You have no tickets.";
+        return;
+    }
+    ?>
+    <ul>
+    <?php foreach ($tickets as $ticket) {?>
+        <li><a href="../pages/ticket.php?id=<?= $ticket->id?>">[<?= $ticket->status?>] <?= $ticket->title?></a></li>
+    <?php }?>
+    </ul>
+<?php }?>
+
+<?php function drawTicket(PDO $db, Ticket $ticket) { ?>
+    <span class="ticket_title"><?= $ticket->title ?></span>
+    <span class="ticket_client">Client: <?= $ticket->client ?></span>
     <?php if($ticket->agent !== null) { ?>
-        <h3>Agent: <?= $ticket->agent ?></h3>
+        <span class="ticket_agent">Agent: <?= $ticket->agent ?></span>
     <?php } ?>
-    <h3>Status: <?= $ticket->status ?></h3>
-    <h3>Department: <?= $ticket->department ?></h3>
-    <p>Hashtags: 
-        <?php foreach($ticket->getAllHashtags($db) as $hashtag) { ?>
-            #<?= $hashtag->name ?> 
+    <span class="ticket_status">Status: <?= $ticket->status ?></span>
+    <span class="ticket_department">Department: <?= $ticket->department ?></span>
+    <div class="ticket_hashtags">Hashtags: 
+        <?php foreach($ticket->getHashtags($db) as $hashtag) { ?>
+            <span class="hashtag">#<?= $hashtag->name ?></span>
         <?php } ?>
-    </p>
+        </div>
 <?php } ?>

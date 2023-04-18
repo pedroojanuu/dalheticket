@@ -26,7 +26,7 @@ class User{
         return new User($name,$username,$email,$type,$department);
     }
 
-    static function getUserWithPassword(PDO $db, string $email, string $password) : ?User {
+    static public function getUserWithPassword(PDO $db, string $email, string $password) : ?User {
         $stmt = $db->prepare('
           SELECT name, username, email, type, department
           FROM User
@@ -46,7 +46,7 @@ class User{
         } else return null;
     }
 
-    static function emailExists(PDO $db, string $email) : bool {
+    static public function emailExists(PDO $db, string $email) : bool {
         $stmt = $db->prepare('
           SELECT email
           FROM User
@@ -58,7 +58,7 @@ class User{
         return $stmt->fetch() !== false;
     }
 
-    static function usernameExists(PDO $db, string $username) : bool {
+    static public function usernameExists(PDO $db, string $username) : bool {
         $stmt = $db->prepare('
           SELECT username
           FROM User
@@ -80,6 +80,12 @@ class User{
         $stmt->execute(array(strtolower($this->username)));
     
         return $stmt->fetch()['rowid'];
+    }
+    static public function getUserTypeByUsername(PDO $db, string $username) : string {
+      $stmt = $db->prepare('SELECT type from User where username = ?');
+      $stmt->execute(array($username));
+
+      return $stmt->fetchAll()[0]['type'];
     }
 }
 ?>

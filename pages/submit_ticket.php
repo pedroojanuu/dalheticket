@@ -19,17 +19,18 @@
 ?>
 
 <form action="../actions/action_submit_ticket.php" method="post" class="submit_ticket">
-    <select name="department">
-        <?php
-        foreach (Department::getAllDepartments($db) as $department) {
-            ?>
-            <option value="<?=$department->name?>"><?=$department->name?></option>
-            <?php
-        }
-        ?>
-    </select>
-    <textarea name="message"></textarea>
-    <button type="submit">Submit</button>
+  <input type="text" name="title" placeholder="A title for your ticket">
+  <select name="department">
+      <?php
+      foreach (Department::getAllDepartments($db) as $department) {
+          ?>
+          <option value="<?=$department->name?>"><?=$department->name?></option>
+          <?php
+      }
+      ?>
+  </select>
+  <textarea name="message"></textarea>
+  <button type="submit">Submit</button>
 </form>
 
 <?php

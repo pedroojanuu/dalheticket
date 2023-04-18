@@ -17,6 +17,7 @@ create table User(
 
 create table Ticket(
    id integer primary key autoincrement,
+   title varchar(60) not null,
    client varchar(20) not null,
    agent varchar(20),
    status varchar(10) not null,

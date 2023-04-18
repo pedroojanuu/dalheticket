@@ -18,7 +18,7 @@
       return new Department($name);
     }
 
-    static function getAllTicketsInDepartment(PDO $db, string $name) : array {
+    static public function getAllTicketsInDepartment(PDO $db, string $name) : array {
       $stmt = $db->prepare('
         SELECT t.id, t.client, t.agent, t.status, t.message, t.department
         FROM Ticket t JOIN Department d
@@ -32,6 +32,7 @@
       while($ticket = $stmt->fetch()){
         $tickets[] = new Ticket(
           $ticket['id'],
+          $ticket['title'],
           $ticket['client'],
           $ticket['agent'],
           $ticket['status'],
