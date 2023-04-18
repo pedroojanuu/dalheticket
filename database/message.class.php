@@ -14,12 +14,15 @@
       $this->message = $message;
     }
 
-    static public function createAndAdd(PDO $db, int $id, int $ticketId, bool $isFromClient, string $message){
+    static public function createAndAdd(PDO $db, int $ticketId, bool $isFromClient, string $message){
       $stmt = $db->prepare('
-        INSERT INTO Message
-        VALUES (?, ?, ?, ?)
+        INSERT INTO Message (ticketId, isFromClient, message)
+        VALUES (?, ?, ?)
       ');
-      $stmt->execute(array($id, $ticketId, $isFromClient, $message));
+      $stmt->execute(array($ticketId, $isFromClient, $message));
+      $stmt = $db->prepare('SELECT max(id) as id from Message');
+      $stmt->execute();
+      $id = $stmt->fetchAll()[0]["id"];
 
       return new Message($id, $ticketId, $isFromClient, $message);
     }

@@ -15,6 +15,9 @@
 <?php 
     if($session->isLoggedIn()) {
         drawLogoutForm($session);
+        ?>
+        <a href="pages/submit_ticket.php">Submit a ticket</a>
+        <?php
     } else {
         drawLoginForm($session);
     }

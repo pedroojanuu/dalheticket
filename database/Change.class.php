@@ -13,14 +13,18 @@ class Change{
         $this->agent = $agent;
         $this->action = $action;
     }
-    static public function createAndAdd(PDO $db, int $id, int $ticketId, string $agent, string $action){
+    static public function createAndAdd(PDO $db, int $ticketId, string $agent, string $action) : Change {
         $stmt = $db->prepare(
-            'INSERT INTO User
-             VALUES (?,?,?,?,?,?)'
+            'INSERT INTO Change (ticketId, agent, action)
+             VALUES (?,?,?)'
              );
-        $stmt->execute(array($id, $ticketId, $agent, $action));
+        $stmt->execute(array($ticketId, $agent, $action));
+        $stmt = $db->prepare('SELECT max(id) from Change');
+        $stmt->execute();
+        $id = $stmt->fetch()[0]['id'];
+        return new Change($id, $ticketId, $agent, $action);
     }
-    static function getAllChangesFromTicket(PDO $db, string $tag) : array {
+    static public function getAllChangesFromTicket(PDO $db, string $tag) : array {
         $stmt = $db->prepare('
             SELECT m.id, m.ticketId, m.agent, m.action
             FROM Change m JOIN Ticket t

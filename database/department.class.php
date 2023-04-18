@@ -41,6 +41,17 @@
 
       return $tickets;
     }
+    static public function getAllDepartments(PDO $db) : array {
+      $stmt = $db->prepare('SELECT * from Department');
+      $stmt->execute();
 
+      $departments = array();
+
+      while ($department = $stmt->fetch()) {
+        $departments[] = new Department($department['name']);
+      }
+
+      return $departments;
+    }
   }
 ?>

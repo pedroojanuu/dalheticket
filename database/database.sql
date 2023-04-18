@@ -11,12 +11,12 @@ create table User(
    username varchar(20) primary key,
    email varchar(60) not null,
    password varchar(40) not null,
-   type char(2) not null, /*cl, ag, ad*/
+   type varchar(5) not null, /*user, agent, admin*/
    department varchar(20)
 );
 
 create table Ticket(
-   id integer primary key,
+   id integer primary key autoincrement,
    client varchar(20) not null,
    agent varchar(20),
    status varchar(10) not null,
@@ -43,7 +43,7 @@ create table Department(
 );
 
 create table Change(
-   id integer primary key,
+   id integer primary key autoincrement,
    ticketId integer not null,
    agent varchar(20) not null,
    action text,
@@ -52,7 +52,7 @@ create table Change(
 );
 
 create table Message(
-   id integer primary key,
+   id integer primary key autoincrement,
    ticketId integer not null,
    isFromClient boolean not null,
    message text not null,
