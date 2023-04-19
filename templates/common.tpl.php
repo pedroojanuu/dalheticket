@@ -21,6 +21,7 @@
     </header>
 
     <main>
+      <a href="../pages/faqs.php" class="faqs">FAQs</a>
 <?php
   if ($session->isLoggedIn()) {
     drawLogoutForm($session);

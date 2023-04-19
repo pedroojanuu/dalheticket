@@ -5,6 +5,7 @@ drop table if exists TicketHashtag;
 drop table if exists Department;
 drop table if exists Change;
 drop table if exists Message;
+drop table if exists FAQ;
 
 create table User(
    name varchar(60) not null,
@@ -58,4 +59,10 @@ create table Message(
    isFromClient boolean not null,
    message text not null,
    foreign key (ticketId) references Ticket(id)
+);
+
+create table FAQ(
+   id integer primary key autoincrement,
+   question text not null,
+   answer text not null
 );

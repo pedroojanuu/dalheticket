@@ -7,7 +7,7 @@ class Change{
     public string $agent;
     public string $action;
 
-    public function __construct(int $id, int $ticketId, string $agent, string $action){
+    public function __construct(int $id, int $ticketId, string $agent, string $action) {
         $this->id = $id;
         $this->ticketId = $ticketId;
         $this->agent = $agent;
@@ -19,7 +19,7 @@ class Change{
              VALUES (?,?,?)'
              );
         $stmt->execute(array($ticketId, $agent, $action));
-        $stmt = $db->prepare('SELECT max(id) from Change');
+        $stmt = $db->prepare('SELECT max(id) as id from Change');
         $stmt->execute();
         $id = $stmt->fetch()[0]['id'];
         return new Change($id, $ticketId, $agent, $action);
