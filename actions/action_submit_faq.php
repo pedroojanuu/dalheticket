@@ -11,5 +11,5 @@
 
     FAQ::createAndAdd($db, $question, $answer);
 
-    header('Location: ../pages/faq_page.php');
+    header('Location: ../pages/faqs.php');
 ?>

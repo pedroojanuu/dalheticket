@@ -4,6 +4,10 @@
 
     require_once(__DIR__ . '/../database/faq.class.php');
 
+    function drawSubmitFAQ() {?>
+      <a href="../pages/submit_faq.php" class="submit_faq_button">Submit a FAQ...</a>  
+<?php }
+
     function drawFAQs(PDO $db) {?>
         <div class="faq_group">
             <?php 
