@@ -19,7 +19,7 @@
         header('Location: ../index.php');
     }
 
-    $user = User::getUserByUsername($db, $session->getName());
+    $user = User::getUserByUsername($db, $_GET['username']);
 
     drawProfile($user);
 

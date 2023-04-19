@@ -54,13 +54,13 @@
           <?=$messsage['text']?>
         </article>
       <?php } ?>
-    </section>
+  </section>
 
 <?php } ?>
 
 <?php function drawLogoutForm(Session $session) { ?>
   <form action="../actions/action_logout.php" method="post" class="logout">
-    <a href="../pages/profile.php"><?=$session->getName()?></a>
+    <a href="../pages/profile.php?username=<?=$session->getName()?>"><?=$session->getName()?></a>
     <button type="submit">Logout</button>
   </form>
 <?php } ?>
