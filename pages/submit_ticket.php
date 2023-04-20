@@ -19,8 +19,10 @@
 ?>
 
 <form action="../actions/action_submit_ticket.php" method="post" class="submit_ticket">
-  <input type="text" name="title" placeholder="A title for your ticket">
-  <select name="department">
+  <label for="title">Title</label>
+  <input type="text" name="title" id="title" placeholder="A title for your ticket">
+  <label for="department">Department</label>
+  <select name="department" id="department">
       <?php
       foreach (Department::getAllDepartments($db) as $department) {
           ?>
@@ -29,7 +31,8 @@
       }
       ?>
   </select>
-  <textarea name="message"></textarea>
+  <label for="message">Message</label>
+  <textarea name="message" id="message"></textarea>
   <button type="submit">Submit</button>
 </form>
 

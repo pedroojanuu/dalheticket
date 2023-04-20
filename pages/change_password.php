@@ -31,14 +31,14 @@
 <?php
     if ($user_type != 'admin') {
 ?>
-        <label for="old">Old password:</label>
+        <label for="old">Old password</label>
         <input type="text" name="old" id="old">
 <?php
     }
 ?>
-        <label for="new">New password:</label>
+        <label for="new">New password</label>
         <input type="text" name="new" id="new">
-        <label for="new2">Confirm new password:</label>
+        <label for="new2">Confirm new password</label>
         <input type="text" name="new2" id="new2">
         <input type="hidden" name="username" value="<?=$_GET['username']?>">
         <button type="submit">Submit</button>
