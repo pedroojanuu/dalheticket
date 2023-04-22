@@ -1,19 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Allerta Stencil', sans-serif;
   margin: 0;
   padding: 0;
 
   display: grid;
 
-  grid-template-columns: auto;
-  grid-template-rows: 7em auto 4em;
+  grid-template-columns: 5em auto 5em;
+  grid-template-rows: 5em auto 4em;
   grid-template-areas:
-    "header"
-    "main"
-    "footer";
+    "header header header"
+    "main main main"
+    "footer footer footer";
   min-height: 100vh;
+  background-color: #A5B2B8;
 }
 
 header:first-of-type {
@@ -23,16 +25,20 @@ header:first-of-type {
 footer:last-of-type {
   max-height: 5em;
   color: #ffffff;
-  background-color: #000000;
+  background-color: #A5B2B8;
   grid-area: footer;
 }
 
 main {
+  font-family: 'Poppins', sans-serif;
   display: grid;
   justify-content: start;
   align-content: start;
   grid-area: main;
   margin: 1em 2em;
+  background-color: #ffffff;
+  padding: 3em;
+  border-radius: 2em;
 }
 
 /* body {
@@ -40,3 +46,11 @@ main {
   display: grid;
   grid-template-rows: 1fr auto;
 } */
+
+footer * {
+  display: block;
+}
+
+form * {
+  display: block;
+}

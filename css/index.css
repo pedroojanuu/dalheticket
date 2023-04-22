@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Allerta Stencil', sans-serif;
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: auto auto 4em;
@@ -11,10 +11,12 @@ body {
       "footer";
 
   min-height: 100vh;
-  background-color: #5e62D1;
+  background-color: #A5B2B8;
   color: #ffffff;
   margin: 0;
   padding: 0;
+  padding-left: 20vh;
+  font-size: 1.2em;
 }
 
 body a {
@@ -28,10 +30,11 @@ body a:hover {
 }
 
 header {
+  text-align: left;
   grid-area: header;
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 7rem 3rem 10rem;
+  grid-template-rows: 20rem 3rem 10rem;
   grid-template-areas:
       "logo"
       "options";
@@ -39,36 +42,47 @@ header {
 }
 
 header h1 {
+  margin: 0;
+  padding: 0;
   grid-area:logo;
-  justify-self: center;
+  /* justify-self: center; */
+  justify-self: start;
   align-self: center;
-  margin-top: 5rem;
+  margin-top: 17rem;
   margin-bottom: 1rem;
+  font-size: 4rem;
+  font-weight: 100;
+  text-transform: lowercase;
+  /* width: 4em; */
+}
+
+header h1 a:hover{
+  text-decoration: none;
+  color: #ffffff;
 }
 
 header .header_options {
   grid-area: options;
-  justify-self: center;
+  justify-self: start;
   align-self: center;
-  color:red;
 }
 
 header .header_login {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 58%;
+  left: 20vh;
+  /* transform: translate(-50%, -50%); */
 }
 
 .options{
   position: fixed;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 65%;
+  left: 20vh;
+  /* transform: translate(-50%, -50%); */
 }
 
 .login {
-  text-align: center;
+  text-align: left;
 }
 
 .login *{
@@ -77,14 +91,47 @@ header .header_login {
   margin-right: auto;
 }
 
+.login input, .login button {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.login input {
+  width: 13em;
+}
+
+.login form + p, .login form + p + a{
+  display: inline;
+  font-size: 0.5em;
+}
+
+.login form + p + a {
+  margin-left: 0.5em;
+}
+
+.logout button {
+  font-size: 0.5em;
+}
+
 main {
   grid-area: main;
-  justify-self: center;
+  justify-self: start;
   align-self: center;
+  text-align: left;
+}
+
+main * {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 footer {
   grid-area: footer;
-  background-color: black;
+  /* background-color: black; */
 }
 
+footer {
+  /* padding: 1rem; */
+  text-align: left;
+}

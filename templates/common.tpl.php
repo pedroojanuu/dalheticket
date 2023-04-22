@@ -1,6 +1,6 @@
 <?php 
   declare(strict_types = 1); 
-  $name = 'Dá-lhe Ticket';
+  $name = 'Dá⬝lhe Ticket';
 
   require_once(__DIR__ . '/../utils/session.php');
   $session = new Session();
@@ -16,6 +16,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php if($is_index){ ?>
       <link rel="stylesheet" href="../css/index.css"> 
+      <link rel="stylesheet" href="../css/animation.css"> 
+      <script src="../js/animation.js" defer></script> 
     <?php } else { ?>
       <link rel="stylesheet" href="../css/style.css">
       <link rel="stylesheet" href="../css/header.css">
@@ -23,11 +25,11 @@
   </head>
   <body>
     <header>
-      <h1><a href="/"><?php global $name; echo $name; ?></a></h1>
-      <section class="header_options">
+      <h1 class="hidden"><a href="/"><?php global $name; echo $name; ?></a></h1>
+      <section class="header_options hidden">
         <a href="../pages/faqs.php" class="faqs">FAQs</a>
       </section>
-      <section class="header_login">
+      <section class="header_login hidden">
         <?php
           if ($session->isLoggedIn()) {
             drawLogoutForm($session);
@@ -43,7 +45,7 @@
 <?php function drawFooter() { ?>
     </main>
 
-    <footer>
+    <footer class="hidden">
       <?php global $name; echo $name; ?> &copy; 2023
     </footer>
   </body>
@@ -51,7 +53,7 @@
 <?php } ?>
 
 <?php function drawLoginForm(Session $session) { ?>
-  <section class="login">
+  <section class="login hidden">
     <form action="../actions/action_login.php" method="post" class="login_form">
       <label for="email">Email address</label>
       <input type="email" name="email" id="email">
@@ -75,7 +77,7 @@
 <?php } ?>
 
 <?php function drawLogoutForm(Session $session) { ?>
-  <form action="../actions/action_logout.php" method="post" class="logout">
+  <form action="../actions/action_logout.php" method="post" class="logout hidden">
     <a href="../pages/profile.php?username=<?=$session->getName()?>"><?=$session->getName()?></a>
     <button type="submit">Logout</button>
   </form>

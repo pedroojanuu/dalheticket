@@ -1,8 +1,9 @@
 header:first-of-type {
   display: grid;
   place-items: center;
-  align-content: center;
-  background-color: #5e62D1;
+  justify-items: center;
+  align-items: end;
+  background-color: #A5B2B8;
   color: #ffffff;
   grid-template-columns: 15rem auto 30rem;
   grid-template-rows: auto;
@@ -10,32 +11,46 @@ header:first-of-type {
     "logo options login";
 }
 
+header:first-of-type * {
+  padding: 0;
+  margin: 0;
+}
+
 header:first-of-type a {
   text-decoration: none;
   color: #ffffff;
+  padding: 0;
+  margin: 0;
 }
 
 header:first-of-type a:hover {
-  color: #aaaaaa;
+  text-decoration: underline;
+}
+
+header:first-of-type h1 a:hover {
+  text-decoration: none;
 }
 
 header:first-of-type h1 {
   grid-area: logo;
+  text-transform: lowercase;
+  padding-bottom: 1rem;
 }
 
 header:first-of-type .header_options {
   grid-area: options;
   justify-self: start;
-  align-self: center;
-  padding: 1em;
+  align-self: end;
+  padding-bottom: 1.2rem;
 }
 
 header:first-of-type .header_login {
   grid-area: login;
   display: grid;
   justify-self: end;
-  align-self: center;
+  align-self: end;
   padding-right: 2em;
+  padding-bottom: 1.2rem;
 }
 
 header:first-of-type .login {
@@ -44,16 +59,14 @@ header:first-of-type .login {
 
 header:first-of-type .login form {
   display: grid;
-  grid-template-columns: 10em auto;
-  grid-template-rows: auto auto auto auto;
+  grid-template-columns: repeat(5, 8em);
+  grid-template-rows: auto auto;
   grid-template-areas:
-    "username_label username_input"
-    "password_label password_input"
-    "submit submit"
-    "register register";
+    "username_label username_input password_label password_input submit"
+    "register register register register register";
 
-  justify-items: start;
-  align-items: center;
+  justify-items: end;
+  align-items: end;
 }
 
 header:first-of-type .login * {
@@ -63,7 +76,11 @@ header:first-of-type .login * {
 }
 
 header:first-of-type .login input {
-  width: auto;
+  width: 5em;
+}
+
+header:first-of-type .login label{
+  padding-right: 0.5em;
 }
 
 header:first-of-type .login label:nth-of-type(1){
@@ -92,5 +109,27 @@ header:first-of-type .login button {
 header:first-of-type .login a,
 header:first-of-type .login p {
   grid-area: register;
+}
+
+header:first-of-type .logout {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "username"
+    "logout";
+  justify-items: start;
+  align-items: center;
+}
+
+header:first-of-type .logout a {
+  grid-area: username;
+}
+
+header:first-of-type .logout button {
+  grid-area: logout;
+  justify-self: stretch;
+  align-self: stretch;
+  font-size: x-small;
 }
 
