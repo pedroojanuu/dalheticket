@@ -1,0 +1,96 @@
+header:first-of-type {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  background-color: #5e62D1;
+  color: #ffffff;
+  grid-template-columns: 15rem auto 30rem;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "logo options login";
+}
+
+header:first-of-type a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+header:first-of-type a:hover {
+  color: #aaaaaa;
+}
+
+header:first-of-type h1 {
+  grid-area: logo;
+}
+
+header:first-of-type .header_options {
+  grid-area: options;
+  justify-self: start;
+  align-self: center;
+  padding: 1em;
+}
+
+header:first-of-type .header_login {
+  grid-area: login;
+  display: grid;
+  justify-self: end;
+  align-self: center;
+  padding-right: 2em;
+}
+
+header:first-of-type .login {
+  font-size: x-small;
+}
+
+header:first-of-type .login form {
+  display: grid;
+  grid-template-columns: 10em auto;
+  grid-template-rows: auto auto auto auto;
+  grid-template-areas:
+    "username_label username_input"
+    "password_label password_input"
+    "submit submit"
+    "register register";
+
+  justify-items: start;
+  align-items: center;
+}
+
+header:first-of-type .login * {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+header:first-of-type .login input {
+  width: auto;
+}
+
+header:first-of-type .login label:nth-of-type(1){
+  grid-area: username_label;
+}
+
+header:first-of-type .login input:nth-of-type(1) {
+  grid-area: username_input;
+}
+
+header:first-of-type .login label:nth-of-type(2){
+  grid-area: password_label;
+}
+
+header:first-of-type .login input:nth-of-type(2) {
+  grid-area: password_input;
+}
+
+header:first-of-type .login button {
+  grid-area: submit;
+  justify-self: stretch;
+  align-self: stretch;
+  font-size: x-small;
+}
+
+header:first-of-type .login a,
+header:first-of-type .login p {
+  grid-area: register;
+}
+

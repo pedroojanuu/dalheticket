@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto 4em;
+  grid-template-areas:
+      "header"
+      "main"
+      "footer";
+
+  min-height: 100vh;
+  background-color: #5e62D1;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+body a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+body a:hover {
+  text-decoration: underline;
+  color: #aaaaaa;
+}
+
+header {
+  grid-area: header;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 7rem 3rem 10rem;
+  grid-template-areas:
+      "logo"
+      "options";
+      /* "login"; */
+}
+
+header h1 {
+  grid-area:logo;
+  justify-self: center;
+  align-self: center;
+  margin-top: 5rem;
+  margin-bottom: 1rem;
+}
+
+header .header_options {
+  grid-area: options;
+  justify-self: center;
+  align-self: center;
+  color:red;
+}
+
+header .header_login {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.options{
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login {
+  text-align: center;
+}
+
+.login *{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+main {
+  grid-area: main;
+  justify-self: center;
+  align-self: center;
+}
+
+footer {
+  grid-area: footer;
+  background-color: black;
+}
+
