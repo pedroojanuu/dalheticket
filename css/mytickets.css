@@ -1,0 +1,9 @@
+.ticket_list a {
+  color: black;
+  text-decoration: none;
+}
+
+.ticket_list a:hover {
+  color: orange;
+  text-decoration: none;
+}

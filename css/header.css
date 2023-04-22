@@ -3,9 +3,9 @@ header:first-of-type {
   place-items: center;
   justify-items: center;
   align-items: end;
-  background-color: #A5B2B8;
+  background-color: #b2b3b3;
   color: #ffffff;
-  grid-template-columns: 15rem auto 30rem;
+  grid-template-columns: 20rem auto 30rem;
   grid-template-rows: auto;
   grid-template-areas:
     "logo options login";
@@ -24,17 +24,29 @@ header:first-of-type a {
 }
 
 header:first-of-type a:hover {
-  text-decoration: underline;
+  color: orange;
 }
 
 header:first-of-type h1 a:hover {
   text-decoration: none;
+  color: #ffffff;
 }
 
 header:first-of-type h1 {
   grid-area: logo;
   text-transform: lowercase;
   padding-bottom: 1rem;
+  font-weight: 100;
+}
+
+header:first-of-type h1 a{
+  margin-left: 1rem;
+  margin-bottom: 10rem;
+}
+
+header:first-of-type h1:before {
+  content: url("../img/riscas.png");
+  display: inline-block;
 }
 
 header:first-of-type .header_options {

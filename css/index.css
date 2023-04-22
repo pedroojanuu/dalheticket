@@ -11,12 +11,15 @@ body {
       "footer";
 
   min-height: 100vh;
-  background-color: #A5B2B8;
+  background-image: url("../img/background.svg");
+  background-size: 90%;
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  background-color: #b2b3b3;
   color: #ffffff;
   margin: 0;
   padding: 0;
-  padding-left: 20vh;
-  font-size: 1.2em;
+  padding-left: 7vw;
 }
 
 body a {
@@ -25,8 +28,8 @@ body a {
 }
 
 body a:hover {
-  text-decoration: underline;
-  color: #aaaaaa;
+  text-decoration: none;
+  color: #ef7f1a;
 }
 
 header {
@@ -56,28 +59,51 @@ header h1 {
   /* width: 4em; */
 }
 
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 3rem;
+  }
+}
+
+header h1 a{
+  margin-left: 0.5rem;
+  margin-bottom: 10rem;
+}
+
 header h1 a:hover{
   text-decoration: none;
   color: #ffffff;
+}
+
+header h1:before {
+  content: url("../img/riscas.png");
+  position:relative; /*or absolute*/
+  z-index:100000; /*a number that's more than the modal box*/
+  top:0.1em;
 }
 
 header .header_options {
   grid-area: options;
   justify-self: start;
   align-self: center;
+  padding-left: 3vw;
+}
+
+header .header_options a {
+  color: #ef7f1a;
 }
 
 header .header_login {
   position: fixed;
   top: 58%;
-  left: 20vh;
+  left: 10vw;
   /* transform: translate(-50%, -50%); */
 }
 
 .options{
   position: fixed;
   top: 65%;
-  left: 20vh;
+  left: 10vw;
   /* transform: translate(-50%, -50%); */
 }
 
@@ -89,6 +115,7 @@ header .header_login {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  text-transform: lowercase;
 }
 
 .login input, .login button {
@@ -128,10 +155,7 @@ main * {
 
 footer {
   grid-area: footer;
-  /* background-color: black; */
-}
-
-footer {
-  /* padding: 1rem; */
   text-align: left;
+  text-transform: lowercase;
+  font-size: 0.5em;
 }

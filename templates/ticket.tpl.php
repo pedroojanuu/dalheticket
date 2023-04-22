@@ -12,7 +12,7 @@
         return;
     }
     ?>
-    <ul>
+    <ul class="ticket_list">
     <?php foreach ($tickets as $ticket) {?>
         <li><a href="../pages/ticket.php?id=<?= $ticket->id?>">[<?= $ticket->status?>] <?= $ticket->title?></a></li>
     <?php }?>

@@ -21,6 +21,7 @@
     <?php } else { ?>
       <link rel="stylesheet" href="../css/style.css">
       <link rel="stylesheet" href="../css/header.css">
+      <link rel="stylesheet" href="../css/mytickets.css">
     <?php } ?>
   </head>
   <body>
