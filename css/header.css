@@ -2,7 +2,7 @@ header:first-of-type {
   display: grid;
   place-items: center;
   justify-items: center;
-  align-items: end;
+  align-items: center;
   background-color: #b2b3b3;
   color: #ffffff;
   grid-template-columns: 20rem auto 30rem;
@@ -46,23 +46,35 @@ header:first-of-type h1 a{
 
 header:first-of-type h1:before {
   content: url("../img/riscas.png");
-  display: inline-block;
+  position:relative;
+  z-index:100000;
+  top:0.5em;
 }
 
 header:first-of-type .header_options {
   grid-area: options;
   justify-self: start;
-  align-self: end;
-  padding-bottom: 1.2rem;
+  align-self: center;
+  padding-top: 0.4rem;
+  color: #ef7f1a;
+  /* padding-bottom: 1.2rem; */
+}
+
+
+header:first-of-type .header_options a {
+  color: #fdb87b;
+}
+header:first-of-type .header_options a:hover{
+  color: #ffffff;
 }
 
 header:first-of-type .header_login {
   grid-area: login;
   display: grid;
   justify-self: end;
-  align-self: end;
+  align-self: center;
   padding-right: 2em;
-  padding-bottom: 1.2rem;
+  /* padding-bottom: 1.2rem; */
 }
 
 header:first-of-type .login {
@@ -143,5 +155,12 @@ header:first-of-type .logout button {
   justify-self: stretch;
   align-self: stretch;
   font-size: x-small;
+}
+
+header:first-of-type button {
+  background-color: #ffffff;
+  color: #b2b3b3;
+  padding: 0.2em;
+  margin: 0.2em 0;
 }
 

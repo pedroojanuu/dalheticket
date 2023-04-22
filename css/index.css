@@ -77,8 +77,8 @@ header h1 a:hover{
 
 header h1:before {
   content: url("../img/riscas.png");
-  position:relative; /*or absolute*/
-  z-index:100000; /*a number that's more than the modal box*/
+  position:relative;
+  z-index:100000;
   top:0.1em;
 }
 
