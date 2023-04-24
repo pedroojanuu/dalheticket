@@ -21,6 +21,6 @@
   } else {
     $user = User::createAndAdd($db, $_POST['name'], $_POST['username'], $_POST['email'], $_POST['password'], "user", "");
     $session->addMessage('success', 'Registration successful!');
-    header('Location: ../pages/registration_successful.php');
+    header('Location: ../index.php');
   }
 ?>

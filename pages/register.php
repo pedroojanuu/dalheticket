@@ -29,12 +29,12 @@ drawFooter();
     <input type="password" name="password2" id="password2">
     <button type="submit">Register</button>
   </form>
-  <?php $session = new Session(); ?>
+  <?php global $session; ?>
   <section id="messages">
-      <?php foreach ($session->getMessages() as $messsage) { ?>
-        <article class="<?=$messsage['type']?>">
-          <?=$messsage['text']?>
-        </article>
-      <?php } ?>
-    </section>
+    <?php foreach ($session->getMessages() as $messsage) { ?>
+    <article class="<?=$messsage['type']?>">
+      <?=$messsage['text']?>
+    </article>
+    <?php } ?>
+  </section>
 <?php } ?>

@@ -16,6 +16,11 @@
     
     $user_type = $session->isLoggedIn()? User::getUserTypeByUsername($db, $session->getName()) : null;
 
+    if (($user_type != 'admin') && ($session->getName() != $_GET['username'])) {
+        header('HTTP/1.0 403 Forbidden');
+        die('You are not allowed to access this page.');
+    }
+
     drawHeader();
 ?>
     <section id="messages">
@@ -32,14 +37,14 @@
     if ($user_type != 'admin') {
 ?>
         <label for="old">Old password</label>
-        <input type="text" name="old" id="old">
+        <input type="password" name="old" id="old">
 <?php
     }
 ?>
         <label for="new">New password</label>
-        <input type="text" name="new" id="new">
+        <input type="password" name="new" id="new">
         <label for="new2">Confirm new password</label>
-        <input type="text" name="new2" id="new2">
+        <input type="password" name="new2" id="new2">
         <input type="hidden" name="username" value="<?=$_GET['username']?>">
         <button type="submit">Submit</button>
     </form>

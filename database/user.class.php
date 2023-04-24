@@ -102,5 +102,21 @@ class User{
         $user['department'],
       );
     }
+
+    static public function getEmailByUsername(PDO $db, string $username) : string {
+      $stmt = $db->prepare('SELECT email from User where username = ?');
+      $stmt -> execute(array($username));
+
+      return $stmt->fetchAll()[0]['email'];
+    }
+
+    static public function changePassword(PDO $db, string $username, string $newpassword) : void {
+      $stmt = $db->prepare('UPDATE User SET password = :new where username = :u');
+      $newpassword = sha1($newpassword);
+      $stmt->bindParam(':new', $newpassword);
+      $stmt->bindParam(':u', $username);
+
+      $stmt->execute();
+    }
 }
 ?>

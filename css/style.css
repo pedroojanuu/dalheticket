@@ -84,3 +84,11 @@ button {
 button:hover {
   background-color: #ef7f1a;
 }
+
+.success {
+  color: green;
+}
+
+.error {
+  color: red;
+}

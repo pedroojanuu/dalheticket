@@ -159,3 +159,11 @@ footer {
   text-transform: lowercase;
   font-size: 0.5em;
 }
+
+.success {
+  color: green;
+}
+
+.error {
+  color: red;
+}
