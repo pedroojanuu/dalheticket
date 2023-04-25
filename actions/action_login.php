@@ -14,9 +14,9 @@
   if ($user) {
     $session->setId($user->getRowID($db));
     $session->setName($user->username);
-    $session->addMessage('success', 'Login successful!');
+    $session->addMessage('Login success', 'Login successful!');
   } else {
-    $session->addMessage('error', 'Wrong password!');
+    $session->addMessage('Login error', 'Wrong password!');
   }
 
   header('Location: ' . $_SERVER['HTTP_REFERER']);

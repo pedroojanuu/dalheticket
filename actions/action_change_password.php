@@ -7,7 +7,7 @@
     $session = new Session();
 
     if ($_POST['new'] != $_POST['new2']) {
-        $session->addMessage('error', 'Passwords do not match!');
+        $session->addMessage('Password error', 'Passwords do not match!');
         header('Location: ../pages/change_password.php?username=' . $_POST['username']);
     }
 
@@ -20,7 +20,7 @@
 
     if ($admin) {
         User::changePassword($db, $_POST['username'], $_POST['new']);
-        $session->addMessage('success', 'Password changed!');
+        $session->addMessage('Password success', 'Password changed!');
         header('Location: ../pages/profile.php?username=' . $_POST['username']);
     }
 
@@ -29,7 +29,7 @@
     $user = User::getUserWithPassword($db, $email, $_POST['old']);
 
     if (!$user && User::getUserTypeByUsername($db, $session->getName()) != 'admin') {
-        $session->addMessage('error', 'Wrong old password!');
+        $session->addMessage('Password error', 'Wrong old password!');
         header('Location: ../pages/change_password.php?username=' . $_POST['username']);
     } else {
         User::changePassword($db, $_POST['username'], $_POST['new']);

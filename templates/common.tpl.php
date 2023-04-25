@@ -67,11 +67,12 @@
     <a href="../pages/register.php">Register</a>
 
     <section id="messages">
-        <?php foreach ($session->getMessages() as $messsage) { ?>
-          <article class="<?=$messsage['type']?>">
-            <?=$messsage['text']?>
+        <?php foreach ($session->getMessages() as $message) {
+          if (str_starts_with($message['type'], "Login")) {?>
+          <article class="<?=$message['type']?>">
+            <?=$message['text']?>
           </article>
-        <?php } ?>
+        <?php }} ?>
     </section>
   </section>
 

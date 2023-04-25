@@ -10,17 +10,17 @@
   $db = getDatabaseConnection();
 
   if (User::emailExists($db, $_POST['email'])) {
-    $session->addMessage('error', 'Email already exists!');
+    $session->addMessage('Register error', 'Email already exists!');
     header('Location: ' . $_SERVER['HTTP_REFERER']);
   } else if (User::usernameExists($db, $_POST['username'])) {
-    $session->addMessage('error', 'Username already exists!');
+    $session->addMessage('Register error', 'Username already exists!');
     header('Location: ' . $_SERVER['HTTP_REFERER']);
   } else if ($_POST['password'] != $_POST['password2']) {
-    $session->addMessage('error', 'Passwords do not match!');
+    $session->addMessage('Register error', 'Passwords do not match!');
     header('Location: ' . $_SERVER['HTTP_REFERER']);
   } else {
     $user = User::createAndAdd($db, $_POST['name'], $_POST['username'], $_POST['email'], $_POST['password'], "user", "");
-    $session->addMessage('success', 'Registration successful!');
+    $session->addMessage('Register success', 'Registration successful!');
     header('Location: ../index.php');
   }
 ?>
