@@ -167,3 +167,18 @@ footer {
 .error {
   color: red;
 }
+
+button {
+  background-color: #ffffff;
+  color: #b2b3b3;
+  padding: 0.2em;
+  margin: 0.2em 0;
+  border: none;
+  font-family: 'Allerta Stencil', sans-serif;
+  transition: color, 0.5s;
+}
+
+button:hover {
+  background-color: #ef7f1a;
+  color: #ffffff;
+}
