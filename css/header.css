@@ -5,7 +5,7 @@ header:first-of-type {
   align-items: center;
   background-color: #b2b3b3;
   color: #ffffff;
-  grid-template-columns: 20rem auto 30rem;
+  grid-template-columns: 18rem auto 5rem;
   grid-template-rows: auto;
   grid-template-areas:
     "logo options login";
@@ -83,8 +83,8 @@ header:first-of-type .login {
 
 header:first-of-type .login form {
   display: grid;
-  grid-template-columns: repeat(5, 8em);
-  grid-template-rows: auto auto;
+  grid-template-columns:7.5em 8em 5.5em 8em 4em;
+  grid-template-rows: 1.5em auto;
   grid-template-areas:
     "username_label username_input password_label password_input submit"
     "register register register register register";
@@ -100,11 +100,13 @@ header:first-of-type .login * {
 }
 
 header:first-of-type .login input {
-  width: 5em;
+  justify-self: stretch;
+  align-self: stretch;
+  font-size: x-small;
 }
 
 header:first-of-type .login label{
-  padding-right: 0.5em;
+  padding-right: 0.3em;
 }
 
 header:first-of-type .login label:nth-of-type(1){
@@ -133,6 +135,7 @@ header:first-of-type .login button {
 header:first-of-type .login a,
 header:first-of-type .login p {
   grid-area: register;
+  padding-left: 0.3em;
 }
 
 header:first-of-type .logout {
@@ -162,5 +165,13 @@ header:first-of-type button {
   color: #b2b3b3;
   padding: 0.2em;
   margin: 0.2em 0;
+  border-radius: 0;
+  font-family: 'Allerta Stencil', sans-serif;
+  transition: color, 0.5s;
+}
+
+header:first-of-type button:hover {
+  background-color: #ef7f1a;
+  color: #ffffff;
 }
 
