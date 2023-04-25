@@ -11,9 +11,9 @@
 
     function drawProfile(User $user) : void {
         global $session, $db;
+        $my_type = $session->isLoggedIn()? User::getUserTypeByUsername($db, $session->getName()) : null;
         print $session->getName();
     ?>
-
     <h3 class="name"><?= $user->name?></h3>
     <div class="username"><?= $user->username?></div>
     <div class="email"><?= $user->email?></div>
@@ -22,10 +22,14 @@
     if ($user->type == 'agent') { ?>
         <div class="department">Department: <?= $user->department?></div>
 <?php }
-    $user_type = $session->isLoggedIn()? User::getUserTypeByUsername($db, $session->getName()) : null;
-    if ($user_type == 'admin' || $session->getName() == $user->username) {
+    if ($my_type == 'admin' || $session->getName() == $user->username) {
 ?>
     <a href="change_password.php?username=<?= $user->username ?>">Change password...</a>
 <?php }
-    }
-?>
+    if ($my_type == 'admin') { ?>
+    <a href="change_user_type.php?username=<?= $user->username?>">Change user type...</a>
+<?php }
+    if ($my_type == 'admin' && $user->type == 'agent') { ?>
+    <a href="change_agent_department.php?username=<?= $user->username?>">Change department...</a>
+<?php }
+    } ?>
