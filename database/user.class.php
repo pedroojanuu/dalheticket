@@ -85,6 +85,8 @@ class User{
       $stmt = $db->prepare('SELECT type from User where username = ?');
       $stmt->execute(array($username));
 
+      print("Hello");
+
       return $stmt->fetchAll()[0]['type'];
     }
 
@@ -117,6 +119,16 @@ class User{
       $stmt->bindParam(':u', $username);
 
       $stmt->execute();
+    }
+
+    static public function isUserAgent(PDO $db, string $username) : bool {
+      $user = User::getUserByUsername($db, $username);
+      return $user->type == 'agent';
+    }
+
+    static public function isUserAdmin(PDO $db, string $username) : bool {
+      $user = User::getUserByUsername($db, $username);
+      return $user->type == 'admin';
     }
 }
 ?>
