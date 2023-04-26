@@ -145,5 +145,24 @@ class User{
 
     return $stmt->fetchAll()[0]['department'];
   }
+
+  static public function getAllUsers(PDO $db) : array {
+    $stmt = $db->prepare('SELECT * from User');
+    $stmt->execute();
+
+    $users = array();
+
+    while ($user = $stmt->fetch()) {
+      $users[] = new User(
+        $user['name'],
+        $user['username'],
+        $user['email'],
+        $user['type'],
+        $user['department'],
+      );
+    }
+
+    return $users;
+  }
 }
 ?>

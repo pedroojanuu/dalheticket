@@ -96,3 +96,11 @@ button:hover {
 .radio_form {
   margin-top: 1em;
 }
+
+.user_list a {
+  color: black;
+}
+
+.user_list a:hover {
+  color:#ef7f1a;
+}
