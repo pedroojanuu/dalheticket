@@ -123,8 +123,12 @@ class User{
     $stmt = $db->prepare('UPDATE User SET type = :new where username = :u');
     $stmt->bindParam(':new', $new_type);
     $stmt->bindParam(':u', $username);
-
     $stmt->execute();
+
+    if ($new_type == 'admin') {
+      $stmt = $db->prepare('UPDATE User SET department = "" where username = ?');
+      $stmt->execute(array($username));
+    }
   }
 
   static public function changeAgentDep(PDO $db, string $username, string $new_dep) : void {

@@ -92,3 +92,16 @@ button:hover {
 .error {
   color: red;
 }
+
+.user_type_change {
+  margin-top: 1em;
+}
+
+.radios {
+  width: 100px;
+  overflow: hidden;
+}
+
+.radios > span {
+  white-space: nowrap;
+}

@@ -14,11 +14,10 @@
     $admin = (User::getUserTypeByUsername($db, $session->getName()) == 'admin');
 
     if (!$admin) {
-        header('HTTP/1.0 403 Forbidden');
-        die('You are not allowed to access this page.');
+        header('Location: ../index.php');
     }
 
-    User::changeUserType($db, $_POST['username'], $_POST['new_type']);
+    User::changeUserType($db, $_POST['username'], $_POST['type']);
 
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    header('Location: ../pages/profile.php?username=' . $_POST['username']);
 ?>
