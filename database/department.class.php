@@ -54,5 +54,33 @@
 
       return $departments;
     }
+
+    public function getMemberAgents(PDO $db) : array {
+      $stmt = $db->prepare('SELECT * FROM User WHERE department = ?');
+      $stmt->execute(array($this->name));
+      
+      $agents = array();
+
+      while ($agent = $stmt->fetch()) {
+        $agents[] = new User(
+          $agent['name'],
+          $agent['username'],
+          $agent['email'],
+          $agent['type'],
+          $agent['department'],
+        );
+      }
+
+      return $agents;
+    }
+
+    static public function getDepartmentByName(PDo $db, string $name) : Department {
+      $stmt = $db->prepare('SELECT * FROM Department WHERE name = ?');
+      $stmt->execute(array($name));
+
+      $query = $stmt->fetchAll()[0];
+
+      return new Department($query['name']);
+    }
   }
 ?>

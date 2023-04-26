@@ -11,7 +11,7 @@
         global $db;
         $users = User::getAllUsers($db); ?>
     <input type="text" placeholder="Search...">
-    <ul class="user_list">
+    <ul class="search_list">
 <?php
         foreach ($users as $user) { ?>
         <li><a href="../pages/profile.php?username=<?= $user->username ?>"><?= $user->name ?></a></li>

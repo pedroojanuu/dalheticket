@@ -97,10 +97,10 @@ button:hover {
   margin-top: 1em;
 }
 
-.user_list a {
+.search_list a {
   color: black;
 }
 
-.user_list a:hover {
+.search_list a:hover {
   color:#ef7f1a;
 }
