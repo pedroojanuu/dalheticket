@@ -93,15 +93,6 @@ button:hover {
   color: red;
 }
 
-.user_type_change {
+.radio_form {
   margin-top: 1em;
-}
-
-.radios {
-  width: 100px;
-  overflow: hidden;
-}
-
-.radios > span {
-  white-space: nowrap;
 }

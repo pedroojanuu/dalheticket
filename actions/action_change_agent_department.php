@@ -13,12 +13,11 @@
 
     $admin = (User::getUserTypeByUsername($db, $session->getName()) == 'admin');
 
-    if (!$admin) {
-        header('HTTP/1.0 403 Forbidden');
-        die('You are not allowed to access this page.');
+    if (!$admin || User::getUserTypeByUsername($db, $_POST['username']) != 'agent') {
+        header('Location: ../pages/profile.php?username=' . $_GET['username']);
     }
 
-    User::changeAgentDep($db, $_POST['username'], $_POST['new_dep']);
+    User::changeAgentDep($db, $_POST['username'], $_POST['department']);
 
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    header('Location: ../pages/profile.php?username=' . $_POST['username']);
 ?>

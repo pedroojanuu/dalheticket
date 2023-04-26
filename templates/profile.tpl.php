@@ -15,14 +15,14 @@
   <h3 class="name"><?= $user->name?></h3>
   <div class="username"><?= $user->username?></div>
   <div class="email"><?= $user->email?></div>
-  <div class="type">User type: <?= $user->type?>
+  <div class="type">User type: <?= ($user->type == 'admin')? 'Administrator' : (($user->type == 'agent')? 'Agent' : 'Client')?>
 <?php
     if ($my_type == 'admin') { ?>
   <a href="change_user_type.php?username=<?= $user->username?>">Change...</a>
 <?php } ?>
   </div>
 <?php if ($user->type == 'agent') { ?>
-  <div class="department">Department: <?= $user->department?>
+  <div class="department">Department: <?= ($user->department != '')? $user->department : 'None' ?>
 <?php 
       if ($my_type == 'admin') {?>
   <a href="change_agent_department.php?username=<?= $user->username?>">Change...</a>

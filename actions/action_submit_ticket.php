@@ -11,6 +11,10 @@
 
     $db = getDatabaseConnection();
 
+    if (!($session->isLoggedIn())) {
+        header('Location: ../index.php');
+    }
+
     $client = $session->getName();
     $title = $_POST['title'];
     $department = $_POST['department'];

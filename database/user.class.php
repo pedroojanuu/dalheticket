@@ -138,5 +138,12 @@ class User{
 
     $stmt->execute();
   }
+
+  static public function getAgentDep(PDO $db, string $username) : string {
+    $stmt = $db->prepare('SELECT department from User where username = ?');
+    $stmt->execute(array($username));
+
+    return $stmt->fetchAll()[0]['department'];
+  }
 }
 ?>

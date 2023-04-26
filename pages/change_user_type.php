@@ -20,7 +20,7 @@
 
     <h3>Changing <?= $_GET['username'] ?>'s user type</h3>
     Select the type of user you want <?= $_GET['username'] ?> to be:
-    <form class="user_type_change" action="../actions/action_change_user_type.php" method="post">
+    <form class="radio_form" action="../actions/action_change_user_type.php" method="post">
         <input type="hidden" name="username" value="<?=$_GET['username']?>">
         <input type="radio" name="type" value="client" <?= $current_type == 'client'? "checked" : "" ?>>Client
         <input type="radio" name="type" value="agent" <?= $current_type == 'agent'? "checked" : "" ?>>Agent

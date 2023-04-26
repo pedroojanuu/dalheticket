@@ -9,13 +9,13 @@
   require_once(__DIR__ . '/../database/connection.db.php');
   require_once(__DIR__ . '/../database/department.class.php');
 
-  $db = getDatabaseConnection();
-
-  drawHeader();
-
   if (!($session->isLoggedIn())) {
     header('Location: ../index.php');
   }
+
+  $db = getDatabaseConnection();
+
+  drawHeader();
 ?>
 
 <form action="../actions/action_submit_ticket.php" method="post" class="submit_ticket">
