@@ -150,5 +150,19 @@
 
             return $ticket;
         }
+        
+        public function delete(PDO $db) : void {
+            $stmt = $db->prepare('DELETE FROM Message WHERE ticketId = ?');
+            $stmt->execute(array($this->id));
+
+            $stmt = $db->prepare('DELETE FROM Change WHERE ticketId = ?');
+            $stmt->execute(array($this->id));
+
+            $stmt = $db->prepare('DELETE FROM TicketHashtag WHERE ticketId = ?');
+            $stmt->execute(array($this->id));
+
+            $stmt = $db->prepare('DELETE FROM Ticket WHERE id = ?');
+            $stmt->execute(array($this->id));
+        }
     }
 ?>

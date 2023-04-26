@@ -20,7 +20,7 @@
 
     static public function getAllTicketsInDepartment(PDO $db, string $name) : array {
       $stmt = $db->prepare('
-        SELECT t.id, t.client, t.agent, t.status, t.message, t.department
+        SELECT t.id, t.title, t.client, t.agent, t.status, t.department
         FROM Ticket t JOIN Department d
         ON t.department = d.name
         WHERE d.name = ?
@@ -81,6 +81,40 @@
       $query = $stmt->fetchAll()[0];
 
       return new Department($query['name']);
+    }
+
+    public function changeName(PDO $db, string $name) : void {
+      $stmt = $db->prepare('UPDATE User SET department = :new WHERE department = :old');
+      $stmt->bindParam(':new', $name);
+      $stmt->bindParam(':old', $this->name);
+      $stmt->execute();
+
+      $stmt = $db->prepare('UPDATE Ticket SET department = :new WHERE department = :old');
+      $stmt->bindParam(':new', $name);
+      $stmt->bindParam(':old', $this->name);
+      $stmt->execute();
+
+      $stmt = $db->prepare('UPDATE Department SET name = :new WHERE name = :old');
+      $stmt->bindParam(':new', $name);
+      $stmt->bindParam(':old', $this->name);
+      $stmt->execute();
+
+      $this->name = $name;
+    }
+
+    public function delete(PDO $db) : void {
+      foreach (Department::getAllTicketsInDepartment($db, $this->name) as $ticket) {
+        $ticket->delete($db);
+      }
+
+      $stmt = $db->prepare('UPDATE User SET department = :empty WHERE department = :name');
+      $empty_string = '';
+      $stmt->bindParam(':empty', $empty_string);
+      $stmt->bindParam(':name', $this->name);
+      $stmt->execute();
+
+      $stmt = $db->prepare('DELETE FROM Department WHERE name = ?');
+      $stmt->execute(array($this->name));
     }
   }
 ?>
