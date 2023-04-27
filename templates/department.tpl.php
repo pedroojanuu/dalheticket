@@ -10,6 +10,7 @@
     function drawDepartmentsList() : void {
         global $db;
         $departments = Department::getAllDepartments($db); ?>
+    <a href="../pages/create_department.php">Create a new department...</a>
     <input type="text" placeholder="Search...">
     <ul class="search_list">
 <?php
