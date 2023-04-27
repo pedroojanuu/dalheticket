@@ -15,7 +15,7 @@
         <a href="pages/my_tickets.php">List my tickets</a>
 <?php
     }
-    if(User::getUserTypeByUsername($db, $session->getName()) == 'admin') { ?>
+    if($session->isLoggedIn() && User::getUserTypeByUsername($db, $session->getName()) == 'admin') { ?>
         <a href="pages/manage_users.php">Manage users</a>
         <a href="pages/manage_departments.php">Manage departments</a>
 <?php

@@ -145,3 +145,13 @@ p {
 .bold {
   font-weight: bold;
 }
+
+.department_options {
+  display: flex;
+  justify-content: space-between;
+  width: 89vw;
+}
+
+.invisible {
+  display: none;
+}

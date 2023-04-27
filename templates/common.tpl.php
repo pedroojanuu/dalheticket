@@ -17,11 +17,12 @@
     <?php if($is_index){ ?>
       <link rel="stylesheet" href="../css/index.css"> 
       <link rel="stylesheet" href="../css/animation.css"> 
-      <script src="../js/animation.js" defer></script> 
+      <script src="../js/animation.js" defer></script>
     <?php } else { ?>
       <link rel="stylesheet" href="../css/style.css">
       <link rel="stylesheet" href="../css/header.css">
       <link rel="stylesheet" href="../css/mytickets.css">
+      <script src="../js/search.js" defer></script>
     <?php } ?>
   </head>
   <body>

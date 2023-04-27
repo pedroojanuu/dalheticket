@@ -10,12 +10,14 @@
     function drawDepartmentsList() : void {
         global $db;
         $departments = Department::getAllDepartments($db); ?>
-    <a href="../pages/create_department.php">Create a new department...</a>
-    <input type="text" placeholder="Search...">
+    <div class="department_options">
+        <a class="create" href="../pages/create_department.php">Create a new department...</a>
+        <input class="searchbar" type="text" placeholder="Search...">
+    </div>
     <ul class="search_list">
 <?php
         foreach ($departments as $department) { ?>
-        <li><a href="../pages/department.php?name=<?= $department->name ?>"><?= $department->name ?></a></li>
+        <li class="search_item"><a href="../pages/department.php?name=<?= $department->name ?>"><?= $department->name ?></a></li>
 <?php
         }
 ?>

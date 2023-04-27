@@ -10,11 +10,11 @@
     function drawUsersList() : void {
         global $db;
         $users = User::getAllUsers($db); ?>
-    <input type="text" placeholder="Search...">
+    <input class="searchbar" type="text" placeholder="Search...">
     <ul class="search_list">
 <?php
         foreach ($users as $user) { ?>
-        <li><a href="../pages/profile.php?username=<?= $user->username ?>"><?= $user->name ?></a></li>
+        <li class="search_item"><a href="../pages/profile.php?username=<?= $user->username ?>"><?= $user->name ?></a></li>
 <?php
         }
 ?>
