@@ -7,6 +7,10 @@
 
     $db = getDatabaseConnection();
 
+    require_once(__DIR__ . '/../utils/session.php');
+
+    $session = new Session();
+
     $my_type = User::getUserTypeByUsername($db, $session->getName());
 
     if (!($my_type == 'admin' || $my_type == 'agent')) {

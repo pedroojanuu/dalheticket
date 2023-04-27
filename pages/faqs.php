@@ -11,17 +11,7 @@
     require_once(__DIR__ . '/../templates/common.tpl.php');
     require_once(__DIR__ . '/../templates/faqs.tpl.php');
 
-    require_once(__DIR__ . '/../utils/session.php');
-
-    $db = getDatabaseConnection();
-
     drawHeader();
-
-    $user_type = $session->isLoggedIn()? User::getUserTypeByUsername($db, $session->getName()) : null;
-
-    if ($user_type == 'admin' || $user_type == 'agent') {
-        drawSubmitFAQ();
-    }
 
     drawFAQs($db);
 

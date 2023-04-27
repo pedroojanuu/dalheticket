@@ -19,7 +19,7 @@
 
 <form action="../actions/action_submit_faq.php" method="post" class="submit_faq">
     <label for="question">Question</label>
-    <input type="text" name="question" id="question" placeholder="Frequently Asked Question here">
+    <textarea name="question" id="question"></textarea>
     <label for="answer">Answer</label>
     <textarea name="answer" id="answer"></textarea>
     <button type="submit">Submit</button>
