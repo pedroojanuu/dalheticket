@@ -13,9 +13,9 @@
     $my_type = $session->isLoggedIn()? User::getUserTypeByUsername($db, $session->getName()) : null;
   ?>
   <h3 class="name"><?= $user->name?></h3>
-  <div class="username"><?= $user->username?></div>
-  <div class="email"><?= $user->email?></div>
-  <div class="type">User type: <?= ($user->type == 'admin')? 'Administrator' : (($user->type == 'agent')? 'Agent' : 'Client')?>
+  <div class="username"><span class="bold">Username:</span> <?= $user->username?></div>
+  <div class="email"><span class="bold">E-mail address:</span> <?= $user->email?></div>
+  <div class="type"><span class="bold">User type:</span> <?= ($user->type == 'admin')? 'Administrator' : (($user->type == 'agent')? 'Agent' : 'Client')?>
 <?php
     if ($my_type == 'admin') { ?>
   <a href="change_user_type.php?username=<?= $user->username?>">Change...</a>

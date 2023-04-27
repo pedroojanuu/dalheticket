@@ -137,3 +137,11 @@ p {
   width: 100%;
   height: 15em;
 }
+
+.username, .email, .type, .ticket_client, .ticket_agent, .ticket_status, .ticket_department, .ticket_hashtags {
+  margin-bottom: 1em;
+}
+
+.bold {
+  font-weight: bold;
+}

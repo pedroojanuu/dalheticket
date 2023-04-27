@@ -20,16 +20,16 @@
 <?php }?>
 
 <?php function drawTicket(PDO $db, Ticket $ticket) { ?>
-    <span class="ticket_title"><?= $ticket->title ?></span>
-    <span class="ticket_client">Client: <?= $ticket->client ?></span>
+    <h3><?= $ticket->title ?></h3>
+    <div class="ticket_client"><span class="bold">Client:</span> <?= $ticket->client ?></div>
     <?php if($ticket->agent !== null) { ?>
-        <span class="ticket_agent">Agent: <?= $ticket->agent ?></span>
+        <div class="ticket_agent"><span class="bold">Agent:</span> <?= $ticket->agent ?></div>
     <?php } ?>
-    <span class="ticket_status">Status: <?= $ticket->status ?></span>
-    <span class="ticket_department">Department: <?= $ticket->department ?></span>
-    <div class="ticket_hashtags">Hashtags: 
+    <div class="ticket_status"><span class="bold">Status:</span> <?= $ticket->status ?></div>
+    <div class="ticket_department"><span class="bold">Department:</span> <?= $ticket->department ?></div>
+    <div class="ticket_hashtags"><span class="bold">Hashtags: </span>  
         <?php foreach($ticket->getHashtags($db) as $hashtag) { ?>
-            <span class="hashtag">#<?= $hashtag->name ?></span>
+            <span class="hashtag">#<?= $hashtag->name ?></span>  
         <?php } ?>
         </div>
 <?php } ?>
