@@ -17,13 +17,15 @@
     drawHeader();
 
     $ticket = Ticket::getTicketById($db, intval($_GET['id']));
-    $user_type = User::getUserTypeByUsername($db, $session->getName());
+    $user = User::getUserByUsername($db, $session->getName());
 
-    if ($ticket->client != $session->getName() && $ticket->agent != $session->getName() && $user_type != 'admin') {
+    if ($ticket->client != $session->getName() && !($user->type == 'agent' && $user->department==$ticket->department) && $user->type != 'admin') {
         header('Location: ../index.php');
     }
 
-    drawTicket($db, $ticket);
+    $show_messages = !($user->type == 'agent' && $ticket->client != $session->getName() && $ticket->agent != $session->getName());
+
+    drawTicket($db, $ticket, $show_messages);
 
     drawFooter();
 ?>

@@ -27,14 +27,14 @@
       return new Message($id, $ticketId, $isFromClient, $message);
     }
 
-    static public function getAllMessagesFromTicket(PDO $db, string $tag) : array {
+    static public function getAllMessagesFromTicket(PDO $db, int $id) : array {
         $stmt = $db->prepare('
             SELECT m.id, m.ticketId, m.isFromClient, m.message
             FROM Message m JOIN Ticket t
             ON m.ticketId = t.id
             WHERE t.id = ?
         ');
-        $stmt->execute(array($tag));
+        $stmt->execute(array($id));
     
         $messages = array();
     
@@ -42,7 +42,7 @@
             $messages[] = new Message(
             $message['id'],
             $message['ticketId'],
-            $message['isFromClient'],
+            ($message['isFromClient'] != '0'),
             $message['message']
             );
         }
