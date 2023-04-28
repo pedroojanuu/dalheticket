@@ -51,7 +51,7 @@
       return $agents;
     }
 
-    static public function getDepartmentByName(PDo $db, string $name) : Department {
+    static public function getDepartmentByName(PDO $db, string $name) : Department {
       $stmt = $db->prepare('SELECT * FROM Department WHERE name = ?');
       $stmt->execute(array($name));
 

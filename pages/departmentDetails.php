@@ -14,7 +14,7 @@
 
     $db = getDatabaseConnection();
 
-    if(!($session->isLoggedIn())) 
+    if(!($session->isLoggedIn()) || !isset($_GET['name'])) 
        header('Location: ../index.php');
 
     $user = User::getUserByUsername($db, $session->getName());
