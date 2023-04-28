@@ -16,10 +16,11 @@
         <div class="options hidden">
             <a href="pages/submit_ticket.php">Submit a ticket</a>
             <a href="pages/my_tickets.php">List my tickets</a>
-            <?php if(User::isUserAgent($db, $session->getName()) || 
-                     User::isUserAdmin($db, $session->getName()) ) { ?>
+            <?php 
+            $user = User::getUserByUsername($db, $session->getName());
+            if($user->type == "agent") { ?>
                 <a href="">List assigned tickets</a>
-                <a href="">List tickets of my department</a>
+                <a href=<?=("pages/department.php?department=" . $user->department)?>>List tickets of my department</a>
             <?php } ?>
         </div>
 <?php } ?>
