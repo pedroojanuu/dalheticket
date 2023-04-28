@@ -1,4 +1,6 @@
 <?php
+    declare(strict_types=1);
+
     require_once(__DIR__ . '/../templates/common.tpl.php');
     require_once(__DIR__ . '/../utils/session.php');
 
@@ -15,8 +17,7 @@
     $user_type = $session->isLoggedIn()? User::getUserTypeByUsername($db, $session->getName()) : null;
 
     if (($user_type != 'admin') && ($session->getName() != $_GET['username'])) {
-        header('HTTP/1.0 403 Forbidden');
-        die('You are not allowed to access this page.');
+        header('Location: ../index.php');
     }
 
     drawHeader();
@@ -48,6 +49,5 @@
     </form>
 
 <?php
-    
     drawFooter();
 ?>

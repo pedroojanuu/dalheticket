@@ -92,3 +92,66 @@ button:hover {
 .error {
   color: red;
 }
+
+.radio_form {
+  margin-top: 1em;
+}
+
+.search_list a {
+  color: black;
+}
+
+.search_list a:hover {
+  color:#ef7f1a;
+}
+
+.faq_group {
+  margin-top: 1em;
+  width: 89vw;
+  padding: 1em;
+}
+
+.faq {
+  border-bottom: solid #b2b3b3 1px;
+  margin-bottom: 0.5em;
+}
+
+p {
+  overflow-wrap: break-word;
+}
+
+.faq_question {
+  font-weight: bold;
+}
+
+.submit_faq {
+  width: 89vw;
+}
+
+.submit_faq #question {
+  width: 100%;
+  height: 3em;
+}
+
+.submit_faq #answer {
+  width: 100%;
+  height: 15em;
+}
+
+.username, .email, .type, .ticket_client, .ticket_agent, .ticket_status, .ticket_department, .ticket_hashtags {
+  margin-bottom: 1em;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.department_options {
+  display: flex;
+  justify-content: space-between;
+  width: 89vw;
+}
+
+.invisible {
+  display: none;
+}
