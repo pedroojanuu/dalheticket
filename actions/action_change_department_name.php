@@ -26,5 +26,5 @@
 
     $department->changeName($db, $_POST['new']);
 
-    header('Location: ../pages/departmentList.php?name=' . $_POST['new']);
+    header('Location: ../pages/departmentDetails.php?name=' . $_POST['new']);
 ?>

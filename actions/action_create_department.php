@@ -18,5 +18,5 @@
 
     Department::createAndAdd($db, $_POST['name']);
 
-    header('Location: ../pages/departmentList.php?name=' . $_POST['name']);
+    header('Location: ../pages/departmentDetails.php?name=' . $_POST['name']);
 ?>

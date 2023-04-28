@@ -1,5 +1,6 @@
 <?php
   declare(strict_types = 1);
+  require_once(__DIR__ . '/../database/ticket.class.php');
 
   class Department{
     public string $name;
@@ -79,7 +80,7 @@
     }
 
     public function delete(PDO $db) : void {
-      foreach (Department::getAllTicketsInDepartment($db, $this->name) as $ticket) {
+      foreach (Ticket::getAllTicketsInDepartment($db, $this->name) as $ticket) {
         $ticket->delete($db);
       }
 
