@@ -55,7 +55,7 @@
         public function removeAgent(PDO $db) : void {
             Change::createAndAdd($db, $this->id, $this->agent, "
             The agent abandoned the ticket");
-            $this->agent = '';
+            $this->agent = "";
 
             $stmt = $db->prepare('UPDATE Ticket SET agent = :agent WHERE id = :id');
             $stmt->bindParam(':agent', $agent);

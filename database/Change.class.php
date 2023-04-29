@@ -4,16 +4,16 @@ declare(strict_types = 1);
 class Change{
     public int $id;
     public int $ticketId;
-    public string $agent;
+    public ?string $agent;
     public string $action;
 
-    public function __construct(int $id, int $ticketId, string $agent, string $action) {
+    public function __construct(int $id, int $ticketId, ?string $agent, string $action) {
         $this->id = $id;
         $this->ticketId = $ticketId;
         $this->agent = $agent;
         $this->action = $action;
     }
-    static public function createAndAdd(PDO $db, int $ticketId, string $agent, string $action) : Change {
+    static public function createAndAdd(PDO $db, int $ticketId, ?string $agent, string $action) : Change {
         $stmt = $db->prepare(
             'INSERT INTO Change (ticketId, agent, action)
              VALUES (?,?,?)'

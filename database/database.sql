@@ -47,7 +47,7 @@ create table Department(
 create table Change(
    id integer primary key autoincrement,
    ticketId integer not null,
-   agent varchar(20) not null,
+   agent varchar(20),
    action text,
    foreign key (ticketId) references Ticket(id),
    foreign key (agent) references User(id)
