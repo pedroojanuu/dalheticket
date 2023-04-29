@@ -8,11 +8,11 @@
         public int $id;
         public string $title;
         public string $client;
-        public string $agent;
+        public ?string $agent;
         public string $status;
         public string $department;
 
-        public function __construct(int $id, string $title, string $client, string $agent, string $status, string $department) {
+        public function __construct(int $id, string $title, string $client, ?string $agent, string $status, string $department) {
             $this->id = $id;
             $this->title = $title;
             $this->client = $client;
@@ -45,6 +45,17 @@
             The agent of the ticket was changed from " . $this->agent . 
             " to " . $agent . ".");
             $this->agent = $agent;
+
+            $stmt = $db->prepare('UPDATE Ticket SET agent = :agent WHERE id = :id');
+            $stmt->bindParam(':agent', $agent);
+            $stmt->bindParam(':id', $this->id);
+            $stmt->execute();
+        }
+
+        public function removeAgent(PDO $db) : void {
+            Change::createAndAdd($db, $this->id, $this->agent, "
+            The agent abandoned the ticket");
+            $this->agent = '';
 
             $stmt = $db->prepare('UPDATE Ticket SET agent = :agent WHERE id = :id');
             $stmt->bindParam(':agent', $agent);

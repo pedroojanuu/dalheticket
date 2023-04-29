@@ -19,9 +19,9 @@ class Change{
              VALUES (?,?,?)'
              );
         $stmt->execute(array($ticketId, $agent, $action));
-        $stmt = $db->prepare('SELECT max(id) as id from Change');
+        $stmt = $db->prepare('SELECT max(id) as id from Change;');
         $stmt->execute();
-        $id = $stmt->fetch()[0]['id'];
+        $id = $stmt->fetch()['id'];
         return new Change($id, $ticketId, $agent, $action);
     }
     static public function getAllChangesFromTicket(PDO $db, string $tag) : array {

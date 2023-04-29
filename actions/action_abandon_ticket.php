@@ -9,14 +9,12 @@
   $db = getDatabaseConnection();
 
   $ticket = Ticket::getTicketById($db, $_GET['id']);
-  $agent = User::getUserByUsername($db, $_GET['agent']);
   $session_user = User::getUserByUsername($db, $session->getName());
 
-  if(($session_user->type == 'agent' && $agent->type == 'agent' && 
-    $ticket->status == 'Unsolved' && $ticket->department == $session_user->department && 
-    ($ticket->agent == null || $ticket->agent == $session->getName())) ||
-    ($session_user->type == 'admin' && $agent->type == 'agent')) { 
-    $ticket->setAgent($db, $_GET['agent']);
+  if(($session_user->type == 'agent' && $ticket->status == 'Unsolved' && 
+    $ticket->agent == $session->getName()) ||
+    $session_user->type == 'admin') { 
+    $ticket->removeAgent($db);
   }
   
 

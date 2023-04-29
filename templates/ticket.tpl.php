@@ -4,6 +4,7 @@
     require_once(__DIR__ . '/../database/ticket.class.php');
     require_once(__DIR__ . '/../database/hashtag.class.php');
     require_once(__DIR__ . '/../database/message.class.php');
+    require_once(__DIR__ . '/../utils/session.php');
 ?>
 
 <?php function drawTicketList(array $tickets) : void {
@@ -33,6 +34,9 @@
         <?php } ?>
     </div>
     <?php if($show_messages) { ?>
+        <a href=<?=("../actions/action_abandon_ticket.php?id=" . $ticket->id)?>>
+            Abandon Ticket
+        </a>
         <section class="ticket_messages">
             <p>Messages:</p>
             <?php foreach(Message::getAllMessagesFromTicket($db, $ticket->id) as $message) { ?>
@@ -49,8 +53,11 @@
 
 <?php 
     } else if($ticket->status == 'Unsolved' && $ticket->agent == null) {
+        $session = new Session();
 ?> 
-        <a href=<?=("../actions/action_assign_ticket.php?id=" . $ticket->id)?>>Assign to me</a>
+        <a href=<?=("../actions/action_assign_ticket.php?id=" . $ticket->id . "&agent=" . $session->getName())?>>
+            Assign to me
+        </a>
 <?php
     }
 } 
