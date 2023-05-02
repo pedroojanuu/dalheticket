@@ -23,9 +23,9 @@
         header('Location: ../index.php');
     }
 
-    $show_messages = !($user->type == 'agent' && $ticket->client != $session->getName() && $ticket->agent != $session->getName());
+    //$show_messages = !($user->type == 'agent' && $ticket->client != $session->getName() && $ticket->agent != $session->getName());
 
-    drawTicket($db, $ticket, $show_messages);
+    drawTicket($db, $ticket);
 
     drawFooter();
 ?>

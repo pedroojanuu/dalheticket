@@ -36,6 +36,21 @@
         <?php } ?>
     </div>
 
+    <?php if($ticket->agent == $session->getName()) { ?>
+        <a href=<?=("../actions/action_abandon_ticket.php?id=" . $ticket->id)?>>
+            Abandon Ticket
+        </a>
+    <?php
+        } else if($ticket->status == 'Unsolved' && $ticket->agent == null) {
+            $session = new Session();
+    ?> 
+        <a href=<?=("../actions/action_assign_ticket.php?id=" . $ticket->id . "&agent=" . $session->getName())?>>
+            Assign to me
+        </a>
+    <?php
+        } 
+        if($session->getName() == $ticket->agent || $session->getName() == $ticket->client) { 
+    ?>
     <div class="ticket_messages">
         <?php foreach(Message::getAllMessagesFromTicket($db, $ticket->id) as $message) { ?>
             <div class="ticket_message <?= $message->isMine($db) ? 'right' : 'left' ?>">
@@ -50,4 +65,7 @@
             <input type="submit" value="Send">
         </form>
     </div>
-<?php } ?>
+<?php 
+    }
+} 
+?>
