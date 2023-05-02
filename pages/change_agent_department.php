@@ -28,7 +28,10 @@
     <form class="radio_form" action="../actions/action_change_agent_department.php" method="post">
 <?php
     foreach (Department::getAllDepartments($db) as $department) { ?>
-        <input type="radio" name="department" value="<?= $department->name ?>" <?= $current_depart==$department->name? 'checked' : '' ?>><?= $department->name ?>
+        <span class="radio_span">
+        <input type="radio" name="department" value="<?= $department->name ?>" <?= $current_depart==$department->name? 'checked' : '' ?>>
+        <p><?= $department->name ?></p>
+        </span>
 <?php
     }
 ?>

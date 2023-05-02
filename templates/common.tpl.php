@@ -21,7 +21,6 @@
     <?php } else { ?>
       <link rel="stylesheet" href="../css/style.css">
       <link rel="stylesheet" href="../css/header.css">
-      <link rel="stylesheet" href="../css/mytickets.css">
       <script src="../js/search.js" defer></script>
     <?php } ?>
   </head>
@@ -76,6 +75,8 @@
         <?php }} ?>
     </section>
   </section>
+
+  <a href = "../index.php" class="login_hidden">Login</a>
 
 <?php } ?>
 

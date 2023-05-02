@@ -3,6 +3,7 @@
 
     require_once(__DIR__ . '/../database/ticket.class.php');
     require_once(__DIR__ . '/../database/hashtag.class.php');
+    require_once(__DIR__ . '/../database/message.class.php');
     //require_once(__DIR__ . '/../utils/message.php');
 ?>
 
@@ -19,7 +20,9 @@
     </ul>
 <?php }?>
 
-<?php function drawTicket(PDO $db, Ticket $ticket) { ?>
+<?php function drawTicket(PDO $db, Ticket $ticket) { 
+    $session = new Session();
+    ?>
     <h3><?= $ticket->title ?></h3>
     <div class="ticket_client"><span class="bold">Client:</span> <?= $ticket->client ?></div>
     <?php if($ticket->agent !== null) { ?>
@@ -31,5 +34,20 @@
         <?php foreach($ticket->getHashtags($db) as $hashtag) { ?>
             <span class="hashtag">#<?= $hashtag->name ?></span>  
         <?php } ?>
-        </div>
+    </div>
+
+    <div class="ticket_messages">
+        <?php foreach(Message::getAllMessagesFromTicket($db, $ticket->id) as $message) { ?>
+            <div class="ticket_message <?= $message->isMine($db) ? 'right' : 'left' ?>">
+                <div class="ticket_message_text"><?= $message->message ?></div>
+                <div class="ticket_message_date"><?= $message->date ?></div>
+            </div>
+        <?php } ?>
+        <form class="send_message" action="../actions/action_send_message.php" method=post>
+            <input type="hidden" name="ticketId" value="<?= $ticket->id ?>">
+            <input type="hidden" name="isFromClient" value="<?= $ticket->client == $session->getName() ? "true" : "false" ?>">
+            <input type="text" name="message" placeholder="Message">
+            <input type="submit" value="Send">
+        </form>
+    </div>
 <?php } ?>

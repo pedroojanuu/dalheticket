@@ -175,3 +175,18 @@ header:first-of-type button:hover {
   color: #ffffff;
 }
 
+header:first-of-type .login_hidden{
+  display: none;
+}
+
+@media (max-width: 900px) {
+  header:first-of-type .login{
+    display: none;
+  }
+
+  header:first-of-type .login_hidden{
+    display: block;
+    align-self: start;
+    justify-self: start;
+  }
+}

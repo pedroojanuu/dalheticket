@@ -1,5 +1,6 @@
 <?php
   declare(strict_types = 1);
+  require_once(__DIR__ . '/../utils/session.php');
 
   class Message{
     public int $id;
@@ -27,14 +28,27 @@
       return new Message($id, $ticketId, $isFromClient, $message);
     }
 
-    static public function getAllMessagesFromTicket(PDO $db, string $tag) : array {
+    public function isMine(PDO $db){
+      $session = new Session();
+      $stmt = $db->prepare('
+            SELECT client
+            FROM Ticket
+            WHERE id = ?
+        ');
+        $stmt->execute(array($ticketId));
+
+      $ret = ($stmt->fetchAll()[0]['client'] == $session->getName());
+      return $ret;
+    }
+
+    static public function getAllMessagesFromTicket(PDO $db, int $id) : array {
         $stmt = $db->prepare('
             SELECT m.id, m.ticketId, m.isFromClient, m.message
             FROM Message m JOIN Ticket t
             ON m.ticketId = t.id
             WHERE t.id = ?
         ');
-        $stmt->execute(array($tag));
+        $stmt->execute(array($id));
     
         $messages = array();
     
@@ -42,7 +56,7 @@
             $messages[] = new Message(
             $message['id'],
             $message['ticketId'],
-            $message['isFromClient'],
+            $message['isFromClient'] == 1,
             $message['message']
             );
         }

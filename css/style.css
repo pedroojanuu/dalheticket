@@ -97,6 +97,18 @@ button:hover {
   margin-top: 1em;
 }
 
+.radio_form input{
+  display: inline;
+}
+
+.radio_form p{
+  display: inline;
+}
+
+.radio_span {
+  display: block;
+}
+
 .search_list a {
   color: black;
 }
@@ -155,3 +167,22 @@ p {
 .invisible {
   display: none;
 }
+
+.ticket_list a {
+  color: black;
+  text-decoration: none;
+}
+
+.ticket_list a:hover {
+  color: orange;
+  text-decoration: none;
+}
+
+.left {
+  color: red;
+}
+
+.right {
+  color: blue;
+}
+
