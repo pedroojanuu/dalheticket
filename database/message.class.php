@@ -31,13 +31,14 @@
     public function isMine(PDO $db){
       $session = new Session();
       $stmt = $db->prepare('
-            SELECT client
+            SELECT *
             FROM Ticket
             WHERE id = ?
         ');
-        $stmt->execute(array($ticketId));
+        $stmt->execute(array($this->ticketId));
 
-      $ret = ($stmt->fetchAll()[0]['client'] == $session->getName());
+      $ret = ($this->isFromClient && $stmt->fetchAll()[0]['client'] == $session->getName()) ||
+             (!$this->isFromClient && $stmt->fetchAll()[0]['agent'] == $session->getName());
       return $ret;
     }
 
@@ -55,7 +56,7 @@
         while($message = $stmt->fetch()){
             $messages[] = new Message(
             $message['id'],
-            $message['ticketId'],
+            intval($message['ticketId']),
             $message['isFromClient'] == 1,
             $message['message']
             );
