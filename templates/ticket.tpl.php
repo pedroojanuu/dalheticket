@@ -4,7 +4,7 @@
     require_once(__DIR__ . '/../database/ticket.class.php');
     require_once(__DIR__ . '/../database/hashtag.class.php');
     require_once(__DIR__ . '/../database/message.class.php');
-    require_once(__DIR__ . '/../utils/session.php');
+    //require_once(__DIR__ . '/../utils/message.php');
 ?>
 
 <?php function drawTicketList(array $tickets) : void {
@@ -20,7 +20,9 @@
     </ul>
 <?php }?>
 
-<?php function drawTicket(PDO $db, Ticket $ticket, bool $show_messages = False) { ?>
+<?php function drawTicket(PDO $db, Ticket $ticket) { 
+    $session = new Session();
+    ?>
     <h3><?= $ticket->title ?></h3>
     <div class="ticket_client"><span class="bold">Client:</span> <?= $ticket->client ?></div>
     <?php if($ticket->agent !== null) { ?>
@@ -33,32 +35,19 @@
             <span class="hashtag">#<?= $hashtag->name ?></span>  
         <?php } ?>
     </div>
-    <?php if($show_messages) { ?>
-        <a href=<?=("../actions/action_abandon_ticket.php?id=" . $ticket->id)?>>
-            Abandon Ticket
-        </a>
-        <section class="ticket_messages">
-            <p>Messages:</p>
-            <?php foreach(Message::getAllMessagesFromTicket($db, $ticket->id) as $message) { ?>
-                    <p><?php echo ($message->isFromClient) ? 'User: ': 'Agent: '?>
-                       <?= $message->message ?></p>
-            <?php } ?>
-        </section>
-        <form action="../actions/action_add_message.php" method="post">
-            <input type="hidden" name="ticket_id" value="<?= $ticket->id ?>">
-            <input type="hidden" name="author" value="<?= $session->getName() ?>">
-            <input type="text" name="content" placeholder="Message">
+
+    <div class="ticket_messages">
+        <?php foreach(Message::getAllMessagesFromTicket($db, $ticket->id) as $message) { ?>
+            <div class="ticket_message <?= $message->isMine($db) ? 'right' : 'left' ?>">
+                <div class="ticket_message_text"><?= $message->message ?></div>
+                <div class="ticket_message_date"><?= $message->date ?></div>
+            </div>
+        <?php } ?>
+        <form class="send_message" action="../actions/action_send_message.php" method=post>
+            <input type="hidden" name="ticketId" value="<?= $ticket->id ?>">
+            <input type="hidden" name="isFromClient" value="<?= $ticket->client == $session->getName() ? "true" : "false" ?>">
+            <input type="text" name="message" placeholder="Message">
             <input type="submit" value="Send">
         </form>
-
-<?php 
-    } else if($ticket->status == 'Unsolved' && $ticket->agent == null) {
-        $session = new Session();
-?> 
-        <a href=<?=("../actions/action_assign_ticket.php?id=" . $ticket->id . "&agent=" . $session->getName())?>>
-            Assign to me
-        </a>
-<?php
-    }
-} 
-?>
+    </div>
+<?php } ?>
