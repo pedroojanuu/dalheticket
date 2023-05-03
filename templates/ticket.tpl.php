@@ -50,9 +50,22 @@
     <?php
             }
         }
-        if ($me->type == 'admin') {
+        if ($me->type == 'admin' && $ticket->status == 'Unsolved') {
 ?>
         <a href="../pages/assign_ticket.php?id=<?= $ticket->id ?>">Assign ticket...</a>
+<?php
+        } if ($ticket->agent != null && $ticket->status == 'Unsolved' && $me->type == 'admin') {
+?>
+        <a href=<?=("../actions/action_abandon_ticket.php?id=" . $ticket->id)?>>
+            Unassign ticket
+        </a>
+<?php
+        }
+        if ($me->type == 'admin' || $ticket->agent == $me->username) {
+?>
+        <a href="../actions/action_change_ticket_status.php?id=<?= $ticket->id ?>">
+            Mark as <?= $ticket->status == 'Unsolved'? 'Solved' : 'Unsolved' ?>
+        </a>
 <?php
         }
     ?>
@@ -64,7 +77,7 @@
                 <div class="ticket_message_date"><?= $message->date ?></div>
             </div>
         <?php } 
-    if ($ticket->client == $me->name || $ticket->agent == $me->name) {
+    if (($ticket->client == $me->username || $ticket->agent == $me->username) && $ticket->status == 'Unsolved') {
         ?>
         <form class="send_message" action="../actions/action_send_message.php" method=post>
             <input type="hidden" name="ticketId" value="<?= $ticket->id ?>">
