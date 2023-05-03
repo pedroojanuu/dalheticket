@@ -21,7 +21,7 @@
     $message = $_POST['message'];
 
     $ticket = Ticket::createAndAdd($db, $title, $client, $department);
-    Message::createAndAdd($db, $ticket->id, true, $message);
+    Message::createAndAdd($db, $ticket->id, true, $message, $session->getName());
 
     header('Location: ../index.php');
 ?>

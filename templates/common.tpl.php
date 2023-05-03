@@ -18,6 +18,7 @@
       <link rel="stylesheet" href="../css/index.css"> 
       <link rel="stylesheet" href="../css/animation.css"> 
       <script src="../js/animation.js" defer></script>
+      <script src="../js/ajax"></script>
     <?php } else { ?>
       <link rel="stylesheet" href="../css/style.css">
       <link rel="stylesheet" href="../css/header.css">

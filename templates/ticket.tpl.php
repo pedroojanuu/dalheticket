@@ -75,17 +75,19 @@
             }
         ?>
         </div>
+    </div>
         <?php
             if($session->getName() == $ticket->agent || $session->getName() == $ticket->client || $ticket->agent == null) { 
         ?>
         <div class="ticket_messages">
+            <button type="button" onclick="loadDoc()">Update</button>
     <?php
         foreach(Message::getAllMessagesFromTicket($db, $ticket->id) as $message) { ?>
                 <div class="ticket_message <?= $message->isMine($db) ? 'right' : 'left' ?>">
                     <div class="ticket_message_text"><?= $message->message ?></div>
                     <div class="ticket_message_date"><?= $message->date ?></div>
                 </div>
-            <?php } 
+            <?php }
         if (($ticket->client == $me->username || $ticket->agent == $me->username) && $ticket->status == 'Unsolved') {
             ?>
             <form class="send_message" action="../actions/action_send_message.php" method=post>
@@ -96,6 +98,5 @@
             </form>
         </div>
     <?php } ?>
-    </div>
 <?php } ?>
 <?php } ?>
