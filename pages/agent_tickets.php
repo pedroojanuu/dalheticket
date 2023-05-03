@@ -18,9 +18,9 @@
 
     $user = $session->getName();
 
-    $tickets = Ticket::getAllTicketsFromClient($db, $session->getName());
+    $tickets = Ticket::getAllTicketsFromAgent($db, $session->getName());
 
-    drawTicketList($tickets, "My Tickets");
+    drawTicketList($tickets, "Tickets Assigned to $user");
 
     drawFooter();
 

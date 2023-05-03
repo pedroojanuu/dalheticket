@@ -179,7 +179,7 @@ header:first-of-type .login_hidden{
   display: none;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 50em) {
   header:first-of-type .login{
     display: none;
   }
@@ -190,3 +190,11 @@ header:first-of-type .login_hidden{
     justify-self: start;
   }
 }
+/* 
+header:first-of-type:after{
+  content: url("../img/riscas3.png");
+  position:relative;
+  z-index:100000;
+  top:5em;
+  left:5em;
+} */
