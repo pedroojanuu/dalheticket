@@ -4,7 +4,6 @@
     require_once(__DIR__ . '/../database/ticket.class.php');
     require_once(__DIR__ . '/../database/hashtag.class.php');
     require_once(__DIR__ . '/../database/message.class.php');
-    //require_once(__DIR__ . '/../utils/message.php');
 ?>
 
 <?php function drawTicketList(array $tickets) : void {
@@ -22,6 +21,7 @@
 
 <?php function drawTicket(PDO $db, Ticket $ticket) { 
     $session = new Session();
+    $me = User::getUserByUsername($db, $session->getName());
     ?>
     <h3><?= $ticket->title ?></h3>
     <div class="ticket_client"><span class="bold">Client:</span> <?= $ticket->client ?></div>
@@ -41,23 +41,31 @@
             Abandon Ticket
         </a>
     <?php
-        } else if($ticket->status == 'Unsolved' && $ticket->agent == null) {
-            $session = new Session();
+        } else if ($ticket->status == 'Unsolved' && $ticket->agent == null) {
+            if ($me->department == $ticket->department) {
     ?> 
         <a href=<?=("../actions/action_assign_ticket.php?id=" . $ticket->id . "&agent=" . $session->getName())?>>
-            Assign to me
+            Assign ticket to myself
         </a>
     <?php
-        } 
-        if($session->getName() == $ticket->agent || $session->getName() == $ticket->client) { 
+            }
+        }
+        if ($me->type == 'admin') {
+?>
+        <a href="../pages/assign_ticket.php?id=<?= $ticket->id ?>">Assign ticket...</a>
+<?php
+        }
     ?>
     <div class="ticket_messages">
-        <?php foreach(Message::getAllMessagesFromTicket($db, $ticket->id) as $message) { ?>
+<?php
+    foreach(Message::getAllMessagesFromTicket($db, $ticket->id) as $message) { ?>
             <div class="ticket_message <?= $message->isMine($db) ? 'right' : 'left' ?>">
                 <div class="ticket_message_text"><?= $message->message ?></div>
                 <div class="ticket_message_date"><?= $message->date ?></div>
             </div>
-        <?php } ?>
+        <?php } 
+    if ($ticket->client == $me->name || $ticket->agent == $me->name) {
+        ?>
         <form class="send_message" action="../actions/action_send_message.php" method=post>
             <input type="hidden" name="ticketId" value="<?= $ticket->id ?>">
             <input type="hidden" name="isFromClient" value="<?= $ticket->client == $session->getName() ? "true" : "false" ?>">
