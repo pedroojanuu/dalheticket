@@ -31,6 +31,16 @@ footer:last-of-type {
   padding: 1em;
 }
 
+/* footer:last-of-type:after {
+  content: '';
+  background-image: url("../img/riscas2.png");
+  background-size:cover;
+  position:relative;
+  z-index:100000;
+  top:0.5em;
+  width: 10vw;
+} */
+
 main {
   font-family: 'Fira Sans', sans-serif;
   display: grid;
@@ -185,4 +195,50 @@ p {
 .right {
   color: blue;
 }
+
+@media (min-width: 50em) {
+  .ticket_details {
+    display: grid;
+    grid-template-columns: 30vw 60vw;
+    grid-template-rows: 67vh;
+    grid-template-areas:
+      "left right";
+  }
+
+  .ticket_details .ticket_info {
+    grid-area: left;
+    padding-right: 1em;
+  }
+
+  .ticket_details .ticket_messages {
+    grid-area: right;
+    height: 100 vh;
+    overflow-y: scroll;
+    border-left-color: #b2b3b3;
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-top: none;
+    padding-left: 1em;
+    margin-top: 3.7em;
+    padding-top: 0;
+    align-self: stretch;
+    justify-self: stretch;
+    min-width: none;
+  }
+}
+
+@media (max-width: 50em) {
+  .ticket_details .ticket_info {
+    margin-bottom: 2em;
+  }
+
+  .ticket_details .ticket_messages {
+    border-top-color: #b2b3b3;
+    border-top-style: solid;
+    border-top-width: 1px;
+    padding-top: 1em;
+    min-width: 77vw;
+  }
+}
+
 

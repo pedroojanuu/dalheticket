@@ -19,7 +19,7 @@
     <?php $db = getDatabaseConnection();
     $user = User::getUserByUsername($db, $session->getName());
     if($user->type == "agent") { ?>
-        <a href="">List assigned tickets</a>
+        <a href="pages/agent_tickets.php">List assigned tickets</a>
         <a href=<?=("pages/departmentDetails.php?name=" . $user->department)?>>Go to my department</a>
     <?php } ?>
     <?php if(User::getUserTypeByUsername($db, $session->getName()) == 'admin') { ?>
