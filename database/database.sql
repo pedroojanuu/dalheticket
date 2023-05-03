@@ -58,6 +58,7 @@ create table Message(
    ticketId integer not null,
    isFromClient boolean not null,
    message text not null,
+   author varchar(20) not null,
    foreign key (ticketId) references Ticket(id)
 );
 

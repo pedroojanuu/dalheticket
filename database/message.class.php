@@ -7,44 +7,37 @@
     public int $ticketId;
     public bool $isFromClient;
     public string $message;
+    public string $author;
 
-    public function __construct(int $id, int $ticketId, bool $isFromClient, string $message){
+    public function __construct(int $id, int $ticketId, bool $isFromClient, string $message, string $author){
       $this->id = $id;
       $this->ticketId = $ticketId;
       $this->isFromClient = $isFromClient;
       $this->message = $message;
+      $this->author = $author;
     }
 
-    static public function createAndAdd(PDO $db, int $ticketId, bool $isFromClient, string $message){
+    static public function createAndAdd(PDO $db, int $ticketId, bool $isFromClient, string $message, string $author){
       $stmt = $db->prepare('
-        INSERT INTO Message (ticketId, isFromClient, message)
-        VALUES (?, ?, ?)
+        INSERT INTO Message (ticketId, isFromClient, message, author)
+        VALUES (?, ?, ?, ?)
       ');
-      $stmt->execute(array($ticketId, $isFromClient, $message));
+      $stmt->execute(array($ticketId, $isFromClient, $message, $author));
       $stmt = $db->prepare('SELECT max(id) as id from Message');
       $stmt->execute();
       $id = $stmt->fetchAll()[0]["id"];
 
-      return new Message($id, $ticketId, $isFromClient, $message);
+      return new Message($id, $ticketId, $isFromClient, $message, $author);
     }
 
     public function isMine(PDO $db){
       $session = new Session();
-      $stmt = $db->prepare('
-            SELECT *
-            FROM Ticket
-            WHERE id = ?
-        ');
-        $stmt->execute(array($this->ticketId));
-
-      $ret = ($this->isFromClient && $stmt->fetchAll()[0]['client'] == $session->getName()) ||
-             (!$this->isFromClient && $stmt->fetchAll()[0]['agent'] == $session->getName());
-      return $ret;
+      return $this->author == $session->getName();
     }
 
     static public function getAllMessagesFromTicket(PDO $db, int $id) : array {
         $stmt = $db->prepare('
-            SELECT m.id, m.ticketId, m.isFromClient, m.message
+            SELECT m.id, m.ticketId, m.isFromClient, m.message, m.author
             FROM Message m JOIN Ticket t
             ON m.ticketId = t.id
             WHERE t.id = ?
@@ -58,7 +51,8 @@
             $message['id'],
             intval($message['ticketId']),
             $message['isFromClient'] == 1,
-            $message['message']
+            $message['message'],
+            $message['author']
             );
         }
     

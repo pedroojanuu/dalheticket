@@ -69,21 +69,25 @@
 <?php
         }
     ?>
-    <div class="ticket_messages">
+    <div class="ticket_message_field">
+        <div class="ticket_messages">
 <?php
     foreach(Message::getAllMessagesFromTicket($db, $ticket->id) as $message) { ?>
             <div class="ticket_message <?= $message->isMine($db) ? 'right' : 'left' ?>">
                 <div class="ticket_message_text"><?= $message->message ?></div>
                 <div class="ticket_message_date"><?= $message->date ?></div>
             </div>
-        <?php } 
+        <?php }
+        ?>
+        </div>
+<?php
     if (($ticket->client == $me->username || $ticket->agent == $me->username) && $ticket->status == 'Unsolved') {
         ?>
         <form class="send_message" action="../actions/action_send_message.php" method=post>
             <input type="hidden" name="ticketId" value="<?= $ticket->id ?>">
             <input type="hidden" name="isFromClient" value="<?= $ticket->client == $session->getName() ? "true" : "false" ?>">
-            <input type="text" name="message" placeholder="Message">
-            <input type="submit" value="Send">
+            <input type="text" name="message" class="message" placeholder="Message">
+            <button type="submit">Send</button>
         </form>
     </div>
 <?php 
