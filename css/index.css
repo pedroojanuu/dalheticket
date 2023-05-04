@@ -182,3 +182,7 @@ button:hover {
   background-color: #ef7f1a;
   color: #ffffff;
 }
+
+.login_hidden{
+  display: none;
+}
