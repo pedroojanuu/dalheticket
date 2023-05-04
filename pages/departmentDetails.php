@@ -19,16 +19,23 @@
 
     $user = User::getUserByUsername($db, $session->getName());
     $department = Department::getDepartmentByName($db, $_GET['name']);
-    if($user == null || 
+
+   if($user->type == 'agent' && $user->department == null && $_GET['name'] == ''){
+      drawHeader();
+      echo "<h4> Sorry, you aren't yet associated with a department.</h4>";
+      drawFooter();
+   } else {
+      if($user == null || $department == null ||
       ($user->type != 'admin' && 
       ($user->type != 'agent' || 
-       $user->department != $department->name)))
-       header('Location: ../index.php');
+         $user->department != $department->name)))
+         header('Location: ../index.php');
 
-    drawHeader();
+      drawHeader();
 
-    drawDepartment($department);
+      drawDepartment($department);
 
-    drawFooter();
+      drawFooter();
+   }
 
 ?>

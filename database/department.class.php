@@ -51,11 +51,14 @@
       return $agents;
     }
 
-    static public function getDepartmentByName(PDO $db, string $name) : Department {
+    static public function getDepartmentByName(PDO $db, string $name) {
+      if($name == null) return null;
       $stmt = $db->prepare('SELECT * FROM Department WHERE name = ?');
       $stmt->execute(array($name));
 
       $query = $stmt->fetchAll()[0];
+
+      if($query['name'] == null) return null;
 
       return new Department($query['name']);
     }
