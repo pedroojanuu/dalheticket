@@ -240,7 +240,7 @@ CORRIGIR WIDTH
     padding-left: 1em;
     margin-top: 3.7em;
     padding-top: 0;
-    align-self: stretch;
+    align-self: end;
     justify-self: stretch;
     min-width: none;
   }
@@ -258,4 +258,30 @@ CORRIGIR WIDTH
     padding-top: 1em;
     min-width: 77vw;
   }
+}
+
+.right{
+  text-align: right;
+}
+
+.right p {
+  display: inline;
+  margin: 1em;
+  padding: 0.5em;
+  border-radius: 1em;
+  background-color: #ef7f1a;
+  color: white
+}
+
+.left p {
+  display: inline;
+  margin: 1em;
+  padding: 0.5em;
+  border-radius: 1em;
+  background-color: #b2b3b3;
+  color:white;
+}
+
+.ticket_details .ticket_messages form.send_message {
+  margin-top: 1em;
 }

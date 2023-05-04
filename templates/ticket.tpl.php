@@ -33,52 +33,48 @@
             <?php if($ticket->agent !== null) { ?>
                 <div class="ticket_agent"><span class="bold">Agent:</span> <?= $ticket->agent ?></div>
             <?php } ?>
-                    <div class="ticket_status"><span class="bold">Status:</span> <?= $ticket->status ?></div>
-                        <div class="ticket_department"><span class="bold">Department:</span> <?= $ticket->department ?></div>
-                            <div class="ticket_hashtags"><span class="bold">Hashtags: </span>  
-                                <?php foreach($ticket->getHashtags($db) as $hashtag) { ?>
-                                    <span class="hashtag">#<?= $hashtag->name ?></span>  
-                                <?php } ?>
-                            </div>
-
-                        <?php if($ticket->agent == $session->getName()) { ?>
-                            <a href=<?=("../actions/action_abandon_ticket.php?id=" . $ticket->id)?>>
-                                Abandon Ticket
-                            </a>
-                        <?php
-                            } else if ($ticket->status == 'Unsolved' && $ticket->agent == null) {
-                                if ($me->department == $ticket->department) {
-                        ?> 
-                            <a href=<?=("../actions/action_assign_ticket.php?id=" . $ticket->id . "&agent=" . $session->getName())?>>
-                                Assign ticket to myself
-                            </a>
-                        <?php
-                                }
-                            }
-                            if ($me->type == 'admin' && $ticket->status == 'Unsolved') {
-                    ?>
-                            <a href="../pages/assign_ticket.php?id=<?= $ticket->id ?>">Assign ticket...</a>
-                    <?php
-                            } if ($ticket->agent != null && $ticket->status == 'Unsolved' && $me->type == 'admin') {
-                    ?>
-                            <a href=<?=("../actions/action_abandon_ticket.php?id=" . $ticket->id)?>>
-                                Unassign ticket
-                            </a>
-                    <?php
-                            }
-                            if ($me->type == 'admin' || $ticket->agent == $me->username) {
-                    ?>
-                            <a href="../actions/action_change_ticket_status.php?id=<?= $ticket->id ?>">
-                                Mark as <?= $ticket->status == 'Unsolved'? 'Solved' : 'Unsolved' ?>
-                            </a>
-                    <?php
-                            }
-                        ?>
-                        </div>
-                    </div>
-                </div>
+            <div class="ticket_status"><span class="bold">Status:</span> <?= $ticket->status ?></div>
+            <div class="ticket_department"><span class="bold">Department:</span> <?= $ticket->department ?></div>
+            <div class="ticket_hashtags"><span class="bold">Hashtags: </span>  
+                <?php foreach($ticket->getHashtags($db) as $hashtag) { ?>
+                    <span class="hashtag">#<?= $hashtag->name ?></span>  
+                <?php } ?>
             </div>
-        </div>
+
+                <?php if($ticket->agent == $session->getName()) { ?>
+                    <a href=<?=("../actions/action_abandon_ticket.php?id=" . $ticket->id)?>>
+                        Abandon Ticket
+                    </a>
+                <?php
+                    } else if ($ticket->status == 'Unsolved' && $ticket->agent == null) {
+                        if ($me->department == $ticket->department) {
+                ?> 
+                    <a href=<?=("../actions/action_assign_ticket.php?id=" . $ticket->id . "&agent=" . $session->getName())?>>
+                        Assign ticket to myself
+                    </a>
+                <?php
+                        }
+                    }
+                    if ($me->type == 'admin' && $ticket->status == 'Unsolved') {
+            ?>
+                    <a href="../pages/assign_ticket.php?id=<?= $ticket->id ?>">Assign ticket...</a>
+            <?php
+                    } if ($ticket->agent != null && $ticket->status == 'Unsolved' && $me->type == 'admin') {
+            ?>
+                    <a href=<?=("../actions/action_abandon_ticket.php?id=" . $ticket->id)?>>
+                        Unassign ticket
+                    </a>
+            <?php
+                    }
+                    if ($me->type == 'admin' || $ticket->agent == $me->username) {
+            ?>
+                    <a href="../actions/action_change_ticket_status.php?id=<?= $ticket->id ?>">
+                        Mark as <?= $ticket->status == 'Unsolved'? 'Solved' : 'Unsolved' ?>
+                    </a>
+            <?php
+                    }
+                ?>
+                </div>
         <?php
             if($session->getName() == $ticket->agent || $session->getName() == $ticket->client || $ticket->agent == null) { 
         ?>
@@ -87,7 +83,7 @@
         <?php
             foreach(Message::getAllMessagesFromTicket($db, $ticket->id) as $message) { ?>
                     <div class="ticket_message <?= $message->isMine($db) ? 'right' : 'left' ?>">
-                        <div class="ticket_message_text"><?= $message->message ?></div>
+                        <div class="ticket_message_text"><p><?= $message->message ?></p></div>
                         <div class="ticket_message_date"><?= $message->date ?></div>
                     </div>
                 <?php }
