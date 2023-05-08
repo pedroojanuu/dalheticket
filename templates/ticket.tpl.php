@@ -79,7 +79,6 @@
             if($session->getName() == $ticket->agent || $session->getName() == $ticket->client || $ticket->agent == null) { 
         ?>
         <div class="ticket_messages">
-            <button type="button" onclick="loadDoc()">Update</button>
         <?php
             foreach(Message::getAllMessagesFromTicket($db, $ticket->id) as $message) { ?>
                     <div class="ticket_message <?= $message->isMine($db) ? 'right' : 'left' ?>">
@@ -93,7 +92,7 @@
                 <input type="hidden" name="ticketId" value="<?= $ticket->id ?>">
                 <input type="hidden" name="isFromClient" value="<?= $ticket->client == $session->getName() ? "true" : "false" ?>">
                 <input type="text" name="message" placeholder="Message">
-                <input type="submit" value="Send">
+                <button type="Submit">Send</button>
             </form>
         </div>
     <?php } ?>
