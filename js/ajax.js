@@ -1,5 +1,3 @@
-console.log("Hello World!");
-
 async function async_wraper() {
   var request = new XMLHttpRequest();
   request.open("GET", "../utils/get_ticket_messages.php" + document.location.search, true);
@@ -8,7 +6,7 @@ async function async_wraper() {
   var messages = document.querySelector(".message_list");
 
   while(true){
-    console.log(request.response);
+    // console.log(request.response);
     if(request.readyState === 4 && request.status === 200) {
       messages.innerHTML = "";
       for(var i = 0; i < request.response.length; i++){

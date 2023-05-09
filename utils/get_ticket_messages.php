@@ -25,12 +25,10 @@
     );
   }
 
-  echo json_encode($message_array);
-
-// if($session->getName() == $ticket->agent || $session->getName() == $ticket->client || $me->type == 'admin' ||
-//     ($me->type == "agent" && $me->department == $ticket->department)){
-//     echo json_encode(Message::getAllMessagesFromTicket($db, intval($_GET['ticketId'])));
-// }
-// else
-//   header('HTTP/1.0 404 Nothing to see here');
+if($session->getName() == $ticket->agent || $session->getName() == $ticket->client || $me->type == 'admin' ||
+    ($me->type == "agent" && $me->department == $ticket->department)){
+    echo json_encode($message_array);
+}
+else
+  header('HTTP/1.0 404 Nothing to see here');
 ?>

@@ -16,10 +16,6 @@
 
     drawHeader();
     echo "<script src='../js/ajax.js' async></script>";
-    // $headers = apache_request_headers();
-    // foreach ($headers as $header => $value) {
-    //     echo "$header: $value <br />\n";
-    // }
 
     $ticket = Ticket::getTicketById($db, intval($_GET['id']));
     $user = User::getUserByUsername($db, $session->getName());

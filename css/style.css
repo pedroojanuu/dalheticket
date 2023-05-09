@@ -243,6 +243,22 @@ CORRIGIR WIDTH
     align-self: end;
     justify-self: stretch;
     min-width: none;
+    height: 65vh;
+    display: grid;
+    grid-template-rows: auto 2.5em;
+    grid-template-areas:
+      "message_list"
+      "form";
+  }
+
+  .message_list {
+    grid-area: message_list;
+    align-self: end;
+  }
+
+  .ticket_messages form {
+    grid-area: form;
+    align-self: end;
   }
 }
 
@@ -257,7 +273,6 @@ CORRIGIR WIDTH
     border-top-width: 1px;
     padding-top: 1em;
     min-width: 77vw;
-    height: 70vh;
   }
 }
 
