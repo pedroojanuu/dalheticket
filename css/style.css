@@ -256,7 +256,7 @@ CORRIGIR WIDTH
     align-self: end;
   }
 
-  .ticket_messages form {
+  .ticket_messages .send_message {
     grid-area: form;
     align-self: end;
   }
@@ -311,6 +311,6 @@ CORRIGIR WIDTH
   margin-bottom: 0.2em;
 }
 
-.ticket_messages form.send_message {
+.ticket_messages .send_message {
   margin-top: 1em;
 }
