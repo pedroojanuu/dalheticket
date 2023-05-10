@@ -4,13 +4,14 @@ function encodeForAjax(data) {
   }).join('&')
 }
 
-function reload_messages() {
+function reload_last_message() {
   let messages = document.querySelector(".message_list");
   var request2 = new XMLHttpRequest()
   request2.open("GET", "../utils/get_ticket_messages.php" + document.location.search, true)
   request2.responseType = "json"
   request2.send()
   request2.addEventListener('readystatechange', (event) => {
+    console.log("send.js")
     if(request2.readyState === 4 && request2.status === 200) {
       let last_message = request2.response.length - 1
         var right_or_left = ""
@@ -41,7 +42,7 @@ function handleEvent(event) {
   request.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
   request.send(encodeForAjax({ticketId: ticket_id, isFromClient: is_from_client, message: message_text}))
 
-  reload_messages()
+  reload_last_message()
 }
 const button = document.querySelector("button.message_button")
 button.addEventListener('click', handleEvent)

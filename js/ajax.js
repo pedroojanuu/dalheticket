@@ -1,12 +1,12 @@
-async function async_wraper() {
-  var request = new XMLHttpRequest();
-  request.open("GET", "../utils/get_ticket_messages.php" + document.location.search, true);
-  request.responseType = "json";
-  request.send();
-  var messages = document.querySelector(".message_list");
+let messages = document.querySelector(".message_list");
 
-  while(true){
-    // console.log(request.response);
+function reload_messages() {
+  var request = new XMLHttpRequest()
+  request.open("GET", "../utils/get_ticket_messages.php" + document.location.search, true)
+  request.responseType = "json"
+  request.send()
+  request.addEventListener('readystatechange', (event) => {
+    console.log("ajax.js")
     if(request.readyState === 4 && request.status === 200) {
       messages.innerHTML = "";
       for(var i = 0; i < request.response.length; i++){
@@ -21,11 +21,15 @@ async function async_wraper() {
                                 <div class="ticket_message_date"></div>
                               </div>`;
       }
-      request = new XMLHttpRequest();
-      request.open("GET", "../utils/get_ticket_messages.php" + document.location.search, true);
-      request.responseType = "json";
-      request.send();
     }
+  })
+}
+
+async function async_wraper() {
+  while(true){
+    // console.log(request.response);
+    reload_messages();
+    
     await new Promise(r => setTimeout(r, 2000));
   }
 }
