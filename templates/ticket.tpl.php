@@ -90,14 +90,14 @@
             if (($ticket->client == $me->username || $ticket->agent == $me->username) && $ticket->status == 'Unsolved') {
                 ?>
                 </div>
-            <div class="send_message">
-            <!-- <form class="send_message" method=post action="../actions/action_send_message.php"> -->
+            <!-- <div class="send_message"> -->
+            <form class="send_message" method=post action="../actions/action_send_message.php">
                 <input type="hidden" name="ticketId" value="<?= $ticket->id ?>">
                 <input type="hidden" name="isFromClient" value="<?= $ticket->client == $session->getName() ? "true" : "false" ?>">
                 <input type="text" name="message" placeholder="Message">
                 <button class="message_button"type="Submit">Send</button>
-            <!-- </form> -->
-            </div>
+            </form>
+            <!-- </div> -->
         </div>
     <?php } ?>
 <?php } ?>
