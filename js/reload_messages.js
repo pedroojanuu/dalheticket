@@ -6,7 +6,6 @@ function reload_messages() {
   request.responseType = "json"
   request.send()
   request.addEventListener('readystatechange', (event) => {
-    console.log("ajax.js")
     if(request.readyState === 4 && request.status === 200) {
       messages.innerHTML = "";
       for(var i = 0; i < request.response.length; i++){
@@ -27,7 +26,6 @@ function reload_messages() {
 
 async function async_wraper() {
   while(true){
-    // console.log(request.response);
     reload_messages();
     
     await new Promise(r => setTimeout(r, 2000));
