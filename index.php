@@ -25,6 +25,7 @@
     <?php if(User::getUserTypeByUsername($db, $session->getName()) == 'admin') { ?>
         <a href="pages/manage_users.php">Manage users</a>
         <a href="pages/manage_departments.php">Manage departments</a>
+        <a href="pages/stats.php">Statistics</a>
     <?php } ?>
     </nav>
 <?php

@@ -197,5 +197,26 @@ class User{
 
     $this->closed_tickets += 1;
   }
+
+  static public function getTopAgents(PDO $db) : array {
+    $stmt = $db->prepare('SELECT * FROM User WHERE type = "agent" ORDER BY closed_tickets DESC LIMIT 10');
+    $stmt->execute();
+
+    $agents = array();
+
+    while ($agent = $stmt->fetch()) {
+      $agents[] = new User(
+        $agent['name'],
+        $agent['username'],
+        $agent['email'],
+        $agent['type'],
+        $agent['department'],
+        intval($agent['ticket_count']),
+        intval($agent['closed_tickets'])
+      );
+    }
+
+    return $agents;
+  }
 }
 ?>
