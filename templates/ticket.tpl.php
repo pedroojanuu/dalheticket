@@ -46,16 +46,8 @@
                         Abandon Ticket
                     </a>
                 <?php
-                    } else if ($ticket->status == 'Unsolved' && $ticket->agent == null) {
-                        if ($me->department == $ticket->department) {
-                ?> 
-                    <a href=<?=("../actions/action_assign_ticket.php?id=" . $ticket->id . "&agent=" . $session->getName())?>>
-                        Assign ticket to myself
-                    </a>
-                <?php
-                        }
                     }
-                    if ($me->type == 'admin' && $ticket->status == 'Unsolved') {
+                    if (($me->type == 'admin' || $me->department == $ticket->department) && $ticket->status == 'Unsolved') {
             ?>
                     <a href="../pages/assign_ticket.php?id=<?= $ticket->id ?>">Assign ticket...</a>
             <?php
