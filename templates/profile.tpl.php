@@ -22,12 +22,14 @@
 <?php } ?>
   </div>
 <?php if ($user->type == 'agent') { ?>
-  <div class="department">Department: <?= ($user->department != '')? $user->department : 'None' ?>
+  <div class="agent_department">Department: <?= ($user->department != '')? $user->department : 'None' ?>
 <?php 
       if ($my_type == 'admin') {?>
   <a href="change_agent_department.php?username=<?= $user->username?>">Change...</a>
 <?php } ?>
   </div>
+  <div class="assigned_tickets">Assigned Tickets: <?= $user->ticket_count ?></div>
+  <div class="solved_tickets">Solved tickets: <?= $user->closed_tickets ?></div>
 <?php
   }
     if ($my_type == 'admin' || $session->getName() == $user->username) {

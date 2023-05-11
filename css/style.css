@@ -166,7 +166,7 @@ p {
   height: 15em;
 }
 
-.username, .email, .type, .ticket_client, .ticket_agent, .ticket_status, .ticket_department, .ticket_hashtags {
+.username, .email, .type, .ticket_client, .ticket_agent, .ticket_status, .ticket_department, .ticket_hashtags, .agent_department, .assigned_tickets, .solved_tickets {
   margin-bottom: 1em;
 }
 

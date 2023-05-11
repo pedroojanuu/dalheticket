@@ -13,7 +13,9 @@ create table User(
    email varchar(60) not null,
    password varchar(40) not null,
    type varchar(5) not null, /*user, agent, admin*/
-   department varchar(20)
+   department varchar(20),
+   ticket_count integer default 0,
+   closed_tickets integer default 0
 );
 
 create table Ticket(

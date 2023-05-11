@@ -45,6 +45,8 @@
           $agent['email'],
           $agent['type'],
           $agent['department'],
+          intval($agent['ticket_count']),
+          intval($agent['closed_tickets'])
         );
       }
 

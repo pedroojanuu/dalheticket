@@ -8,13 +8,17 @@ class User{
   public string $email;
   public string $type;
   public string $department;
+  public int $ticket_count;
+  public int $closed_tickets;
 
-  public function __construct(string $name, string $username, string $email, string $type, string $department){
+  public function __construct(string $name, string $username, string $email, string $type, string $department, int $ticket_count, int $closed_tickets){
     $this->name = $name;
     $this->username = $username;
     $this->email = $email;
     $this->type = $type;
     $this->department = $department;
+    $this->ticket_count = $ticket_count;
+    $this->closed_tickets = $closed_tickets;
   }
   static public function createAndAdd(PDO $db, string $name, string $username, string $email, string $password, string $type, string $department){
     $stmt = $db->prepare(
@@ -23,25 +27,27 @@ class User{
           );
     $stmt->execute(array($name,$username,$email,sha1($password),$type,$department));
 
-    return new User($name,$username,$email,$type,$department);
+    return new User($name,$username,$email,$type,$department, 0, 0);
   }
 
   static public function getUserWithPassword(PDO $db, string $email, string $password) : ?User {
     $stmt = $db->prepare('
-      SELECT name, username, email, type, department
+      SELECT name, username, email, type, department, ticket_count, closed_tickets
       FROM User
       WHERE lower(email) = ? AND password = ?
     ');
 
     $stmt->execute(array(strtolower($email), sha1($password)));
 
-    if ($customer = $stmt->fetch()) {
+    if ($user = $stmt->fetch()) {
       return new User(
-        $customer['name'],
-        $customer['username'],
-        $customer['email'],
-        $customer['type'],
-        $customer['department'],
+        $user['name'],
+        $user['username'],
+        $user['email'],
+        $user['type'],
+        $user['department'],
+        intval($user['ticket_count']),
+        intval($user['closed_tickets'])
       );
     } else return null;
   }
@@ -100,6 +106,8 @@ class User{
       $user['email'],
       $user['type'],
       $user['department'],
+      intval($user['ticket_count']),
+      intval($user['closed_tickets'])
     );
   }
 
@@ -159,6 +167,8 @@ class User{
         $user['email'],
         $user['type'],
         $user['department'],
+        intval($user['ticket_count']),
+        intval($user['closed_tickets'])
       );
     }
     return $users;
@@ -172,6 +182,20 @@ class User{
   static public function isUserAdmin(PDO $db, string $username) : bool {
     $user = User::getUserByUsername($db, $username);
     return $user->type == 'admin';
+  }
+
+  public function incrementAssigned(PDO $db) : void {
+    $stmt = $db->prepare('UPDATE user SET ticket_count = ticket_count + 1 WHERE username = ?');
+    $stmt->execute(array($this->username));
+
+    $this->ticket_count += 1;
+  }
+
+  public function incrementSolved(PDO $db) : void {
+    $stmt = $db->prepare('UPDATE user SET closed_tickets = closed_tickets + 1 WHERE username = ?');
+    $stmt->execute(array($this->username));
+
+    $this->closed_tickets += 1;
   }
 }
 ?>

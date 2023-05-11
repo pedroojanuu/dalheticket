@@ -17,10 +17,9 @@
     ($ticket->agent == null || $ticket->agent == $session->getName())) ||
     ($session_user->type == 'admin' && $agent->type == 'agent')) { 
     $ticket->setAgent($db, $_GET['agent']);
+    $agent->incrementAssigned($db);
   }
-  
-
 
   header('Location: ../pages/ticket.php?id=' . $_GET['id']);
 
-  ?>
+?>
