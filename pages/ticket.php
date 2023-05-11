@@ -15,6 +15,8 @@
     $db = getDatabaseConnection();
 
     drawHeader();
+    echo "<script src='../js/ajax.js' async></script>";
+    echo "<script src='../js/send_message_ajax.js' async></script>";
 
     $ticket = Ticket::getTicketById($db, intval($_GET['id']));
     $user = User::getUserByUsername($db, $session->getName());

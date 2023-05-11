@@ -243,6 +243,22 @@ CORRIGIR WIDTH
     align-self: end;
     justify-self: stretch;
     min-width: none;
+    height: 65vh;
+    display: grid;
+    grid-template-rows: auto 2.5em;
+    grid-template-areas:
+      "message_list"
+      "form";
+  }
+
+  .message_list {
+    grid-area: message_list;
+    align-self: end;
+  }
+
+  .ticket_messages .send_message {
+    grid-area: form;
+    align-self: end;
   }
 }
 
@@ -260,28 +276,41 @@ CORRIGIR WIDTH
   }
 }
 
+.ticket_message_text{
+  display: inline-block;
+  border-radius: 1em;
+  padding: 0.5em;
+}
+
 .right{
-  text-align: right;
+  display: flex; 
+  justify-content: flex-end;
+}
+
+.right .ticket_message_text{
+  background-color: #ef7f1a;
 }
 
 .right p {
   display: inline;
-  margin: 1em;
-  padding: 0.5em;
-  border-radius: 1em;
-  background-color: #ef7f1a;
+  margin: 0;
   color: white
+}
+
+.left .ticket_message_text{
+  background-color: #b2b3b3;
 }
 
 .left p {
   display: inline;
-  margin: 1em;
-  padding: 0.5em;
-  border-radius: 1em;
-  background-color: #b2b3b3;
+  margin: 0;
   color:white;
 }
 
-.ticket_details .ticket_messages form.send_message {
+.ticket_message {
+  margin-bottom: 0.2em;
+}
+
+.ticket_messages .send_message {
   margin-top: 1em;
 }
