@@ -214,5 +214,10 @@ class Ticket {
 
         return intval($stmt->fetchAll()[0]['count']);
     }
+
+    public function addHashtag(PDO $db, Hashtag $hashtag) : void {
+        $stmt = $db->prepare('INSERT INTO TicketHashtag VALUES (?,?)');
+        $stmt->execute(array($this->id, $hashtag->tag));
+    }
 }
 ?>
