@@ -314,3 +314,13 @@ CORRIGIR WIDTH
 .ticket_messages .send_message {
   margin-top: 1em;
 }
+
+form.register * {
+  width: 25em;
+  margin-top: 0.5em;
+}
+
+form.register button {
+  margin-top: 1em;
+  width: 8em;
+}

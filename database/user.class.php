@@ -23,9 +23,9 @@ class User{
   static public function createAndAdd(PDO $db, string $name, string $username, string $email, string $password, string $type, string $department){
     $stmt = $db->prepare(
         'INSERT INTO User
-          VALUES (?,?,?,?,?,?)'
+          VALUES (?,?,?,?,?,?,?,?)'
           );
-    $stmt->execute(array($name,$username,$email,sha1($password),$type,$department));
+    $stmt->execute(array($name,$username,$email,sha1($password),$type,$department, 0, 0));
 
     return new User($name,$username,$email,$type,$department, 0, 0);
   }
