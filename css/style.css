@@ -170,6 +170,10 @@ p {
   margin-bottom: 1em;
 }
 
+form.submit_ticket * {
+  margin-top: 0.5em;
+}
+
 .bold {
   font-weight: bold;
 }
@@ -323,4 +327,31 @@ form.register * {
 form.register button {
   margin-top: 1em;
   width: 8em;
+}
+
+.submit_ticket p {
+  margin: 0.5em 0.5em;
+  font-weight: 0.5em;
+  font-size: 14px;
+}
+
+.submit_ticket .tag_container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.submit_ticket .tag_container .tag {
+  padding: 5px;
+  background-color: #d5daed;
+}
+
+.submit_ticket .tag_container .tag::before {
+  content: 'X';
+  margin-right: 0.5em;
+  text-align: center;
+  background-color: #b2b3b3;
+  cursor: pointer;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
 }
