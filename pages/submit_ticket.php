@@ -17,7 +17,7 @@
 
   drawHeader();
 ?>
-
+<script src="../js/hashtags.js" defer></script>
 <form action="../actions/action_submit_ticket.php" method="post" class="submit_ticket">
   <label for="title">Title</label>
   <input type="text" name="title" id="title" placeholder="A title for your ticket">
@@ -31,6 +31,9 @@
       }
       ?>
   </select>
+  <label for="hashtag_box">Hashtags</label>
+  <input type="text" name="hashtag" id="hashtag_box" placeholder="An hashtag">
+  <div class="tag_container"></div>
   <label for="message">Message</label>
   <textarea name="message" id="message"></textarea>
   <button type="submit">Submit</button>

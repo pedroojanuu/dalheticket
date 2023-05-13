@@ -18,6 +18,19 @@
       return new Hashtag($tag);
     }
 
+    static public function getHashtag(PDO $db, string $tag) : Hashtag {
+      $stmt = $db->prepare('SELECT * FROM Hashtag WHERE tag = ?');
+      $stmt->execute(array($tag));
+
+      $result = $stmt->fetchAll();
+
+      if ($result != null) {
+        return new Hashtag($result[0]['name']);
+      } else {
+        return Hashtag::createAndAdd($db, $tag);
+      }
+    }
+
     static public function getAllTicketsWithTag(PDO $db, string $tag) : array {
       $stmt = $db->prepare('
         SELECT t.id, t.client, t.agent, t.status, t.message, t.department
