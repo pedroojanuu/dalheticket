@@ -38,6 +38,7 @@
             drawLoginForm($session);
           } ?>
       </section>
+      <img src="../img/riscas4.png" class="riscas_header">
     </header>
 
     <main>
@@ -48,6 +49,7 @@
 
     <footer class="hidden">
       <?php global $name; echo $name; ?> &copy; 2023
+      <img src="../img/riscas2.png" class="riscas_footer">
     </footer>
   </body>
 </html>

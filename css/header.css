@@ -215,6 +215,16 @@ header:first-of-type .login_hidden{
 
 }
 
+header:first-of-type .riscas_header{
+  position: fixed;
+  top: 4.25em;
+  right: 6vw;
+}
+
+header:first-of-type img.riscas_header {
+  width: 20em;
+} 
+
 /* 
 header:first-of-type:after{
   content: url("../img/riscas3.png");

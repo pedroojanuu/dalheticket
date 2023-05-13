@@ -95,20 +95,24 @@ header .header_options a {
 
 header .header_login {
   position: fixed;
-  top: 58%;
+  top: 27em;
   left: 10vw;
   /* transform: translate(-50%, -50%); */
 }
 
 .options{
   position: fixed;
-  top: 65%;
+  top: 30em;
   left: 10vw;
   /* transform: translate(-50%, -50%); */
 }
 
 .login {
   text-align: left;
+}
+
+.riscas_header, .riscas_footer {
+  display: none;
 }
 
 .login *{
