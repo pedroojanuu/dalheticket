@@ -21,9 +21,10 @@
         header('Location: ../index.php');
     }
 
-    echo '<script src="../js/change_profile.js" async></script>';
-
     $user = User::getUserByUsername($db, $_GET['username']);
+
+    if($session->getName() == $_GET['username'] || $user->type == 'admin')
+        echo '<script src="../js/change_profile.js" async></script>';
 
     drawProfile($user);
 
