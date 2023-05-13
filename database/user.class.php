@@ -147,6 +147,14 @@ class User{
     $stmt->execute();
   }
 
+  static public function changeCertainAttribute(PDO $db, string $username, string $attribute, string $new_value) : void {
+    $stmt = $db->prepare('UPDATE User SET '.$attribute.' = :new where username = :u');
+    $stmt->bindParam(':new', $new_value);
+    $stmt->bindParam(':u', $username);
+
+    $stmt->execute();
+  }
+
   static public function getAgentDep(PDO $db, string $username) : string {
     $stmt = $db->prepare('SELECT department from User where username = ?');
     $stmt->execute(array($username));

@@ -324,3 +324,9 @@ form.register button {
   margin-top: 1em;
   width: 8em;
 }
+
+.change_profile_attribute{
+  display: inline;
+  font-size: 0.6em;
+  padding-left: 0.6em;
+}
