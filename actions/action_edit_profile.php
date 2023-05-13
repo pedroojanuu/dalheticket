@@ -13,7 +13,8 @@ if($session->getName() == $username) {
   $field = $_POST['field'];
   $value = $_POST['value'];
   
-  User::changeCertainAttribute($db, $username, $field, $value);
+  if($value != "")
+    User::changeCertainAttribute($db, $username, $field, $value);
 }
 
 ?>

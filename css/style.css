@@ -362,3 +362,8 @@ form.register button {
   width: 1em;
   height: 1em;
 }
+
+.wrong_field{
+  color: red;
+  font-size: 0.6em;
+}

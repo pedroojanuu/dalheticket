@@ -5,6 +5,14 @@ function save_and_change_to_input(field, old_html) {
     let new_content = field.querySelector("input").value
     let name = field.querySelector("input").getAttribute("name")
 
+    if(new_content == "") {
+      if(field.querySelector(".wrong_field") == null)
+        field.innerHTML += `<p class="wrong_field">You can't leave ${name} empty!</p>`;
+      field.querySelector(".cancel").addEventListener("click", replace_with_old(field, old_html))
+      field.querySelector(".save").addEventListener("click", save_and_change_to_input(field, old_html))
+      return;
+    }
+
     let request = new XMLHttpRequest()
     request.open("POST", "../actions/action_edit_profile.php", true)
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
