@@ -276,7 +276,7 @@ CORRIGIR WIDTH
     border-top-style: solid;
     border-top-width: 1px;
     padding-top: 1em;
-    min-width: 77vw;
+    max-width: 70vw;
   }
 }
 
@@ -423,11 +423,24 @@ form.register button {
 }
 
 .riscas_footer {
-  position: fixed;
-  bottom: 1em;
-  left: 13em;
+  position: relative;
+  bottom: 1.5em;
+  left: 11em;
+  z-index: 100000;
 }
 
 img.riscas_footer {
   height: 2em;
+  width: 40vw;
+  object-fit: cover;
+}
+
+/*
+.riscas_footer {
+  display: inline-block;
+  bottom: 1em;
+  left: 13em;
+  overflow-x: hidden;
+  padding-top: 2em;
+  padding-left: 2em;
 }
