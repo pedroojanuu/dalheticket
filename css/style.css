@@ -287,11 +287,14 @@ CORRIGIR WIDTH
 }
 
 .right{
-  display: flex; 
-  justify-content: flex-end;
+  display: grid; 
+  justify-content: end;
+  grid-template-areas: "right"
+                       "date";
 }
 
-.right .ticket_message_text{
+.right .ticket_message_text{ 
+  grid-area: right;
   background-color: #ef7f1a;
 }
 
@@ -309,6 +312,51 @@ CORRIGIR WIDTH
   display: inline;
   margin: 0;
   color:white;
+}
+
+.center{
+  display: grid; 
+  justify-content: center;
+  grid-template-areas: "center"
+                       "date";
+}
+
+.center .ticket_message_text{
+  grid-area: center;
+  background-color: #f2b27b;
+  padding: 0.2em 0.5em;
+}
+
+.center p {
+  display: inline;
+  margin: 0;
+  color: black;
+  font-size: 0.7em;
+}
+
+.date_hidden{
+  display: none;
+}
+
+.date_not_hidden{
+  grid-area: date;
+  display: block;
+  color: grey;
+  font-size: 0.5em;
+  margin-top: 0.2rem;
+}
+
+.right .date_not_hidden{
+  justify-self: end;
+  margin-right: 0.5rem;
+}
+
+.left .date_not_hidden{
+  margin-left: 0.5rem;
+}
+
+.center .date_not_hidden{
+  justify-self: center;
 }
 
 .ticket_message {

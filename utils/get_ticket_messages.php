@@ -13,16 +13,27 @@
 
   $message_array = array();
 
-  foreach(Message::getAllMessagesFromTicket($db, intval($_GET['id'])) as $message){
+  foreach(Message::getAllMessagesAndChangesFromTicket($db, intval($_GET['id'])) as $message){
     // $message_array[] = array($message->message;
-    $message_array[] = array(
-      "id" => $message->id,
-      "ticketId" => $message->ticketId,
-      "isFromClient" => $message->isFromClient,
-      "message" => $message->message,
-      "author" => $message->author,
-      "isMine" => $message->isMine($db)
-    );
+    if($message instanceof Message){
+      $message_array[] = array(
+        "id" => $message->id,
+        "ticketId" => $message->ticketId,
+        "isFromClient" => $message->isFromClient,
+        "message" => $message->message,
+        "author" => $message->author,
+        "isMine" => $message->isMine($db),
+        "datetime" => $message->datetime
+      );
+    } else if($message instanceof Change){
+      $message_array[] = array(
+        "id" => $message->id,
+        "ticketId" => $message->ticketId,
+        "agent" => $message->agent,
+        "action" => $message->action,
+        "datetime" => $message->datetime
+      );
+    }
   }
 
 if($session->getName() == $ticket->agent || $session->getName() == $ticket->client || $me->type == 'admin' ||
