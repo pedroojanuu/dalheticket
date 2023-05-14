@@ -17,6 +17,7 @@
     drawHeader();
     echo "<script src='../js/reload_messages.js' async></script>";
     echo "<script src='../js/send_message.js' async></script>";
+    echo "<script src='../js/hashtags.js' defer></script>";
 
     $ticket = Ticket::getTicketById($db, intval($_GET['id']));
     $user = User::getUserByUsername($db, $session->getName());

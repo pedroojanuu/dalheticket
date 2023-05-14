@@ -38,9 +38,20 @@
             <div class="ticket_hashtags"><span class="bold">Hashtags: </span>  
                 <?php foreach($ticket->getHashtags($db) as $hashtag) { ?>
                     <span class="hashtag">#<?= $hashtag->name ?></span>  
-                <?php } ?>
+                <?php } 
+            if ($me->type == 'admin' || $ticket->agent == $me->username) {
+                ?>
+                <button class="add_hashtag">+</button>
+                <form action="../actions/action_add_hashtag.php" method="post">
+                    <input type="hidden" value="<?= $ticket->id ?>" name="id">
+                    <input type="text" name="tag" class="hashtag_box invisible" placeholder="An hashtag...">
+                </form>
+                <button class="cancel_hashtag invisible">Cancel</button>
+                <?php
+            }
+                ?>
             </div>
-
+            <div class="ticket_options">
                 <?php if($ticket->agent == $session->getName()) { ?>
                     <a href=<?=("../actions/action_abandon_ticket.php?id=" . $ticket->id)?>>
                         Abandon Ticket
@@ -66,7 +77,8 @@
             <?php
                     }
                 ?>
-                </div>
+            </div>
+        </div>
         <?php
             if($session->getName() == $ticket->agent || $session->getName() == $ticket->client || $ticket->agent == null) { 
         ?>

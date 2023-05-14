@@ -355,3 +355,18 @@ form.register button {
   width: 1em;
   height: 1em;
 }
+
+button.add_hashtag {
+  background-color: white;
+  color: #ef7f1a;
+  padding: 0;
+  margin: 0;
+}
+
+button.cancel_hashtag {
+  background-color: white;
+  color: #ef7f1a;
+  padding: 0;
+  margin: 0;
+  font-size: smaller;
+}

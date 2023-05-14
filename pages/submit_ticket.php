@@ -31,9 +31,6 @@
       }
       ?>
   </select>
-  <label for="hashtag_box">Hashtags</label>
-  <input type="text" name="hashtag" id="hashtag_box" placeholder="An hashtag">
-  <div class="tag_container"></div>
   <label for="message">Message</label>
   <textarea name="message" id="message"></textarea>
   <button type="submit">Submit</button>
