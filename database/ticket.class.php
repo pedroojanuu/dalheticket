@@ -220,6 +220,14 @@ class Ticket {
         $stmt->execute(array($this->id, $hashtag->tag));
     }
 
+    public function removeHashtag(PDO $db, string $tag) : void {
+        $stmt = $db->prepare('DELETE FROM TicketHashtag WHERE tag = :tag AND ticketId = :id');
+        $stmt->bindParam(':tag', $tag);
+        $stmt->bindParam(':id', $this->id);
+
+        $stmt->execute();
+    }
+
     static public function getAllTicketsWithHashtag(PDO $db, Hashtag $hashtag, string $department = '') : array {
         $stmt = $db->prepare('SELECT ticketId FROM TicketHashtag WHERE tag = ?');
         $stmt->execute(array($hashtag->tag));

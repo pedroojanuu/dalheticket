@@ -19,34 +19,32 @@
   }
 
   $ticket = Ticket::getTicketById($db, intval($_GET['id']));
+  $hashtags = $ticket->getHashtags($db);
 
   $department = Department::getDepartmentByName($db, $ticket->department);
-  $agents = $department->getMemberAgents($db);
 
   $me = User::getUserByUsername($db, $session->getName());
 
-  drawHeader();
-
-  if ($me->type != 'admin' && $me->department != $ticket->department) {
+  if ($me->type != 'admin' && $ticket->agent != $me->username) {
     header('Location: ../index.php');
   }
 
+  drawHeader();
 ?>
 
-  <h3>Assigning <?= $ticket->title ?></h3>
-
-  <form action="../actions/action_assign_ticket.php" method="post">
-    <input type=hidden name="id" value="<?= $ticket->id ?>">
-    <select class="select_list" name="agent">
+  <h3>Removing an hashtag from "<?= $ticket->title ?>"</h3>
+  <form action="../actions/action_remove_hashtag.php" method="post">
+    <input type="hidden" name="id" value="<?= $ticket->id ?>">
+    <select class="select_list" name="tag">
 <?php
-foreach ($agents as $agent) {
+foreach ($hashtags as $hashtag) {
 ?>
-        <option value="<?= $agent->username ?>"><?= $agent->name ?></option>
+        <option value="<?= $hashtag->tag ?>"><?= $hashtag->tag ?></option>
 <?php
 }
 ?>
     </select>
-    <button type="submit">Assign</button>
+    <button type="submit">Remove</button>
   </form>
 
 <?php

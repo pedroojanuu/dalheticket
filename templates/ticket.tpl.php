@@ -25,6 +25,7 @@
 <?php function drawTicket(PDO $db, Ticket $ticket) { 
     $session = new Session();
     $me = User::getUserByUsername($db, $session->getName());
+    $hasTags = false;
     ?>
     <div class="ticket_details">
         <div class="ticket_info">
@@ -36,24 +37,33 @@
             <div class="ticket_status"><span class="bold">Status:</span> <?= $ticket->status ?></div>
             <div class="ticket_department"><span class="bold">Department:</span> <?= $ticket->department ?></div>
             <div class="ticket_hashtags"><span class="bold">Hashtags: </span>  
-                <?php foreach($ticket->getHashtags($db) as $hashtag) { ?>
+                <?php foreach($ticket->getHashtags($db) as $hashtag) {
+                    $hasTags = true;
+                ?>
                     <span class="hashtag">
                         <a href="../pages/hashtag.php?tag=<?= $hashtag->tag ?>">
                             #<?= $hashtag->tag ?>
                         </a>
-                    </span>  
+                    </span>
                 <?php } 
             if ($me->type == 'admin' || $ticket->agent == $me->username) {
                 ?>
                 <button class="add_hashtag">+</button>
+            <?php
+                if ($hasTags) {
+            ?>
+                <a href="../pages/remove_hashtag.php?id=<?= $ticket->id ?>" class="remove_hashtag">-</a>
+            <?php
+                }
+            ?>
                 <form action="../actions/action_add_hashtag.php" method="post">
                     <input type="hidden" value="<?= $ticket->id ?>" name="id">
                     <input type="text" name="tag" class="hashtag_box invisible" placeholder="An hashtag...">
                 </form>
-                <button class="cancel_hashtag invisible">Cancel</button>
-                <?php
+            <?php
             }
-                ?>
+            ?>
+                <button class="cancel_hashtag invisible">Cancel</button>
             </div>
             <div class="ticket_options">
                 <?php if($ticket->agent == $session->getName()) { ?>
