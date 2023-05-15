@@ -219,5 +219,21 @@ class Ticket {
         $stmt = $db->prepare('INSERT INTO TicketHashtag VALUES (?,?)');
         $stmt->execute(array($this->id, $hashtag->tag));
     }
+
+    static public function getAllTicketsWithHashtag(PDO $db, Hashtag $hashtag, string $department = '') : array {
+        $stmt = $db->prepare('SELECT ticketId FROM TicketHashtag WHERE tag = ?');
+        $stmt->execute(array($hashtag->tag));
+
+        $tickets = array();
+
+        while ($line = $stmt->fetch()) {
+            $id = $line['ticketId'];
+            $ticket = Ticket::getTicketById($db, $id);
+            if ($department == '' || $ticket->department == $department) {
+                $tickets[] = $ticket;
+            }
+        }
+        return $tickets;
+    }
 }
 ?>

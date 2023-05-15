@@ -37,7 +37,11 @@
             <div class="ticket_department"><span class="bold">Department:</span> <?= $ticket->department ?></div>
             <div class="ticket_hashtags"><span class="bold">Hashtags: </span>  
                 <?php foreach($ticket->getHashtags($db) as $hashtag) { ?>
-                    <span class="hashtag">#<?= $hashtag->tag ?></span>  
+                    <span class="hashtag">
+                        <a href="../pages/hashtag.php?tag=<?= $hashtag->tag ?>">
+                            #<?= $hashtag->tag ?>
+                        </a>
+                    </span>  
                 <?php } 
             if ($me->type == 'admin' || $ticket->agent == $me->username) {
                 ?>

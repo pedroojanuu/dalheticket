@@ -10,6 +10,10 @@
     $session = new Session();
     $db = getDatabaseConnection();
 
+    if (!($session->isLoggedIn())) {
+        header('Location: ../index.php');
+    }
+
     $ticket = Ticket::getTicketById($db, $_POST['id']);
     $hashtag = Hashtag::getHashtag($db, $_POST['tag']);
     $me = User::getUserByUsername($db, $session->getName());
