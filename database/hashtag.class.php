@@ -24,8 +24,10 @@
 
       $result = $stmt->fetchAll();
 
-      if ($result != null) {
-        return new Hashtag($result[0]['name']);
+      $name = $result[0]['tag'];
+
+      if ($name == $tag) {
+        return new Hashtag($name);
       } else {
         return Hashtag::createAndAdd($db, $tag);
       }
