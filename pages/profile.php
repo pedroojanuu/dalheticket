@@ -22,8 +22,9 @@
     }
 
     $user = User::getUserByUsername($db, $_GET['username']);
+    $logged_user = User::getUserByUsername($db, $session->getName());
 
-    if($session->getName() == $_GET['username'] || $user->type == 'admin')
+    if($session->getName() == $_GET['username'] || $logged_user->type == 'admin')
         echo '<script src="../js/change_profile.js" async></script>';
 
     drawProfile($user);

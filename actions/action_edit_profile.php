@@ -6,10 +6,11 @@ require_once('../utils/session.php');
 
 $session = new Session();
 $db = getDatabaseConnection();
+$logged_user = User::getUserByUsername($db, $session->getName());
 
 $username = $_POST['username'];
 
-if($session->getName() == $username) {
+if($session->getName() == $username || $logged_user->type == 'admin') {
   $field = $_POST['field'];
   $value = $_POST['value'];
   
