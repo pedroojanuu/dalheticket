@@ -41,11 +41,22 @@
                     $hasTags = true;
                 ?>
                     <span class="hashtag">
+                    <?php
+                    if ($me->type == 'user') {
+                    ?>
+                        #<?= $hashtag->tag ?>
+                    <?php
+                    } else {
+                    ?>
                         <a href="../pages/hashtag.php?tag=<?= $hashtag->tag ?>">
                             #<?= $hashtag->tag ?>
                         </a>
+                    <?php
+                    }
+                    ?>
                     </span>
-                <?php } 
+                <?php
+                } 
             if ($me->type == 'admin' || $ticket->agent == $me->username) {
                 ?>
                 <button class="add_hashtag">+</button>
@@ -94,7 +105,7 @@
             </div>
         </div>
         <?php
-            if($session->getName() == $ticket->agent || $session->getName() == $ticket->client || $ticket->agent == null) { 
+            if(User::getUserTypeByUsername($db, $session->getName()) == 'admin' || $session->getName() == $ticket->agent || $session->getName() == $ticket->client || $ticket->agent == null) { 
         ?>
         <div class="ticket_messages">
             <div class="message_list">
