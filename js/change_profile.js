@@ -6,11 +6,23 @@ function save_and_change_to_input(field, old_html) {
     let name = field.querySelector("input").getAttribute("name")
     let token = document.querySelector("p.token").innerHTML
 
-    if(new_content == "") {
+    function print_message(message) {
       if(field.querySelector(".wrong_field") == null)
-        field.innerHTML += `<p class="wrong_field">You can't leave ${name} empty!</p>`;
+        field.innerHTML += `<p class="wrong_field">${message}</p>`;
+      else
+        field.querySelector(".wrong_field").innerHTML = message;
       field.querySelector(".cancel").addEventListener("click", replace_with_old(field, old_html))
       field.querySelector(".save").addEventListener("click", save_and_change_to_input(field, old_html))
+    }
+
+    if(new_content == "") {
+      print_message(`You can't leave ${name} empty!`)
+      return;
+    } else if(name == "name" && /^[a-zA-Z1-9\s]+$/.test(new_content) == false) {
+      print_message(`Name can only contain letters, numbers and spaces!`)
+      return;
+    } else if(name == "email" && /^[a-zA-Z1-9_\-\.@]+$/.test(new_content) == false) {
+      print_message(`E-mail address invalid!`)
       return;
     }
 
