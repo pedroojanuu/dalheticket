@@ -113,7 +113,7 @@
             foreach(Message::getAllMessagesAndChangesFromTicket($db, $ticket->id) as $message) { 
                 if($message instanceof Message) {?>
                     <div class="ticket_message <?= $message->isMine($db) ? 'right' : 'left' ?>">
-                        <div class="ticket_message_text"><p><?= $message->message ?></p></div>
+                        <div class="ticket_message_text"><p><?= htmlentities($message->message) ?></p></div>
                         <div class="date_not_hidden"><?= $message->datetime ?></div>
                     </div>
                 <?php } else { ?>

@@ -20,7 +20,7 @@
         "id" => $message->id,
         "ticketId" => $message->ticketId,
         "isFromClient" => $message->isFromClient,
-        "message" => $message->message,
+        "message" => htmlentities($message->message),
         "author" => $message->author,
         "isMine" => $message->isMine($db),
         "datetime" => $message->datetime
