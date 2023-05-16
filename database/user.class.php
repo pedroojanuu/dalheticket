@@ -25,31 +25,36 @@ class User{
         'INSERT INTO User
           VALUES (?,?,?,?,?,?,?,?)'
           );
-    $stmt->execute(array($name,$username,$email,sha1($password),$type,$department, 0, 0));
+    $options = ['cost' => 12];
+    $stmt->execute(array($name,$username,$email,password_hash($password, PASSWORD_DEFAULT, $options),$type,$department, 0, 0));
 
     return new User($name,$username,$email,$type,$department, 0, 0);
   }
 
   static public function getUserWithPassword(PDO $db, string $email, string $password) : ?User {
     $stmt = $db->prepare('
-      SELECT name, username, email, type, department, ticket_count, closed_tickets
+      SELECT name, username, email, password, type, department, ticket_count, closed_tickets
       FROM User
-      WHERE lower(email) = ? AND password = ?
+      WHERE lower(email) = ?
     ');
+    $stmt->execute(array(strtolower($email)));
 
-    $stmt->execute(array(strtolower($email), sha1($password)));
-
+    
     if ($user = $stmt->fetch()) {
-      return new User(
-        $user['name'],
-        $user['username'],
-        $user['email'],
-        $user['type'],
-        $user['department'],
-        intval($user['ticket_count']),
-        intval($user['closed_tickets'])
-      );
-    } else return null;
+      $correct_password = password_verify($password, $user['password']);
+      if ($correct_password) {
+        return new User(
+          $user['name'],
+          $user['username'],
+          $user['email'],
+          $user['type'],
+          $user['department'],
+          intval($user['ticket_count']),
+          intval($user['closed_tickets'])
+        );
+      }
+    }
+    return null;
   }
 
   static public function emailExists(PDO $db, string $email) : bool {
@@ -120,7 +125,8 @@ class User{
 
   static public function changePassword(PDO $db, string $username, string $newpassword) : void {
     $stmt = $db->prepare('UPDATE User SET password = :new where username = :u');
-    $newpassword = sha1($newpassword);
+    $options = ['cost' => 12];
+    $newpassword = password_hash($newpassword, PASSWORD_DEFAULT, $options);
     $stmt->bindParam(':new', $newpassword);
     $stmt->bindParam(':u', $username);
 
