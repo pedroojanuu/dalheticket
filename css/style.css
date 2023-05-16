@@ -410,7 +410,7 @@ form.register button {
   height: 1em;
 }
 
-button.add_hashtag {
+button.add_hashtag, a.remove_hashtag {
   background-color: white;
   color: #ef7f1a;
   padding: 0;
