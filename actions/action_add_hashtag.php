@@ -12,6 +12,7 @@
 
     if (!($session->isLoggedIn())) {
         header('Location: ../index.php');
+        exit();
     }
 
     $ticket = Ticket::getTicketById($db, $_POST['id']);
@@ -20,6 +21,7 @@
 
     if ($me->type != 'admin' && $me->department != $ticket->department) {
         header('Location: ../index.php');
+        exit();
     }
 
     $ticket->addHashtag($db, $hashtag);

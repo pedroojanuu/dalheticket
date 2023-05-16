@@ -8,6 +8,7 @@
 
     if (!($session->isLoggedIn())) {
         header('Location: ../index.php');
+        exit();
     }
 
     require_once(__DIR__ . '/../database/connection.db.php');
@@ -20,6 +21,7 @@
 
     if (!$admin) {
         header('Location: ../index.php');
+        exit();
     }
 
     $department = Department::getDepartmentByName($db, $_POST['name']);

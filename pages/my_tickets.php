@@ -14,6 +14,7 @@
 
     if (!($session->isLoggedIn())) {
         header('Location: ../index.php');
+        exit();
     }
 
     $user = $session->getName();

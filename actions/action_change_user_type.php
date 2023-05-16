@@ -15,6 +15,7 @@
 
     if (!$admin) {
         header('Location: ../index.php');
+        exit();
     }
 
     User::changeUserType($db, $_POST['username'], $_POST['type']);

@@ -16,6 +16,7 @@
 
   if (!($session->isLoggedIn())) {
     header('Location: ../index.php');
+    exit();
   }
 
   $ticket = Ticket::getTicketById($db, intval($_GET['id']));
@@ -27,6 +28,7 @@
 
   if ($me->type != 'admin' && $ticket->agent != $me->username) {
     header('Location: ../index.php');
+    exit();
   }
 
   drawHeader();

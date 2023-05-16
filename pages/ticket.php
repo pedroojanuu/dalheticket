@@ -24,6 +24,7 @@
 
     if ($ticket->client != $session->getName() && !($user->type == 'agent' && $user->department==$ticket->department) && $user->type != 'admin') {
         header('Location: ../index.php');
+        exit();
     }
 
     //$show_messages = !($user->type == 'agent' && $ticket->client != $session->getName() && $ticket->agent != $session->getName());

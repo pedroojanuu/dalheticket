@@ -11,6 +11,7 @@
 
     if (!($session->isLoggedIn()) || User::getUserTypeByUsername($db, $session->getName()) != 'admin') {
         header('Location: ../index.php');
+        exit();
     }
 
     drawHeader();

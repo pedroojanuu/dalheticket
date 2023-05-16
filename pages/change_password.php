@@ -10,6 +10,7 @@
 
     if (!($session->isLoggedIn())) {
         header('Location: ../index.php');
+        exit();
     }
 
     $db = getDatabaseConnection();
@@ -18,6 +19,7 @@
 
     if (($user_type != 'admin') && ($session->getName() != $_GET['username'])) {
         header('Location: ../index.php');
+        exit();
     }
 
     drawHeader();

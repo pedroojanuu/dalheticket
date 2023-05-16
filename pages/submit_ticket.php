@@ -11,6 +11,7 @@
 
   if (!($session->isLoggedIn())) {
     header('Location: ../index.php');
+    exit();
   }
 
   $db = getDatabaseConnection();

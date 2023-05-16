@@ -15,6 +15,7 @@
 
     if (!$admin || User::getUserTypeByUsername($db, $_POST['username']) != 'agent') {
         header('Location: ../pages/profile.php?username=' . $_GET['username']);
+        exit();
     }
 
     User::changeAgentDep($db, $_POST['username'], $_POST['department']);

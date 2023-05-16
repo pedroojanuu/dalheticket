@@ -9,6 +9,7 @@
 
   if (!($session->isLoggedIn())) {
     header('Location: ../index.php');
+    exit();
   }
 
   $me = User::getUserByUsername($db, $session->getName());
@@ -17,6 +18,7 @@
 
   if ($me->type != 'admin' && $me->department != $ticket->department) {
     header('Location: ../index.php');
+    exit();
   }
 
   $new_status = $ticket->status == 'Unsolved'? 'Solved' : 'Unsolved';

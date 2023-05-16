@@ -12,12 +12,14 @@
 
     if (!($session->isLoggedIn())) {
         header('Location: ../index.php');
+        exit();
     }
 
     $me = User::getUserByUsername($db, $session->getName());
 
     if ($me->type != 'admin' && $me->type != 'agent') {
         header('Location: ../index.php');
+        exit();
     }
 
     require_once(__DIR__ . '/../templates/common.tpl.php');

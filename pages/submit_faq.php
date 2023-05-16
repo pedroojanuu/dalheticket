@@ -13,6 +13,7 @@
 
     if (!($user_type == 'admin' || $user_type == 'agent')) {
         header('Location: ../index.php');
+        exit();
     }
 
     drawHeader();?>

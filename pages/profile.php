@@ -19,6 +19,7 @@
 
     if (!($session->isLoggedIn())) {
         header('Location: ../index.php');
+        exit();
     }
 
     $user = User::getUserByUsername($db, $_GET['username']);

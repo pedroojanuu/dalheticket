@@ -14,8 +14,10 @@
 
     $db = getDatabaseConnection();
 
-    if(!($session->isLoggedIn()) || !isset($_GET['name'])) 
-       header('Location: ../index.php');
+    if(!($session->isLoggedIn()) || !isset($_GET['name'])) {
+      header('Location: ../index.php');
+      exit();
+    }
 
     $user = User::getUserByUsername($db, $session->getName());
     $department = Department::getDepartmentByName($db, $_GET['name']);
@@ -28,8 +30,10 @@
       if($user == null || $department == null ||
       ($user->type != 'admin' && 
       ($user->type != 'agent' || 
-         $user->department != $department->name)))
+         $user->department != $department->name))){
          header('Location: ../index.php');
+         exit();
+      }
 
       drawHeader();
 

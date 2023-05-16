@@ -15,6 +15,7 @@
 
     if (!($my_type == 'admin' || $my_type == 'agent')) {
         header('Location: ../index.php');
+        exit();
     }
 
     $question = $_POST['question'];

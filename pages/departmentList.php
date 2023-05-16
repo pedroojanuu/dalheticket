@@ -19,6 +19,7 @@
 
     if (!($session->isLoggedIn()) || User::getUserTypeByUsername($db, $session->getName()) != 'admin') {
         header('Location: ../index.php');
+        exit();
     }
 
     $department = Department::getDepartmentByName($db, $_GET['name']);

@@ -12,10 +12,12 @@
 
     if (!($session->isLoggedIn()) || User::getUserTypeByUsername($db, $session->getName()) != 'admin') {
         header('Location: ../index.php');
+        exit();
     }
 
     if (User::getUserTypeByUsername($db, $_GET['username']) != 'agent') {
         header('Location: ../pages/profile.php?username=' . $_GET['username']);
+        exit();
     }
 
     drawHeader();
