@@ -222,6 +222,27 @@ header:first-of-type .login_hidden{
 
 }
 
+@media (max-width: 22em) {
+  header:first-of-type {
+    display: block;
+  }
+  header:first-of-type h1 {
+    display: inline;
+    text-align: center;
+  }
+
+  header:first-of-type .header_options {
+    display: none
+  }
+
+  header:first-of-type .header_login{
+    display: none;
+  }
+
+}
+
+
+
 header:first-of-type .riscas_header{
   position: absolute;
   top: 4.25em;
@@ -231,6 +252,12 @@ header:first-of-type .riscas_header{
 header:first-of-type img.riscas_header {
   width: 20em;
 } 
+
+@media (max-width: 22em){
+  header:first-of-type img.riscas_header {
+    display: none;
+  }
+}
 
 /* 
 header:first-of-type:after{

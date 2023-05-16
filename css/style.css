@@ -181,7 +181,7 @@ form.submit_ticket * {
 .department_options {
   display: flex;
   justify-content: space-between;
-  width: 89vw;
+  width: 85vw;
 }
 
 .invisible {
@@ -284,6 +284,7 @@ CORRIGIR WIDTH
   display: inline-block;
   border-radius: 1em;
   padding: 0.5em;
+  word-break: break-word;
 }
 
 .right{
@@ -291,10 +292,12 @@ CORRIGIR WIDTH
   justify-content: end;
   grid-template-areas: "right"
                        "date";
+  text-align: right;
 }
 
 .right .ticket_message_text{ 
   grid-area: right;
+  justify-self: end;
   background-color: #ef7f1a;
 }
 
@@ -325,6 +328,7 @@ CORRIGIR WIDTH
   grid-area: center;
   background-color: #f2b27b;
   padding: 0.2em 0.5em;
+  text-align: center;
 }
 
 .center p {
@@ -449,3 +453,38 @@ img.riscas_footer {
   object-fit: cover;
 }
 
+@media (max-width: 22em){
+  img.riscas_footer {
+    display: none;
+  }
+}
+
+button.add_hashtag, a.remove_hashtag {
+  background-color: #f2b27b;
+  color: white;
+  border-radius: 0.5em;
+  padding: 0.15em 0.4em;
+}
+
+button.add_hashtag:hover, a.remove_hashtag:hover {
+  background-color: #ef7f1a;
+  color: white;
+}
+
+a.remove_hashtag {
+  padding: 0.15em 0.5em;
+}
+
+.ticket_options a {
+  display: block;
+}
+
+@media (max-width: 40em) {
+  .department_options input.searchbar{
+    display: block;
+  }
+  .department_options {
+    display: block;
+    width: auto;
+  }
+}
