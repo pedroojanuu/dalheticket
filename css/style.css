@@ -276,7 +276,7 @@ CORRIGIR WIDTH
     border-top-style: solid;
     border-top-width: 1px;
     padding-top: 1em;
-    min-width: 77vw;
+    max-width: 70vw;
   }
 }
 
@@ -287,11 +287,14 @@ CORRIGIR WIDTH
 }
 
 .right{
-  display: flex; 
-  justify-content: flex-end;
+  display: grid; 
+  justify-content: end;
+  grid-template-areas: "right"
+                       "date";
 }
 
-.right .ticket_message_text{
+.right .ticket_message_text{ 
+  grid-area: right;
   background-color: #ef7f1a;
 }
 
@@ -311,6 +314,51 @@ CORRIGIR WIDTH
   color:white;
 }
 
+.center{
+  display: grid; 
+  justify-content: center;
+  grid-template-areas: "center"
+                       "date";
+}
+
+.center .ticket_message_text{
+  grid-area: center;
+  background-color: #f2b27b;
+  padding: 0.2em 0.5em;
+}
+
+.center p {
+  display: inline;
+  margin: 0;
+  color: black;
+  font-size: 0.7em;
+}
+
+.date_hidden{
+  display: none;
+}
+
+.date_not_hidden{
+  grid-area: date;
+  display: block;
+  color: grey;
+  font-size: 0.5em;
+  margin-top: 0.2rem;
+}
+
+.right .date_not_hidden{
+  justify-self: end;
+  margin-right: 0.5rem;
+}
+
+.left .date_not_hidden{
+  margin-left: 0.5rem;
+}
+
+.center .date_not_hidden{
+  justify-self: center;
+}
+
 .ticket_message {
   margin-bottom: 0.2em;
 }
@@ -327,6 +375,12 @@ form.register * {
 form.register button {
   margin-top: 1em;
   width: 8em;
+}
+
+.change_profile_attribute{
+  display: inline;
+  font-size: 0.6em;
+  padding-left: 0.6em;
 }
 
 .submit_ticket p {
@@ -369,4 +423,28 @@ button.cancel_hashtag {
   padding: 0;
   margin: 0;
   font-size: smaller;
+}
+
+.wrong_field{
+  color: red;
+  font-size: 0.6em;
+}
+
+@media (max-width: 55em) {
+  .submit_ticket, .tag_container {
+    width: 100%;
+  }
+}
+
+.riscas_footer {
+  position: relative;
+  bottom: 1.5em;
+  left: 11em;
+  z-index: 100000;
+}
+
+img.riscas_footer {
+  height: 2em;
+  width: 40vw;
+  object-fit: cover;
 }

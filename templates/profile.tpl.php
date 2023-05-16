@@ -12,20 +12,28 @@
     global $session, $db;
     $my_type = $session->isLoggedIn()? User::getUserTypeByUsername($db, $session->getName()) : null;
   ?>
-  <h3 class="name"><?= $user->name?></h3>
-  <div class="username"><span class="bold">Username:</span> <?= $user->username?></div>
-  <div class="email"><span class="bold">E-mail address:</span> <?= $user->email?></div>
+  <h3 class="name"><span class="content"><?= $user->name?></span>
+    <?php if ($my_type == 'admin' || $session->getName() == $user->username) { ?>
+      <a class="change_profile_attribute" name="name">Change...</a>
+    <?php } ?>
+  </h3>
+  <div class="username"><span class="bold">Username:</span> <span class="content"><?= $user->username?></span></div>
+  <div class="email"><span class="bold">E-mail address:</span> <span class="content"><?= $user->email?></span>
+    <?php if ($my_type == 'admin' || $session->getName() == $user->username) { ?>
+      <a class="change_profile_attribute" name="email">Change...</a>
+    <?php } ?>
+  </div>
   <div class="type"><span class="bold">User type:</span> <?= ($user->type == 'admin')? 'Administrator' : (($user->type == 'agent')? 'Agent' : 'Client')?>
 <?php
     if ($my_type == 'admin') { ?>
-  <a href="change_user_type.php?username=<?= $user->username?>">Change...</a>
+  <a class="change_profile_attribute" href="change_user_type.php?username=<?= $user->username?>">Change...</a>
 <?php } ?>
   </div>
 <?php if ($user->type == 'agent') { ?>
-  <div class="agent_department">Department: <?= ($user->department != '')? $user->department : 'None' ?>
+  <div class="agent_department"><span class="bold">Department: </span><?= ($user->department != '')? $user->department : 'None' ?>
 <?php 
       if ($my_type == 'admin') {?>
-  <a href="change_agent_department.php?username=<?= $user->username?>">Change...</a>
+  <a class="change_profile_attribute" href="change_agent_department.php?username=<?= $user->username?>">Change...</a>
 <?php } ?>
   </div>
   <div class="assigned_tickets">Assigned Tickets: <?= $user->ticket_count ?></div>

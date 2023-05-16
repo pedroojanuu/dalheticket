@@ -30,9 +30,14 @@ class Ticket {
         return new Ticket($id, $title, $client, "", "Unsolved", $department);
     }
     public function setDepartment(PDO $db, string $department) {
-        Change::createAndAdd($db, $this->id, $this->agent, "
-        The department of the ticket was changed from " . $this->department . 
-        " to " . $department . ".");
+        if($this->department == "") {
+            Change::createAndAdd($db, $this->id, $this->agent, 
+            "The ticket was assigned to the departent " . $department . ".");
+        } else {
+            Change::createAndAdd($db, $this->id, $this->agent, "
+            The department of the ticket was changed from " . $this->department . 
+            " to " . $department . ".");
+        }
         $this->department = $department;
 
         $stmt = $db->prepare('UPDATE Ticket SET department = :department WHERE id = :id');
@@ -41,9 +46,14 @@ class Ticket {
         $stmt->execute();
     }
     public function setAgent(PDO $db, string $agent) : void {
-        Change::createAndAdd($db, $this->id, $this->agent, "
-        The agent of the ticket was changed from " . $this->agent . 
-        " to " . $agent . ".");
+        if($this->agent == "") {
+            Change::createAndAdd($db, $this->id, $agent, 
+            "The ticket was assigned to agent " . $agent . ".");
+        } else {
+            Change::createAndAdd($db, $this->id, $this->agent, "
+            The agent of the ticket was changed from " . $this->agent . 
+            " to " . $agent . ".");
+        }
         $this->agent = $agent;
 
         $stmt = $db->prepare('UPDATE Ticket SET agent = :agent WHERE id = :id');

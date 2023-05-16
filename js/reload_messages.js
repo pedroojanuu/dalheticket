@@ -9,16 +9,23 @@ function reload_messages() {
     if(request.readyState === 4 && request.status === 200) {
       messages.innerHTML = "";
       for(var i = 0; i < request.response.length; i++){
-        var right_or_left = "";
-        if(request.response[i]["isMine"])
-          right_or_left = "right";
-        else
-          right_or_left = "left";
+        if(request.response[i]["message"] != null){
+          var right_or_left = "";
+          if(request.response[i]["isMine"])
+            right_or_left = "right";
+          else
+            right_or_left = "left";
 
-        messages.innerHTML += `<div class='ticket_message ` + right_or_left + `'>
-                                <div class="ticket_message_text"><p>` + request.response[i]["message"] + `</p></div>
-                                <div class="ticket_message_date"></div>
-                              </div>`;
+          messages.innerHTML += `<div class='ticket_message ` + right_or_left + `'>
+                                  <div class="ticket_message_text"><p>` + request.response[i]["message"] + `</p></div>
+                                  <div class="date_not_hidden">` + request.response[i]["datetime"] + `</div>
+                                </div>`;
+        } else {
+          messages.innerHTML += `<div class='ticket_message center'>
+                                  <div class="ticket_message_text"><p>` + request.response[i]["action"] + `</p></div>
+                                  <div class="date_not_hidden">` + request.response[i]["datetime"] + `</div>
+                                </div>`;
+        }
       }
     }
   })

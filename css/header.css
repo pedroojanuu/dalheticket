@@ -193,7 +193,8 @@ header:first-of-type .login_hidden{
 
 @media (max-width: 27em) {
   header:first-of-type {
-    grid-template-columns: 70vw auto auto;
+    grid-template-columns: 67vw 10vw auto;
+    justify-items: start;
   }
   header:first-of-type h1 {
     font-size: 8vw;
@@ -206,14 +207,30 @@ header:first-of-type .login_hidden{
   }
 
   header:first-of-type .logout {
+    justify-self: start;
     font-size: 3vw;
+    padding: 0;
+    margin: 0;
   }
 
   header:first-of-type .header_login{
+    justify-self: start;
     padding-right: 0.5em;
+    padding: 0;
+    margin: 0;
   }
 
 }
+
+header:first-of-type .riscas_header{
+  position: absolute;
+  top: 4.25em;
+  right: 6vw;
+}
+
+header:first-of-type img.riscas_header {
+  width: 20em;
+} 
 
 /* 
 header:first-of-type:after{

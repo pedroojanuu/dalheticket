@@ -85,12 +85,19 @@
         <div class="ticket_messages">
             <div class="message_list">
         <?php
-            foreach(Message::getAllMessagesFromTicket($db, $ticket->id) as $message) { ?>
+            foreach(Message::getAllMessagesAndChangesFromTicket($db, $ticket->id) as $message) { 
+                if($message instanceof Message) {?>
                     <div class="ticket_message <?= $message->isMine($db) ? 'right' : 'left' ?>">
                         <div class="ticket_message_text"><p><?= $message->message ?></p></div>
-                        <div class="ticket_message_date"><?= $message->date ?></div>
+                        <div class="date_not_hidden"><?= $message->datetime ?></div>
+                    </div>
+                <?php } else { ?>
+                    <div class='ticket_message center'>
+                        <div class="ticket_message_text"><p><?= $message->action ?></p></div>
+                        <div class="date_not_hidden"><?= $message->datetime ?></div>
                     </div>
                 <?php }
+            }
             if (($ticket->client == $me->username || $ticket->agent == $me->username) && $ticket->status == 'Unsolved') {
                 ?>
                 </div>
