@@ -35,11 +35,12 @@ function handleEvent(event) {
   document.querySelector(".ticket_messages input[type='text']").value = ""
   is_from_client = document.querySelector(".ticket_messages input[name='isFromClient']").value
   ticket_id = document.location.search.substring(4)
+  token = document.querySelector(".ticket_messages input[name='csrf']").value
 
   var request = new XMLHttpRequest()
   request.open("POST", "../actions/action_send_message.php", true)
   request.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-  request.send(encodeForAjax({ticketId: ticket_id, isFromClient: is_from_client, message: message_text}))
+  request.send(encodeForAjax({ticketId: ticket_id, isFromClient: is_from_client, message: message_text, csrf: token}))
 
   reload_last_message()
 }

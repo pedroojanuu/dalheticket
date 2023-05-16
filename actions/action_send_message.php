@@ -7,10 +7,15 @@
     require_once(__DIR__ . '/../utils/session.php');
     $session = new Session();
 
-    if($_POST["message"] == "")
-        header('HTTP/1.0 404 Nothing to see here');
-    else
-        Message::createAndAdd($db, intval($_POST['ticketId']), $_POST['isFromClient']=="true", $_POST['message'], $session->getName());
+    if ($_SESSION['csrf'] !== $_POST['csrf']) {
+        header('Location: ../index.php');
+        exit();
+    }
 
-    // header('Location: ../pages/ticket.php?id=' . $_POST['ticketId']);
+    if($_POST["message"] == "") {
+        header('HTTP/1.0 404 Nothing to see here');
+        exit();
+    } else {
+        Message::createAndAdd($db, intval($_POST['ticketId']), $_POST['isFromClient']=="true", $_POST['message'], $session->getName());
+    }
 ?>

@@ -12,6 +12,7 @@
     global $session, $db;
     $my_type = $session->isLoggedIn()? User::getUserTypeByUsername($db, $session->getName()) : null;
   ?>
+  <p class="token invisible"><?= $_SESSION['csrf'] ?></p>
   <h3 class="name"><span class="content"><?= $user->name?></span>
     <?php if ($my_type == 'admin' || $session->getName() == $user->username) { ?>
       <a class="change_profile_attribute" name="name">Change...</a>

@@ -4,6 +4,7 @@ function save_and_change_to_input(field, old_html) {
   function inner(){
     let new_content = field.querySelector("input").value
     let name = field.querySelector("input").getAttribute("name")
+    let token = document.querySelector("p.token").innerHTML
 
     if(new_content == "") {
       if(field.querySelector(".wrong_field") == null)
@@ -16,7 +17,7 @@ function save_and_change_to_input(field, old_html) {
     let request = new XMLHttpRequest()
     request.open("POST", "../actions/action_edit_profile.php", true)
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-    request.send(`field=${name}&value=${new_content}&username=${username}`)
+    request.send(`field=${name}&value=${new_content}&username=${username}&csrf=${token}`)
 
     replace_with_old(field, old_html)()
     field.querySelector(".content").innerHTML = new_content

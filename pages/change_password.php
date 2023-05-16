@@ -36,6 +36,7 @@
     if ($user_type != 'admin') {
 ?>
         <label for="old">Old password</label>
+        <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
         <input type="password" name="old" id="old">
 <?php
     }
