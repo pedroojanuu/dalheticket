@@ -452,3 +452,23 @@ img.riscas_footer {
   width: 40vw;
   object-fit: cover;
 }
+
+button.add_hashtag, a.remove_hashtag {
+  background-color: #f2b27b;
+  color: white;
+  border-radius: 0.5em;
+  padding: 0.15em 0.4em;
+}
+
+button.add_hashtag:hover, a.remove_hashtag:hover {
+  background-color: #ef7f1a;
+  color: white;
+}
+
+a.remove_hashtag {
+  padding: 0.15em 0.5em;
+}
+
+.ticket_options a {
+  display: block;
+}
