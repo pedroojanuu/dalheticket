@@ -253,5 +253,13 @@ class Ticket {
         }
         return $tickets;
     }
+
+    public function getDate(PDO $db) : string {
+        $stmt = $db->prepare('SELECT datetime FROM Message WHERE ticketId = ? ORDER BY id LIMIT 1');
+        $stmt->execute(array($this->id));
+
+        $datetime = strval($stmt->fetchAll()[0]['datetime']);
+        return substr($datetime, 0, 10);
+    }
 }
 ?>

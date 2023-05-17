@@ -49,6 +49,7 @@ function drawDepartment(Department $department) : void {
         <a href="../pages/ticket.php?id=<?= $ticket->id ?>"><?= $ticket->title ?> 
         - Status: <span id="status"><?= $ticket->status ?></span> 
         - Client: <?= $ticket->client ?> 
+        - Date: <?= $ticket->getDate($db) ?> 
         <?php if($ticket->agent != null) { ?>
         - Assigned to: <span id="agent"><?= $ticket->agent ?></span></a>
         <?php } else {?>

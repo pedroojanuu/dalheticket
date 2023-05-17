@@ -7,7 +7,7 @@ drop table if exists Change;
 drop table if exists Message;
 drop table if exists FAQ;
 
-create table User(
+CREATE TABLE User(
    name varchar(60) not null,
    username varchar(20) primary key,
    email varchar(60) not null,
@@ -15,10 +15,9 @@ create table User(
    type varchar(5) not null, /*user, agent, admin*/
    department varchar(20),
    ticket_count integer default 0,
-   closed_tickets integer default 0
-);
+   closed_tickets integer default 0);
 
-create table Ticket(
+CREATE TABLE Ticket(
    id integer primary key autoincrement,
    title varchar(60) not null,
    client varchar(20) not null,
@@ -30,11 +29,13 @@ create table Ticket(
    foreign key (department) references Department(name)
 );
 
-create table Hashtag(
+CREATE TABLE sqlite_sequence(name,seq);
+
+CREATE TABLE Hashtag(
    tag varchar(20) primary key
 );
 
-create table TicketHashtag(
+CREATE TABLE TicketHashtag(
    ticketId integer not null,
    tag varchar(20) not null,
    primary key(ticketId, tag),
@@ -42,30 +43,32 @@ create table TicketHashtag(
    foreign key (tag) references Hashtag(tag)
 );
 
-create table Department(
+CREATE TABLE Department(
    name varchar(20) primary key
 );
 
-create table Change(
+CREATE TABLE FAQ(
    id integer primary key autoincrement,
-   ticketId integer not null,
-   agent varchar(20),
-   action text,
-   foreign key (ticketId) references Ticket(id),
-   foreign key (agent) references User(id)
+   question text not null,
+   answer text not null
 );
 
-create table Message(
+CREATE TABLE Message(
    id integer primary key autoincrement,
    ticketId integer not null,
    isFromClient boolean not null,
    message text not null,
    author varchar(20) not null,
+   datetime datetime not null,
    foreign key (ticketId) references Ticket(id)
 );
 
-create table FAQ(
+CREATE TABLE Change(
    id integer primary key autoincrement,
-   question text not null,
-   answer text not null
+   ticketId integer not null,
+   agent varchar(20),
+   action text,
+   datetime datetime not null,
+   foreign key (ticketId) references Ticket(id),
+   foreign key (agent) references User(id)
 );
