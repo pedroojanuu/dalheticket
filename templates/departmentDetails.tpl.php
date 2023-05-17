@@ -40,6 +40,11 @@ function drawDepartment(Department $department) : void {
         <input type="radio" name="status" value="All" checked>
         <p>All</p>
     </form>
+    <form class="date_form" id="date">
+        <p>Date: </p>
+        <input type="date" id="date" name="date">
+        filter? <input type="checkbox" id="filter" name="filter">
+    </form>
     <ul class="ticket_list">
 <?php
     foreach (Ticket::getAllTicketsInDepartment($db, $department->name) as $ticket) {
@@ -49,7 +54,7 @@ function drawDepartment(Department $department) : void {
         <a href="../pages/ticket.php?id=<?= $ticket->id ?>"><?= $ticket->title ?> 
         - Status: <span id="status"><?= $ticket->status ?></span> 
         - Client: <?= $ticket->client ?> 
-        - Date: <?= $ticket->getDate($db) ?> 
+        - Date: <span id="date"><?= $ticket->getDate($db) ?></span> 
         <?php if($ticket->agent != null) { ?>
         - Assigned to: <span id="agent"><?= $ticket->agent ?></span></a>
         <?php } else {?>

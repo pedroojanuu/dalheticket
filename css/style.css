@@ -488,3 +488,11 @@ a.remove_hashtag {
     width: auto;
   }
 }
+
+form.date_form #date {
+  display: inline-block;
+}
+
+form.date_form #filter {
+  display: inline-block;
+}
