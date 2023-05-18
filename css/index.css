@@ -37,7 +37,7 @@ header {
   grid-area: header;
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 20rem 3rem 10rem;
+  grid-template-rows: 40vh 4em auto;
   grid-template-areas:
       "logo"
       "options";
@@ -51,7 +51,7 @@ header h1 {
   /* justify-self: center; */
   justify-self: start;
   align-self: center;
-  margin-top: 17rem;
+  margin-top: 35vh;/* 17rem */
   margin-bottom: 1rem;
   font-size: 4rem;
   font-weight: 100;
@@ -62,6 +62,30 @@ header h1 {
 @media (max-width: 600px) {
   header h1 {
     font-size: 11vw;
+  }
+}
+
+@media (min-aspect-ratio: 3/1){
+  header {
+    grid-template-rows: 20vh 4em auto;
+  }
+
+  header h1 {
+    margin-top: 15vh;
+  }
+
+  header section.header_login {
+    top: 34vh;
+  }
+  
+  main .options{
+    top: 40vh;
+  }
+}
+
+@media (min-aspect-ratio: 9/2){
+  body {
+    background-image: none;
   }
 }
 
@@ -93,16 +117,20 @@ header .header_options a {
   color: #ef7f1a;
 }
 
+header .header_options a:hover {
+  color: #f2b27b;
+}
+
 header .header_login {
   position: fixed;
-  top: 27em;
+  top: 54vh;
   left: 10vw;
   /* transform: translate(-50%, -50%); */
 }
 
 .options{
   position: fixed;
-  top: 30em;
+  top: 60vh;
   left: 10vw;
   /* transform: translate(-50%, -50%); */
 }
