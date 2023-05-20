@@ -1,6 +1,6 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=10572751&assignment_repo_type=AssignmentRepo)
 
-#Dá⬝lhe ticket
+# Dá⬝lhe ticket
 
 __"Dá⬝lhe ticket"__ is a website that has the objective of managing trouble tickets.   
 Here's how it works:  
@@ -13,7 +13,7 @@ Here's how it works:
 
 If you download our website and run the PHP server in the project folder, you can see how it works beautifully.  
 
-> IMP: You really need to start the server inside the project folder, if you start it in the repository's home folder it won't work as expected.  
+> __IMP:__ You really need to start the server inside the project folder, if you start it in the repository's home folder it won't work as expected.  
 
 If you don't have time to download it, you can at least appreciate these screenshots of our website:  
 ![Home Page Screenshot on Desktop]()  
