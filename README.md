@@ -15,6 +15,9 @@ If you download our website and run the PHP server in the project folder, you ca
 
 > __IMP:__ You really need to start the server inside the project folder, if you start it in the repository's home folder it won't work as expected.  
 
+For demostration purposes the password of all users is _"123456"_.  
+If you want to enter as an admin there is already a prefined admin account with the email _"master@masters.com"_ and password _"123456"_.  
+
 If you don't have time to download it, you can at least appreciate these screenshots of our website:  
 ![Home Page Screenshot on Desktop]()  
 ![Messages Screenshot on Desktop]()  
