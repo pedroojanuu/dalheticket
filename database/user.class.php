@@ -1,6 +1,8 @@
 <?php
 declare(strict_types = 1);
 
+require_once(__DIR__ . '/ticket.class.php');
+
 class User{
   public int $id;
   public string $name;
@@ -149,8 +151,11 @@ class User{
     $stmt = $db->prepare('UPDATE User SET department = :new where username = :u');
     $stmt->bindParam(':new', $new_dep);
     $stmt->bindParam(':u', $username);
-
     $stmt->execute();
+
+    foreach (Ticket::getAllTicketsFromAgent($db, $username) as $ticket) {
+      $ticket->removeAgent($db);
+    }
   }
 
   static public function changeCertainAttribute(PDO $db, string $username, string $attribute, string $new_value) : void {

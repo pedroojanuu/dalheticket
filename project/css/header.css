@@ -1,0 +1,269 @@
+header:first-of-type {
+  display: grid;
+  place-items: center;
+  justify-items: center;
+  align-items: center;
+  background-color: #b2b3b3;
+  color: #ffffff;
+  grid-template-columns: 18rem auto 5rem;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "logo options login";
+}
+
+header:first-of-type * {
+  padding: 0;
+  margin: 0;
+}
+
+header:first-of-type a {
+  text-decoration: none;
+  color: #ffffff;
+  padding: 0;
+  margin: 0;
+}
+
+header:first-of-type a:hover {
+  color: orange;
+}
+
+header:first-of-type h1 a:hover {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+header:first-of-type h1 {
+  grid-area: logo;
+  text-transform: lowercase;
+  padding-bottom: 1rem;
+  font-weight: 100;
+}
+
+header:first-of-type h1 a{
+  margin-left: 1rem;
+  margin-bottom: 10rem;
+}
+
+header:first-of-type h1:before {
+  content: url("../img/riscas.png");
+  position:relative;
+  z-index:100000;
+  top:0.5em;
+}
+
+header:first-of-type .header_options {
+  grid-area: options;
+  justify-self: start;
+  align-self: center;
+  padding-top: 0.4rem;
+  color: #ef7f1a;
+  /* padding-bottom: 1.2rem; */
+}
+
+
+header:first-of-type .header_options a {
+  color: #fdb87b;
+}
+header:first-of-type .header_options a:hover{
+  color: #ffffff;
+}
+
+header:first-of-type .header_login {
+  grid-area: login;
+  display: grid;
+  justify-self: end;
+  align-self: center;
+  padding-right: 2em;
+  /* padding-bottom: 1.2rem; */
+}
+
+header:first-of-type .login {
+  font-size: x-small;
+}
+
+header:first-of-type .login form {
+  display: grid;
+  grid-template-columns:7.5em 8em 5.5em 8em 4em;
+  grid-template-rows: 1.5em auto;
+  grid-template-areas:
+    "username_label username_input password_label password_input submit"
+    "register register register register register";
+
+  justify-items: end;
+  align-items: end;
+}
+
+header:first-of-type .login * {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+header:first-of-type .login input {
+  justify-self: stretch;
+  align-self: stretch;
+  font-size: x-small;
+}
+
+header:first-of-type .login label{
+  padding-right: 0.3em;
+}
+
+header:first-of-type .login label:nth-of-type(1){
+  grid-area: username_label;
+}
+
+header:first-of-type .login input:nth-of-type(1) {
+  grid-area: username_input;
+}
+
+header:first-of-type .login label:nth-of-type(2){
+  grid-area: password_label;
+}
+
+header:first-of-type .login input:nth-of-type(2) {
+  grid-area: password_input;
+}
+
+header:first-of-type .login button {
+  grid-area: submit;
+  justify-self: stretch;
+  align-self: stretch;
+  font-size: x-small;
+}
+
+header:first-of-type .login a,
+header:first-of-type .login p {
+  grid-area: register;
+  padding-left: 0.3em;
+}
+
+header:first-of-type .logout {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "username"
+    "logout";
+  justify-items: start;
+  align-items: center;
+}
+
+header:first-of-type .logout a {
+  grid-area: username;
+}
+
+header:first-of-type .logout button {
+  grid-area: logout;
+  justify-self: stretch;
+  align-self: stretch;
+  font-size: x-small;
+}
+
+header:first-of-type button {
+  background-color: #ffffff;
+  color: #b2b3b3;
+  padding: 0.2em;
+  margin: 0.2em 0;
+  border-radius: 0;
+  font-family: 'Allerta Stencil', sans-serif;
+  transition: color, 0.5s;
+}
+
+header:first-of-type button:hover {
+  background-color: #ef7f1a;
+  color: #ffffff;
+}
+
+header:first-of-type .login_hidden{
+  display: none;
+}
+
+@media (max-width: 50em) {
+  header:first-of-type .login{
+    display: none;
+  }
+
+  header:first-of-type .login_hidden{
+    display: block;
+    align-self: start;
+    justify-self: start;
+  }
+}
+
+@media (max-width: 27em) {
+  header:first-of-type {
+    grid-template-columns: 67vw 10vw auto;
+    justify-items: start;
+  }
+  header:first-of-type h1 {
+    font-size: 8vw;
+    margin-right: 0;
+    padding-right: 0;
+  }
+
+  header:first-of-type .header_options {
+    font-size: 3vw;
+  }
+
+  header:first-of-type .logout {
+    justify-self: start;
+    font-size: 3vw;
+    padding: 0;
+    margin: 0;
+  }
+
+  header:first-of-type .header_login{
+    justify-self: start;
+    padding-right: 0.5em;
+    padding: 0;
+    margin: 0;
+  }
+
+}
+
+@media (max-width: 22em) {
+  header:first-of-type {
+    display: block;
+  }
+  header:first-of-type h1 {
+    display: inline;
+    text-align: center;
+  }
+
+  header:first-of-type .header_options {
+    display: none
+  }
+
+  header:first-of-type .header_login{
+    display: none;
+  }
+
+}
+
+
+
+header:first-of-type .riscas_header{
+  position: absolute;
+  top: 4.25em;
+  right: 6vw;
+}
+
+header:first-of-type img.riscas_header {
+  width: 20em;
+} 
+
+@media (max-width: 22em){
+  header:first-of-type img.riscas_header {
+    display: none;
+  }
+}
+
+/* 
+header:first-of-type:after{
+  content: url("../img/riscas3.png");
+  position:relative;
+  z-index:100000;
+  top:5em;
+  left:5em;
+} */

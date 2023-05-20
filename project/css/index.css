@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
+body {
+  font-family: 'Allerta Stencil', sans-serif;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto 4em;
+  grid-template-areas:
+      "header"
+      "main"
+      "footer";
+
+  min-height: 100vh;
+  background-image: url("../img/background.svg");
+  background-size: 90%;
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  background-color: #b2b3b3;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  padding-left: 7vw;
+}
+
+body a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+body a:hover {
+  text-decoration: none;
+  color: #ef7f1a;
+}
+
+header {
+  text-align: left;
+  grid-area: header;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 40vh 4em auto;
+  grid-template-areas:
+      "logo"
+      "options";
+      /* "login"; */
+}
+
+header h1 {
+  margin: 0;
+  padding: 0;
+  grid-area:logo;
+  /* justify-self: center; */
+  justify-self: start;
+  align-self: center;
+  margin-top: 35vh;/* 17rem */
+  margin-bottom: 1rem;
+  font-size: 4rem;
+  font-weight: 100;
+  text-transform: lowercase;
+  /* width: 4em; */
+}
+
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 11vw;
+  }
+}
+
+@media (min-aspect-ratio: 3/1){
+  header {
+    grid-template-rows: 20vh 4em auto;
+  }
+
+  header h1 {
+    margin-top: 15vh;
+  }
+
+  header section.header_login {
+    top: 34vh;
+  }
+  
+  main .options{
+    top: 40vh;
+  }
+}
+
+@media (min-aspect-ratio: 9/2    ){
+  body {
+    background-image: none;
+  }
+}
+
+header h1 a{
+  margin-left: 0.5rem;
+  margin-bottom: 10rem;
+}
+
+header h1 a:hover{
+  text-decoration: none;
+  color: #ffffff;
+}
+
+header h1:before {
+  content: url("../img/riscas.png");
+  position:relative;
+  z-index:100000;
+  top:0.1em;
+}
+
+header .header_options {
+  grid-area: options;
+  justify-self: start;
+  align-self: center;
+  padding-left: 3vw;
+}
+
+header .header_options a {
+  color: #ef7f1a;
+}
+
+header .header_options a:hover {
+  color: #f2b27b;
+}
+
+header .header_login {
+  position: fixed;
+  top: 54vh;
+  left: 10vw;
+  /* transform: translate(-50%, -50%); */
+}
+
+.options{
+  position: fixed;
+  top: 60vh;
+  left: 10vw;
+  /* transform: translate(-50%, -50%); */
+}
+
+.login {
+  text-align: left;
+}
+
+.riscas_header, .riscas_footer {
+  display: none;
+}
+
+.login *{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-transform: lowercase;
+}
+
+.login input, .login button {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.login input {
+  width: 13em;
+}
+
+.login form + p, .login form + p + a{
+  display: inline;
+  font-size: 0.5em;
+}
+
+.login form + p + a {
+  margin-left: 0.5em;
+}
+
+.logout button {
+  font-size: 0.5em;
+}
+
+main {
+  grid-area: main;
+  justify-self: start;
+  align-self: center;
+  text-align: left;
+}
+
+main * {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+footer {
+  grid-area: footer;
+  text-align: left;
+  text-transform: lowercase;
+  font-size: 0.5em;
+}
+
+.success {
+  color: green;
+}
+
+.error {
+  color: red;
+}
+
+button {
+  background-color: #ffffff;
+  color: #b2b3b3;
+  padding: 0.2em;
+  margin: 0.2em 0;
+  border: none;
+  font-family: 'Allerta Stencil', sans-serif;
+  transition: color, 0.5s;
+}
+
+button:hover {
+  background-color: #ef7f1a;
+  color: #ffffff;
+}
+
+.login_hidden{
+  display: none;
+}
