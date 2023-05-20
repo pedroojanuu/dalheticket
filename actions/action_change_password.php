@@ -1,12 +1,12 @@
 <?php
-
     declare(strict_types = 1);
+
 
     require_once(__DIR__ . '/../utils/session.php');
 
     $session = new Session();
 
-    if ($_SESSION['csrf'] !== $_POST['csrf']) {
+    if ($_SESSION['csrf'] != $_POST['csrf']) {
         header('Location: ../index.php');
         exit();
     }
@@ -26,7 +26,6 @@
 
     if ($admin) {
         User::changePassword($db, $_POST['username'], $_POST['new']);
-        $session->addMessage('Password success', 'Password changed!');
         header('Location: ../pages/profile.php?username=' . $_POST['username']);
         exit();
     }

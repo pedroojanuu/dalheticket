@@ -11,12 +11,12 @@ class User{
   public int $ticket_count;
   public int $closed_tickets;
 
-  public function __construct(string $name, string $username, string $email, string $type, string $department, int $ticket_count, int $closed_tickets){
+  public function __construct(string $name, string $username, string $email, string $type, $department, int $ticket_count, int $closed_tickets){
     $this->name = $name;
     $this->username = $username;
     $this->email = $email;
     $this->type = $type;
-    $this->department = $department;
+    $this->department = $department == null? '' : $department;
     $this->ticket_count = $ticket_count;
     $this->closed_tickets = $closed_tickets;
   }

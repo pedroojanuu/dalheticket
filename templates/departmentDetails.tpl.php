@@ -4,18 +4,26 @@ declare(strict_types=1);
     
 require_once(__DIR__ . '/../database/department.class.php');
 require_once(__DIR__ . '/../database/ticket.class.php');
+require_once(__DIR__ . '/../database/user.class.php');
 require_once(__DIR__ . '/../database/connection.db.php');
 
 function drawDepartment(Department $department) : void {
         global $session, $db;
+        $my_type = User::getUserTypeByUsername($db, $session->getName());
 ?>
 <script src="../js/filter.js" defer></script>
     <h3 class="name"><?= $department->name ?></h3>
+<?php
+    if ($my_type == 'admin') {
+?>
     <div class="dep_options">
         <a href="../actions/action_delete_department.php?name=<?= $department->name ?>">Delete...</a>
         <br>
         <a href="../pages/change_department_name.php?name=<?= $department->name ?>">Change name...</a>
     </div>
+<?php
+    }
+?>
     <h4>Member Agents</h4>
     <ul class="search_list">
 <?php

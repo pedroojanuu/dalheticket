@@ -285,6 +285,7 @@ CORRIGIR WIDTH
   border-radius: 1em;
   padding: 0.5em;
   word-break: break-word;
+  max-width: 40vw;
 }
 
 .right{

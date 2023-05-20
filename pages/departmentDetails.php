@@ -27,18 +27,19 @@
       echo "<h4> Sorry, you aren't yet associated with a department.</h4>";
       drawFooter();
    } else {
-      if($user == null || $department == null ||
-      ($user->type != 'admin' && 
-      ($user->type != 'agent' || 
-         $user->department != $department->name))){
+      if ($user == null) {
+         header('Location: ../index.php');
+         exit();
+      } else if ($department == null) {
+         header('Location: ../index.php');
+         exit();
+      } else if (!($user->type == 'admin' || ($user->type == 'agent' && $user->department == $department->name))) {
          header('Location: ../index.php');
          exit();
       }
 
       drawHeader();
-
       drawDepartment($department);
-
       drawFooter();
    }
 
