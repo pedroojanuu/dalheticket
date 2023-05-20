@@ -496,3 +496,7 @@ form.date_form #date {
 form.date_form #filter {
   display: inline-block;
 }
+
+ul {
+  list-style-type: square;
+}

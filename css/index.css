@@ -83,7 +83,7 @@ header h1 {
   }
 }
 
-@media (min-aspect-ratio: 9/2){
+@media (min-aspect-ratio: 9/2    ){
   body {
     background-image: none;
   }
