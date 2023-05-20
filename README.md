@@ -19,7 +19,7 @@ For demostration purposes the password of all users is _"123456"_.
 If you want to enter as an admin there is already a prefined admin account with the email _"master@masters.com"_ and password _"123456"_.  
 
 If you don't have time to download it, you can at least appreciate these screenshots of our website:  
-![Home Page Screenshot on Desktop]()  
-![Messages Screenshot on Desktop]()  
-![Login Screenshot on Phone]()  
-![Profile Screenshot on Phone]()  
+![Home Page Screenshot on Desktop](images/Home_desktop.png)  
+![Messages Screenshot on Desktop](images/Ticket_desktop.png)  
+![Login Screenshot on Phone](images/Home_phone.png)  
+![Profile Screenshot on Phone](images/Profile_phone.png)  
